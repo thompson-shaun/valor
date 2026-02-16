@@ -29,7 +29,7 @@ Use the `/bank` Claude Code skill or `scripts/bank.sh` directly to manage the re
 /bank --player kidname deposit 10 "..."  # Specify a player
 ```
 
-Each player's data lives in `data/<player>/`. The default player is set in `config/settings.yaml`. You can also file a **Bank Transaction** issue on GitHub to process transactions via the agentic workflow.
+Each player's data lives in `data/<player>/`. The default player is set in `config/settings.yaml`.
 
 ## Configuration
 
@@ -39,9 +39,21 @@ All point values, rewards, and settings live in `config/`:
 - `rewards.yaml` — reward shop items, costs, and categories
 - `settings.yaml` — bank deposit percentage, weekly thresholds, rules
 
-## Proposing Reward Changes
+## GitHub Workflows
 
-Open an issue using the **Reward Change** template. Label it `reward-update` and the automated workflow will open a PR with the changes.
+All changes go through pull requests. Issue-driven workflows create a branch, commit changes, and open a PR. A required CI check (`verify`) validates ledger integrity and runs tests before any PR can merge. Workflows only run for the repo owner.
+
+| Issue label | Workflow | What it does | Merge |
+|---|---|---|---|
+| `bank-transaction` | Bank Transaction | Processes a deposit, withdrawal, or set via Claude + `bank.sh` | Auto-merge after CI passes |
+| `weekly-checkin` | Weekly Check-In | Records weekly totals, computes tier + bank deposit | Auto-merge after CI passes |
+| `reward-update` | Reward Table Update | Updates `config/rewards.yaml` and docs via Claude | Manual review required |
+
+The **Verify Ledger** CI workflow runs on every PR to `main`:
+1. Replays each player's `bank-log.jsonl` and confirms the running total matches `bank.json`
+2. Runs the full `tests/bank_test.sh` suite
+
+Only GitHub-owned (`actions/*`) and Anthropic (`anthropics/*`) actions are used — no third-party community actions.
 
 ## Development
 
