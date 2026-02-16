@@ -6,12 +6,14 @@ on:
 
 jobs:
   update-rewards:
-    if: contains(github.event.issue.labels.*.name, 'reward-update')
+    if: >-
+      contains(github.event.issue.labels.*.name, 'reward-update') &&
+      github.event.issue.user.login == 'thompson-shaun'
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
-      issues: read
+      issues: write
 
     steps:
       - name: Checkout
@@ -32,13 +34,31 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          title: "Update reward table from #${{ github.event.issue.number }}"
-          body: |
-            Automated reward table update from issue #${{ github.event.issue.number }}.
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit"
+            gh issue close "$ISSUE_NUMBER" --comment "No changes were needed."
+            exit 0
+          fi
 
-            Please review the changes to `config/rewards.yaml` and `docs/src/content/docs/rewards/shop.md`.
-          branch: reward-update/${{ github.event.issue.number }}
-          commit-message: "Update reward table from #${{ github.event.issue.number }}"
-          labels: reward-update
+          branch="reward-update/${ISSUE_NUMBER}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add config/ docs/
+          git commit -m "Update reward table from #${ISSUE_NUMBER}"
+          git push -u origin "$branch"
+
+          gh pr create \
+            --title "Update reward table from #${ISSUE_NUMBER}" \
+            --body "Automated reward table update from issue #${ISSUE_NUMBER}.
+
+          Please review the changes to \`config/rewards.yaml\` and \`docs/src/content/docs/rewards/shop.md\`.
+
+          Fixes #${ISSUE_NUMBER}" \
+            --head "$branch" \
+            --base main \
+            --label "reward-update"

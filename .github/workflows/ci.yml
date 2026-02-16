@@ -1,0 +1,35 @@
+name: Verify Ledger
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify ledger integrity for all players
+        run: |
+          failed=0
+          for player_dir in data/*/; do
+            player=$(basename "$player_dir")
+            echo "--- Verifying player: $player ---"
+            if ! scripts/bank.sh --player "$player" verify; then
+              failed=1
+            fi
+          done
+          if [[ "$failed" -ne 0 ]]; then
+            echo "Ledger verification failed!"
+            exit 1
+          fi
+
+      - name: Run bank tests
+        run: bash tests/bank_test.sh

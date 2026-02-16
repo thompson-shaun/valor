@@ -6,20 +6,18 @@ on:
 
 jobs:
   process-checkin:
-    if: contains(github.event.issue.labels.*.name, 'weekly-checkin')
+    if: >-
+      contains(github.event.issue.labels.*.name, 'weekly-checkin') &&
+      github.event.issue.user.login == 'thompson-shaun'
     runs-on: ubuntu-latest
     permissions:
       contents: write
       issues: write
+      pull-requests: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
 
       - name: Process check-in
         uses: anthropics/claude-code-action@beta
@@ -40,16 +38,31 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-      - name: Commit and push
+      - name: Create PR and auto-merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
+          if git diff --quiet; then
+            echo "No changes to commit"
+            gh issue close "$ISSUE_NUMBER" --comment "No changes were needed."
+            exit 0
+          fi
+
+          branch="weekly-checkin/${ISSUE_NUMBER}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
           git add data/
-          git commit -m "Weekly check-in from #${{ github.event.issue.number }}" || echo "No changes to commit"
-          git push
+          git commit -m "Weekly check-in from #${ISSUE_NUMBER}"
+          git push -u origin "$branch"
 
-      - name: Close issue
-        uses: peter-evans/close-issue@v3
-        with:
-          comment: |
-            Check-in recorded! See the data/ directory for the weekly summary and updated bank balance.
+          gh pr create \
+            --title "Weekly check-in from #${ISSUE_NUMBER}" \
+            --body "Automated weekly check-in from issue #${ISSUE_NUMBER}.
+
+          Fixes #${ISSUE_NUMBER}" \
+            --head "$branch" \
+            --base main
+
+          gh pr merge "$branch" --auto --squash
