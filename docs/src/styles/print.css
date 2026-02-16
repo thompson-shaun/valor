@@ -1,0 +1,54 @@
+@media print {
+  /* Hide navigation and sidebar */
+  nav,
+  .sidebar,
+  starlight-menu-button,
+  .pagination-links,
+  .right-sidebar,
+  header {
+    display: none !important;
+  }
+
+  /* Full-width content */
+  .main-pane,
+  main,
+  .content-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Clean table borders */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border: 1px solid #333;
+    padding: 4px 8px;
+  }
+
+  /* Page breaks between major sections */
+  h2 {
+    page-break-before: auto;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    page-break-after: avoid;
+  }
+
+  table,
+  figure {
+    page-break-inside: avoid;
+  }
+
+  /* Clean link display */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

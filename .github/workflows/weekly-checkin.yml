@@ -1,0 +1,55 @@
+name: Weekly Check-In
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  process-checkin:
+    if: contains(github.event.issue.labels.*.name, 'weekly-checkin')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Process check-in
+        uses: anthropics/claude-code-action@beta
+        with:
+          prompt: |
+            Process the weekly check-in from the issue below.
+            Follow the instructions in .claude/skills/checkin.md:
+            1. Parse the weekly total (and player if provided) from the issue body
+            2. Determine the week (default to last Monday)
+            3. Compute tier from config/settings.yaml thresholds
+            4. Compute bank deposit using scripts/bank.sh calc-deposit
+            5. Run scripts/bank.sh deposit for the bank deposit
+            6. Write the weekly summary JSON to data/<player>/weeks/<date>.json
+
+            Issue title: ${{ github.event.issue.title }}
+            Issue body: ${{ github.event.issue.body }}
+          allowed_tools: "Bash,Read,Write,Glob,Grep"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git commit -m "Weekly check-in from #${{ github.event.issue.number }}" || echo "No changes to commit"
+          git push
+
+      - name: Close issue
+        uses: peter-evans/close-issue@v3
+        with:
+          comment: |
+            Check-in recorded! See the data/ directory for the weekly summary and updated bank balance.
