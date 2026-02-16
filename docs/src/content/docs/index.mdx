@@ -1,0 +1,32 @@
+---
+title: Level Up!
+description: A gamified behavior point system — earn XP, unlock rewards, level up your week.
+template: splash
+hero:
+  tagline: Earn points. Unlock rewards. Level up your week.
+  actions:
+    - text: Player's Guide
+      link: /player/guide/
+      icon: right-arrow
+      variant: primary
+    - text: Parent Guide
+      link: /parent/guide/
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="Daily Quests" icon="pencil">
+    Earn XP every day by completing morning, school, and evening quests. A perfect day is worth 15+ points!
+  </Card>
+  <Card title="Reward Bank" icon="star">
+    Half your daily XP goes into your Reward Bank. Save up and spend on treats, outings, or the ultimate prize.
+  </Card>
+  <Card title="Weekly Levels" icon="rocket">
+    Your weekly total determines your level: Gold, Green, Yellow, or Red. Every Monday is a fresh start.
+  </Card>
+  <Card title="Reward Shop" icon="open-book">
+    Browse the [Reward Shop](/rewards/shop/) to see what your XP can buy — from screen time to a Nintendo Switch 2.
+  </Card>
+</CardGrid>

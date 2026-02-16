@@ -1,0 +1,31 @@
+name: Weekly Check-In
+description: Record a week's total points
+title: "[Check-in] Week of "
+labels: ["weekly-checkin"]
+body:
+  - type: input
+    id: weekly_total
+    attributes:
+      label: Weekly Total
+      description: Total points for the week (earned minus deductions)
+      placeholder: e.g., 75
+    validations:
+      required: true
+
+  - type: input
+    id: player
+    attributes:
+      label: Player
+      description: Leave blank for the default player
+      placeholder: e.g., default
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything noteworthy about the week (optional)
+      placeholder: Great week! Gold on Wednesday checkpoint.
+    validations:
+      required: false

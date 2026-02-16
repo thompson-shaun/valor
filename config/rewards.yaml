@@ -1,0 +1,57 @@
+weekday:
+  - name: Extra 30 min screen time
+    cost: 10
+    requires_approval: false
+    description: One session, parent picks timing
+  - name: Small treat (candy, snack)
+    cost: 10
+    requires_approval: false
+    description: From the treat stash
+  - name: Stay up 20 min past bedtime
+    cost: 15
+    requires_approval: false
+    description: School nights only
+
+weekend:
+  - name: Boba or special drink
+    cost: 20
+    requires_approval: false
+    description: A trip to get boba
+  - name: Pick the family movie
+    cost: 20
+    requires_approval: false
+    description: For family movie night
+  - name: Extra 1 hour screen time
+    cost: 25
+    requires_approval: false
+    description: Weekend only
+  - name: Pick dinner for the family
+    cost: 30
+    requires_approval: false
+    description: Within reason — takeout or cook
+  - name: Stay up 30 min past bedtime
+    cost: 15
+    requires_approval: false
+    description: Weekend nights
+  - name: Disney trip (3-4 hours)
+    cost: 40
+    requires_approval: false
+    description: Quick park visit with passes
+
+long_term:
+  - name: Small toy or book
+    cost: 50
+    requires_approval: false
+    description: Under $15 value
+  - name: Special outing (just him + parent)
+    cost: 60
+    requires_approval: false
+    description: Lunch date, park, arcade, etc.
+  - name: Big reward
+    cost: 100
+    requires_approval: true
+    description: New game, special experience — parent approval
+  - name: Nintendo Switch 2
+    cost: 250
+    requires_approval: true
+    description: The ultimate goal

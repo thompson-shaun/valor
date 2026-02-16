@@ -1,0 +1,40 @@
+name: Bank Transaction
+description: Deposit, withdraw, or set the reward bank balance
+title: "[Bank] "
+labels: ["bank-transaction"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Transaction Type
+      options:
+        - deposit
+        - withdrawal
+        - set
+    validations:
+      required: true
+
+  - type: input
+    id: amount
+    attributes:
+      label: Amount
+      placeholder: e.g., 10
+    validations:
+      required: true
+
+  - type: input
+    id: player
+    attributes:
+      label: Player
+      description: Leave blank to use the default player from settings.yaml
+      placeholder: e.g., default
+    validations:
+      required: false
+
+  - type: input
+    id: description
+    attributes:
+      label: Description
+      placeholder: e.g., Daily deposit - Monday
+    validations:
+      required: true

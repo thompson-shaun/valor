@@ -1,0 +1,101 @@
+morning:
+  - name: Wake up without drama
+    points: 1
+    max_per_day: 1
+    description: Gets up when called, no meltdown
+  - name: Make bed
+    points: 1
+    max_per_day: 1
+    description: Doesn't need to be perfect
+  - name: Get dressed independently
+    points: 1
+    max_per_day: 1
+    description: Without repeated reminders
+  - name: Eat breakfast on time
+    points: 1
+    max_per_day: 1
+    description: Finishes within a reasonable window
+  - name: Ready for school on time
+    points: 1
+    max_per_day: 1
+    description: Backpack, shoes, out the door
+
+school:
+  - name: Behavior clip stays green
+    points: 3
+    max_per_day: 1
+    description: Baseline good day at school
+    exclusive_group: clip_color
+  - name: Behavior clip moves above green
+    points: 5
+    max_per_day: 1
+    description: Replaces green (not stacked)
+    exclusive_group: clip_color
+  - name: Homework completed cooperatively
+    points: 2
+    max_per_day: 1
+    description: Done without major resistance or tears
+
+evening:
+  - name: Eat dinner on time
+    points: 1
+    max_per_day: 1
+    description: Stays at table, finishes in reasonable time
+  - name: Follow instructions on first ask
+    points: 1
+    max_per_day: 1
+    description: Responds to a request without needing repeats
+  - name: Positive attitude / kind words
+    points: 1
+    max_per_day: 1
+    description: General cooperation and kindness
+  - name: Bedtime routine on time
+    points: 1
+    max_per_day: 1
+    description: Teeth, PJs, in bed without a battle
+  - name: Reading time
+    points: 1
+    max_per_day: 1
+    description: Even 10-15 min counts
+
+bonus:
+  - name: Helps without being asked
+    points: 2
+    description: Spontaneous helpfulness
+  - name: Handles frustration calmly
+    points: 2
+    description: Uses words, walks away, takes a breath
+  - name: Accepts "no" gracefully
+    points: 2
+    description: No tantrum when told he can't do something
+  - name: Exceptional kindness or effort
+    points: 3
+    description: Goes above and beyond — parent discretion
+
+deductions:
+  - name: Behavior clip drops to yellow
+    points: -2
+    description: Below green at school
+  - name: Behavior clip drops to orange
+    points: -4
+    description: Significant behavior issue
+  - name: Behavior clip hits red (parent contact)
+    points: -6
+    description: Serious — this is a big deal
+  - name: Not following instructions after 2 asks
+    points: -1
+    description: Gave a fair chance first
+  - name: Screaming / tantrum
+    points: -2
+    description: Losing control at home
+  - name: Disrespectful language
+    points: -2
+    description: Name-calling, rude talk
+  - name: Lying
+    points: -3
+    description: Trust is important
+
+rules:
+  max_deduction_per_day: 8
+  earned_points_never_removed: true
+  deductions_are_separate_line_items: true

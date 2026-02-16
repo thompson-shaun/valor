@@ -1,0 +1,51 @@
+name: Reward Change
+description: Propose adding, modifying, or removing a reward from the shop
+title: "[Reward] "
+labels: ["reward-update"]
+body:
+  - type: dropdown
+    id: action
+    attributes:
+      label: Action
+      description: What do you want to do?
+      options:
+        - Add a new reward
+        - Modify an existing reward
+        - Remove a reward
+    validations:
+      required: true
+
+  - type: input
+    id: reward_name
+    attributes:
+      label: Reward Name
+      placeholder: e.g., Extra 30 min screen time
+    validations:
+      required: true
+
+  - type: input
+    id: cost
+    attributes:
+      label: Cost (XP)
+      placeholder: e.g., 25
+    validations:
+      required: false
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - weekday
+        - weekend
+        - long_term
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: Details about this reward, any conditions, etc.
+    validations:
+      required: false

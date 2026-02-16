@@ -1,0 +1,64 @@
+name: Bank Transaction
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  process-transaction:
+    if: contains(github.event.issue.labels.*.name, 'bank-transaction')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Process bank transaction
+        run: |
+          # Parse issue body for transaction fields
+          # The claude-code-action would be ideal here, but for reliability
+          # we can also call the bank script directly if fields are parseable.
+          # For now, delegate to Claude to parse the issue and call the script.
+          echo "Issue body will be parsed by Claude action below"
+
+      - name: Process with Claude
+        uses: anthropics/claude-code-action@beta
+        with:
+          prompt: |
+            Process the bank transaction described in the issue below.
+            Use scripts/bank.sh to execute the transaction. Parse the issue body
+            for: transaction type, amount, player (optional), and description.
+
+            Run the script like:
+              scripts/bank.sh [--player <name>] <type> <amount> "<description>"
+
+            If no player is specified in the issue, omit the --player flag
+            (the script will use the default from config/settings.yaml).
+
+            Issue title: ${{ github.event.issue.title }}
+            Issue body: ${{ github.event.issue.body }}
+          allowed_tools: "Bash,Read,Glob,Grep"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git commit -m "Bank transaction from #${{ github.event.issue.number }}" || echo "No changes to commit"
+          git push
+
+      - name: Close issue
+        uses: peter-evans/close-issue@v3
+        with:
+          comment: |
+            Transaction processed and committed. Check the data/ directory for the updated balance.

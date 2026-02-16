@@ -1,0 +1,37 @@
+// @ts-check
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+
+// https://astro.build/config
+export default defineConfig({
+	integrations: [
+		starlight({
+			title: 'Level Up!',
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/shaunpersad/game-plan' }],
+			sidebar: [
+				{ label: 'Home', slug: '' },
+				{
+					label: 'Guides',
+					items: [
+						{ label: 'Parent Guide', slug: 'parent/guide' },
+						{ label: "Player's Guide", slug: 'player/guide' },
+					],
+				},
+				{
+					label: 'Rewards',
+					items: [
+						{ label: 'Reward Shop', slug: 'rewards/shop' },
+					],
+				},
+				{
+					label: 'Rules',
+					items: [
+						{ label: 'Quick Reference', slug: 'rules/quick-ref' },
+						{ label: 'Weekly Tracker', slug: 'rules/tracker' },
+					],
+				},
+			],
+			customCss: ['./src/styles/print.css'],
+		}),
+	],
+});
