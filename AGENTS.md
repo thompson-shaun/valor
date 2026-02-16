@@ -1,8 +1,8 @@
-# Level Up! — Agent Instructions
+# Quest Mode — Agent Instructions
 
 ## Project Overview
 
-Level Up! is a gamified behavior point system for a child. It uses token economy principles with game language (XP, quests, levels) to reinforce positive behavior. This repo contains:
+Quest Mode is a gamified behavior point system for a child. It uses token economy principles with game language (XP, quests, levels) to reinforce positive behavior. This repo contains:
 
 - **Docs site** (`docs/`) — Astro Starlight site with parent guide, player guide, reward shop, and quick reference
 - **Config** (`config/`) — YAML files defining behaviors, rewards, settings, and thresholds

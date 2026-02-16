@@ -1,6 +1,6 @@
 ---
 title: Weekly Tracker
-description: Printable weekly tracker sheet for the Level Up! point system.
+description: Printable weekly tracker sheet for the Quest Mode point system.
 ---
 
 Print this page to use as your weekly tracking sheet. Fill in points each day and tally at the end of the week.

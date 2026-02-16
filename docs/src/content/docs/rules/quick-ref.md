@@ -1,6 +1,6 @@
 ---
 title: Quick Reference
-description: One-page cheat sheet for the Level Up! point system.
+description: One-page cheat sheet for the Quest Mode point system.
 ---
 
 ## Daily Earning

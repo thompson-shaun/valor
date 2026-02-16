@@ -1,4 +1,4 @@
-# Level Up!
+# Quest Mode
 
 A gamified behavior point system that turns daily routines into quests, good choices into XP, and consistency into real rewards.
 
