@@ -23,7 +23,7 @@ jobs:
       - name: Process check-in
         uses: anthropics/claude-code-action@beta
         with:
-          prompt: |
+          direct_prompt: |
             Process the weekly check-in from the issue below.
             Follow the instructions in .claude/skills/checkin.md:
             1. Parse the weekly total (and player if provided) from the issue body

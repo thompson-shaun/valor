@@ -23,7 +23,7 @@ jobs:
       - name: Process with Claude
         uses: anthropics/claude-code-action@beta
         with:
-          prompt: |
+          direct_prompt: |
             Process the bank transaction described in the issue below.
             Use scripts/bank.sh to execute the transaction. Parse the issue body
             for: transaction type, amount, player (optional), and description.

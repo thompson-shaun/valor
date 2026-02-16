@@ -23,7 +23,7 @@ jobs:
       - name: Parse issue and update rewards
         uses: anthropics/claude-code-action@beta
         with:
-          prompt: |
+          direct_prompt: |
             Read the issue body below and update config/rewards.yaml accordingly.
             Then update docs/src/content/docs/rewards/shop.md to reflect the change.
             Follow the existing YAML structure and markdown format exactly.
