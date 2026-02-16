@@ -40,31 +40,3 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-      - name: Create PR and auto-merge
-        env:
-          GH_TOKEN: ${{ github.token }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-        run: |
-          if git diff --quiet; then
-            echo "No changes to commit"
-            gh issue close "$ISSUE_NUMBER" --comment "No changes were needed."
-            exit 0
-          fi
-
-          branch="bank-transaction/${ISSUE_NUMBER}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$branch"
-          git add data/
-          git commit -m "Bank transaction from #${ISSUE_NUMBER}"
-          git push -u origin "$branch"
-
-          gh pr create \
-            --title "Bank transaction from #${ISSUE_NUMBER}" \
-            --body "Automated bank transaction from issue #${ISSUE_NUMBER}.
-
-          Fixes #${ISSUE_NUMBER}" \
-            --head "$branch" \
-            --base main
-
-          gh pr merge "$branch" --auto --squash
