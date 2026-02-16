@@ -1,6 +1,6 @@
 ---
 title: Player's Guide
-description: The official player's guide to Level Up! — earn XP, complete quests, unlock rewards.
+description: The official player's guide to Quest Mode — earn XP, complete quests, unlock rewards.
 ---
 
 > **YOUR MISSION:** Earn XP every day by making awesome choices. Spend your XP on cool rewards. Have the best week possible!

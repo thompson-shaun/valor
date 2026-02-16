@@ -1,12 +1,12 @@
 ---
 name: reward
-description: View and manage the Level Up! reward shop
+description: View and manage the Quest Mode reward shop
 user_invocable: true
 ---
 
 # /reward — Reward Shop Management
 
-Manage the Level Up! reward shop. The source of truth is `config/rewards.yaml`.
+Manage the Quest Mode reward shop. The source of truth is `config/rewards.yaml`.
 
 ## Parse the command
 

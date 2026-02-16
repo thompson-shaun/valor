@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Level Up! Reward Bank — transaction script
+# Quest Mode Reward Bank — transaction script
 # Usage:
 #   bank.sh [--player <name>] status
 #   bank.sh [--player <name>] deposit <amount> <description>

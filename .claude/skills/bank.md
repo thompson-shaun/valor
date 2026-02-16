@@ -1,12 +1,12 @@
 ---
 name: bank
-description: Manage the Level Up! reward bank — deposit, withdraw, set balance, or view status
+description: Manage the Quest Mode reward bank — deposit, withdraw, set balance, or view status
 user_invocable: true
 ---
 
 # /bank — Reward Bank Operations
 
-Manage the Level Up! reward bank. All operations are handled by `scripts/bank.sh`.
+Manage the Quest Mode reward bank. All operations are handled by `scripts/bank.sh`.
 
 ## Parse the command
 

@@ -1,6 +1,6 @@
 ---
 title: Parent Guide
-description: Full rules, point values, and implementation guide for the Level Up! behavior system.
+description: Full rules, point values, and implementation guide for the Quest Mode behavior system.
 ---
 
 ## How It Works

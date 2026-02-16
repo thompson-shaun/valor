@@ -6,8 +6,8 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'Level Up!',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/shaunpersad/game-plan' }],
+			title: 'Quest Mode',
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/thompson-shaun/quest-mode' }],
 			sidebar: [
 				{ label: 'Home', slug: '' },
 				{
