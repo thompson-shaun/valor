@@ -45,9 +45,10 @@ All changes go through pull requests. Issue-driven workflows create a branch, co
 
 | Issue label | Workflow | What it does | Merge |
 |---|---|---|---|
-| `bank-transaction` | Bank Transaction | Processes a deposit, withdrawal, or set via Claude + `bank.sh` | Auto-merge after CI passes |
-| `weekly-checkin` | Weekly Check-In | Records weekly totals, computes tier + bank deposit | Auto-merge after CI passes |
-| `reward-update` | Reward Table Update | Updates `config/rewards.yaml` and docs via Claude | Manual review required |
+| `bank-transaction` | Bank Transaction | Parses issue form, runs `bank.sh` | Auto-merge after CI passes |
+| `weekly-checkin` | Weekly Check-In | Parses issue form, computes tier + bank deposit | Auto-merge after CI passes |
+| `reward-update` | Claude | Claude edits `config/rewards.yaml` and docs | Manual review required |
+| `claude` / `@claude` | Claude | Ad-hoc agent requests on issues or PRs | Depends on task |
 
 The **Verify Ledger** CI workflow runs on every PR to `main`:
 1. Replays each player's `bank-log.jsonl` and confirms the running total matches `bank.json`

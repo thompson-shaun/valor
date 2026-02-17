@@ -1,0 +1,87 @@
+name: Bank Transaction
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  process-transaction:
+    if: >-
+      contains(github.event.issue.labels.*.name, 'bank-transaction') &&
+      github.event.issue.user.login == 'thompson-shaun'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Parse issue and run transaction
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          # Parse structured form fields from issue body
+          type=$(echo "$ISSUE_BODY" | sed -n '/### Transaction Type/{n;/^$/d;p;}' | tr -d '[:space:]')
+          amount=$(echo "$ISSUE_BODY" | sed -n '/### Amount/{n;/^$/d;p;}' | tr -d '[:space:]')
+          player=$(echo "$ISSUE_BODY" | sed -n '/### Player/{n;/^$/d;p;}' | tr -d '[:space:]')
+          description=$(echo "$ISSUE_BODY" | sed -n '/### Description/{n;/^$/d;p;}' | xargs)
+
+          echo "Type: $type"
+          echo "Amount: $amount"
+          echo "Player: $player"
+          echo "Description: $description"
+
+          # Validate required fields
+          if [[ -z "$type" || -z "$amount" || -z "$description" ]]; then
+            echo "::error::Missing required fields"
+            exit 1
+          fi
+
+          # Build command
+          cmd=(scripts/bank.sh)
+          if [[ -n "$player" && "$player" != "_No response_" && "$player" != "_Noresponse_" ]]; then
+            cmd+=(--player "$player")
+          fi
+          cmd+=("$type" "$amount" "$description")
+
+          echo "Running: ${cmd[*]}"
+          "${cmd[@]}"
+
+      - name: Create PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit"
+            gh issue close "$ISSUE_NUMBER" --comment "No changes were needed."
+            exit 0
+          fi
+
+          branch="bank-transaction/${ISSUE_NUMBER}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/
+          git commit -m "Bank transaction from #${ISSUE_NUMBER}"
+          git push -u origin "$branch"
+
+          pr_url=$(gh pr create \
+            --title "Bank transaction from #${ISSUE_NUMBER}" \
+            --body "Automated bank transaction from issue #${ISSUE_NUMBER}.
+
+          Fixes #${ISSUE_NUMBER}" \
+            --head "$branch" \
+            --base main)
+
+          gh pr merge "$branch" --auto --squash
+          echo "Created PR: $pr_url"

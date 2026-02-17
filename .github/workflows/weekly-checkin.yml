@@ -1,0 +1,145 @@
+name: Weekly Check-In
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  process-checkin:
+    if: >-
+      contains(github.event.issue.labels.*.name, 'weekly-checkin') &&
+      github.event.issue.user.login == 'thompson-shaun'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Parse issue and process check-in
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          # Parse structured form fields from issue body
+          weekly_total=$(echo "$ISSUE_BODY" | sed -n '/### Weekly Total/{n;/^$/d;p;}' | tr -d '[:space:]')
+          player=$(echo "$ISSUE_BODY" | sed -n '/### Player/{n;/^$/d;p;}' | tr -d '[:space:]')
+          notes=$(echo "$ISSUE_BODY" | sed -n '/### Notes/{n;/^$/d;p;}' | xargs)
+
+          echo "Weekly total: $weekly_total"
+          echo "Player: $player"
+          echo "Notes: $notes"
+
+          if [[ -z "$weekly_total" ]]; then
+            echo "::error::Missing weekly total"
+            exit 1
+          fi
+
+          # Resolve player
+          player_flag=()
+          if [[ -n "$player" && "$player" != "_No response_" && "$player" != "_Noresponse_" ]]; then
+            player_flag=(--player "$player")
+          fi
+
+          # Determine week (last Monday)
+          monday=$(date -d "last monday" +%Y-%m-%d 2>/dev/null || date -v-monday +%Y-%m-%d 2>/dev/null)
+          echo "Week of: $monday"
+
+          # Compute tier from settings.yaml thresholds
+          tier=$(node -e "
+            const fs = require('fs');
+            const text = fs.readFileSync('config/settings.yaml', 'utf8');
+            const gold = parseInt(text.match(/gold:\s*(\d+)/)[1]);
+            const green = parseInt(text.match(/green:\s*(\d+)/)[1]);
+            const yellow = parseInt(text.match(/yellow:\s*(\d+)/)[1]);
+            const total = ${weekly_total};
+            if (total >= gold) console.log('gold');
+            else if (total >= green) console.log('green');
+            else if (total >= yellow) console.log('yellow');
+            else console.log('red');
+          ")
+          echo "Tier: $tier"
+
+          # Compute bank deposit
+          deposit_output=$(scripts/bank.sh calc-deposit "$weekly_total")
+          echo "$deposit_output"
+          deposit=$(echo "$deposit_output" | grep "Bank deposit:" | grep -o '[0-9]\+')
+          echo "Deposit amount: $deposit"
+
+          # Run deposit
+          if [[ "$deposit" -gt 0 ]]; then
+            scripts/bank.sh "${player_flag[@]}" deposit "$deposit" "Week of ${monday}"
+          fi
+
+          # Resolve player name for data path
+          if [[ ${#player_flag[@]} -gt 0 ]]; then
+            player_name="${player_flag[1]}"
+          else
+            player_name=$(node -e "
+              const fs = require('fs');
+              const text = fs.readFileSync('config/settings.yaml', 'utf8');
+              const m = text.match(/default_player:\s*(\S+)/);
+              console.log(m ? m[1] : 'default');
+            ")
+          fi
+
+          # Write weekly summary
+          mkdir -p "data/${player_name}/weeks"
+          ts=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+          # Escape notes for JSON
+          notes_json=$(node -e "console.log(JSON.stringify(process.argv[1] || ''))" -- "$notes")
+
+          node -e "
+            const summary = {
+              week_of: '${monday}',
+              recorded_at: '${ts}',
+              weekly_total: ${weekly_total},
+              tier: '${tier}',
+              bank_deposit: ${deposit},
+              notes: ${notes_json}
+            };
+            require('fs').writeFileSync(
+              'data/${player_name}/weeks/${monday}.json',
+              JSON.stringify(summary, null, 2) + '\n'
+            );
+          "
+          echo "Wrote weekly summary to data/${player_name}/weeks/${monday}.json"
+
+      - name: Create PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "No changes to commit"
+            gh issue close "$ISSUE_NUMBER" --comment "No changes were needed."
+            exit 0
+          fi
+
+          branch="weekly-checkin/${ISSUE_NUMBER}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/
+          git commit -m "Weekly check-in from #${ISSUE_NUMBER}"
+          git push -u origin "$branch"
+
+          pr_url=$(gh pr create \
+            --title "Weekly check-in from #${ISSUE_NUMBER}" \
+            --body "Automated weekly check-in from issue #${ISSUE_NUMBER}.
+
+          Fixes #${ISSUE_NUMBER}" \
+            --head "$branch" \
+            --base main)
+
+          gh pr merge "$branch" --auto --squash
+          echo "Created PR: $pr_url"

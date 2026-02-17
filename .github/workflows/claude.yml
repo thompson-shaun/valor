@@ -30,7 +30,3 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           assignee_trigger: "claude"
           label_trigger: "claude"
-          custom_instructions: |
-            After committing and pushing your changes, always create a pull
-            request using gh pr create. Include "Fixes #<issue-number>" in
-            the PR body so the issue closes on merge.

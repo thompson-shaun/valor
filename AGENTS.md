@@ -75,6 +75,23 @@ Reward updates follow an issue-driven workflow:
 2. Label it `reward-update`
 3. The GitHub Actions workflow parses the issue and opens a PR updating `config/rewards.yaml` and the docs
 
+## GitHub Actions — Issue Workflows
+
+Issue-driven workflows use two approaches:
+
+**Plain shell** (deterministic, structured input):
+- `bank-transaction` — Parses issue form, runs `scripts/bank.sh`, creates PR with auto-merge
+- `weekly-checkin` — Parses issue form, computes tier + deposit, creates PR with auto-merge
+
+**Claude agent** (requires judgment):
+- `reward-update` — Claude interprets the request and edits `config/rewards.yaml` + docs
+- `@claude` comments — Ad-hoc requests on any issue or PR
+
+When working on an issue via the Claude agent workflow (label `claude`, assignment, or `@claude` mention), always:
+1. Make the required changes and commit them to the branch
+2. Push the branch to the remote
+3. Create a pull request using `gh pr create` with `Fixes #<issue-number>` in the body so the issue auto-closes on merge
+
 ## Content Conventions
 
 - Parent-facing content uses standard language (points, behaviors, rewards)
