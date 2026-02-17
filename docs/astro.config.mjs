@@ -12,6 +12,7 @@ export default defineConfig({
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/thompson-shaun/quest-mode' }],
 			sidebar: [
 				{ label: 'Home', slug: '' },
+				{ label: 'Status', slug: 'status' },
 				{
 					label: 'Guides',
 					items: [

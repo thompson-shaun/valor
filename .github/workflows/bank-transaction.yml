@@ -49,7 +49,7 @@ jobs:
           fi
 
           # Build command
-          cmd=(scripts/bank.sh)
+          cmd=(scripts/bank.sh --no-commit)
           if [[ -n "$player" && "$player" != "_No response_" && "$player" != "_Noresponse_" ]]; then
             cmd+=(--player "$player")
           fi

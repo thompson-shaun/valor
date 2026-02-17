@@ -3,25 +3,33 @@ set -euo pipefail
 
 # Quest Mode Reward Bank — transaction script
 # Usage:
-#   bank.sh [--player <name>] status
-#   bank.sh [--player <name>] deposit <amount> <description>
-#   bank.sh [--player <name>] withdraw <amount> <description>
-#   bank.sh [--player <name>] set <amount> <description>
-#   bank.sh [--player <name>] verify
+#   bank.sh [--player <name>] [--no-commit] status
+#   bank.sh [--player <name>] [--no-commit] deposit <amount> <description>
+#   bank.sh [--player <name>] [--no-commit] withdraw <amount> <description>
+#   bank.sh [--player <name>] [--no-commit] set <amount> <description>
+#   bank.sh [--player <name>] [--no-commit] verify
 #   bank.sh calc-deposit <gross_earned>                     Calculate bank deposit from daily gross
+#
+# Flags:
+#   --no-commit   Skip auto-commit after transactions (env: BANK_NO_COMMIT=true)
 #
 # Player data lives in data/<player>/. If --player is not given,
 # reads default_player from config/settings.yaml.
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
-# --- Parse --player flag ---
+# --- Parse flags ---
 PLAYER=""
+NO_COMMIT="${BANK_NO_COMMIT:-false}"
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --player)
       PLAYER="$2"
       shift 2
+      ;;
+    --no-commit)
+      NO_COMMIT=true
+      shift
       ;;
     *)
       break
@@ -154,8 +162,12 @@ cmd_transact() {
   local amount="$2"
   local description="$3"
 
-  # Validate amount is a positive integer
-  if ! [[ "$amount" =~ ^[0-9]+$ ]] || [[ "$amount" -eq 0 ]]; then
+  # Validate amount is a non-negative integer (0 only valid for set)
+  if ! [[ "$amount" =~ ^[0-9]+$ ]]; then
+    echo "Error: amount must be a non-negative integer" >&2
+    exit 1
+  fi
+  if [[ "$amount" -eq 0 && "$type" != "set" ]]; then
     echo "Error: amount must be a positive integer" >&2
     exit 1
   fi
@@ -216,6 +228,14 @@ cmd_transact() {
   echo "New balance: $new_balance XP"
   echo ""
   cmd_verify
+
+  # Auto-commit unless --no-commit or BANK_NO_COMMIT=true
+  if [[ "$NO_COMMIT" != "true" ]]; then
+    if git -C "$REPO_ROOT" rev-parse --git-dir >/dev/null 2>&1; then
+      git -C "$REPO_ROOT" add "$DATA_DIR"
+      git -C "$REPO_ROOT" commit -m "$type: $amount XP — $description"
+    fi
+  fi
 }
 
 cmd_calc_deposit() {

@@ -78,7 +78,7 @@ jobs:
 
           # Run deposit
           if [[ "$deposit" -gt 0 ]]; then
-            scripts/bank.sh "${player_flag[@]}" deposit "$deposit" "Week of ${monday}"
+            scripts/bank.sh --no-commit "${player_flag[@]}" deposit "$deposit" "Week of ${monday}"
           fi
 
           # Resolve player name for data path

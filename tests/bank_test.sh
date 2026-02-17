@@ -8,6 +8,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 BANK="$REPO_ROOT/scripts/bank.sh"
 TEST_PLAYER="__test_$$"
+export BANK_NO_COMMIT=true
 
 PASSED=0
 FAILED=0
@@ -125,6 +126,17 @@ assert_contains "set output" "New balance: 50 XP" "$output"
 assert_contains "set integrity" "PASS" "$output"
 assert_eq "balance after set" "50" "$(get_balance)"
 assert_eq "ledger has 4 entries" "4" "$(log_lines)"
+
+# --- Set to zero ---
+echo ""
+echo "[set to zero]"
+output=$("$BANK" --player "$TEST_PLAYER" set 0 "Reset bank")
+assert_contains "set zero output" "New balance: 0 XP" "$output"
+assert_contains "set zero integrity" "PASS" "$output"
+assert_eq "balance after set zero" "0" "$(get_balance)"
+
+# Re-set to 50 for the next test
+"$BANK" --player "$TEST_PLAYER" set 50 "Restore" >/dev/null
 
 # --- Withdraw to zero ---
 echo ""
