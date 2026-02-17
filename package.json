@@ -1,0 +1,11 @@
+{
+  "name": "quest-mode",
+  "private": true,
+  "scripts": {
+    "generate:tracker": "node scripts/generate-tracker.js",
+    "test": "bash tests/bank_test.sh"
+  },
+  "devDependencies": {
+    "exceljs": "^4.4.0"
+  }
+}
