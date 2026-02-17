@@ -30,10 +30,11 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           # Parse structured form fields from issue body
-          type=$(echo "$ISSUE_BODY" | sed -n '/### Transaction Type/{n;/^$/d;p;}' | tr -d '[:space:]')
-          amount=$(echo "$ISSUE_BODY" | sed -n '/### Amount/{n;/^$/d;p;}' | tr -d '[:space:]')
-          player=$(echo "$ISSUE_BODY" | sed -n '/### Player/{n;/^$/d;p;}' | tr -d '[:space:]')
-          description=$(echo "$ISSUE_BODY" | sed -n '/### Description/{n;/^$/d;p;}' | xargs)
+          # Format is: ### Header\n\nvalue\n
+          type=$(echo "$ISSUE_BODY" | sed -n '/### Transaction Type/{n;n;p;}' | tr -d '[:space:]')
+          amount=$(echo "$ISSUE_BODY" | sed -n '/### Amount/{n;n;p;}' | tr -d '[:space:]')
+          player=$(echo "$ISSUE_BODY" | sed -n '/### Player/{n;n;p;}' | tr -d '[:space:]')
+          description=$(echo "$ISSUE_BODY" | sed -n '/### Description/{n;n;p;}' | xargs)
 
           echo "Type: $type"
           echo "Amount: $amount"
