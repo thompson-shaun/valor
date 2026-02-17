@@ -151,5 +151,6 @@ jobs:
             --head "$branch" \
             --base main)
 
-          gh pr merge "$branch" --auto --squash
+          gh pr merge "$branch" --auto --squash --delete-branch
+          gh issue close "$ISSUE_NUMBER" --comment "PR created: $pr_url"
           echo "Created PR: $pr_url"
