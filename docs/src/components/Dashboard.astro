@@ -1,0 +1,349 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+const dataDir = path.resolve(process.cwd(), '..', 'data', 'default');
+
+// Read bank balance
+let balance = 0;
+let lastUpdated = '';
+try {
+  const bankData = JSON.parse(fs.readFileSync(path.join(dataDir, 'bank.json'), 'utf8'));
+  balance = bankData.balance;
+  lastUpdated = bankData.last_updated || '';
+} catch {
+  // No bank data yet
+}
+
+// Read recent transactions (last 5)
+let transactions: { id: string; timestamp: string; type: string; amount: number; balance_after: number; description: string }[] = [];
+try {
+  const logContent = fs.readFileSync(path.join(dataDir, 'bank-log.jsonl'), 'utf8').trim();
+  if (logContent) {
+    const logLines = logContent.split('\n').filter(Boolean);
+    transactions = logLines.slice(-5).reverse().map(line => JSON.parse(line));
+  }
+} catch {
+  // No transactions yet
+}
+
+// Read weekly summaries
+let weeks: { week_of: string; weekly_total: number; tier: string; bank_deposit: number; notes?: string }[] = [];
+try {
+  const weeksDir = path.join(dataDir, 'weeks');
+  if (fs.existsSync(weeksDir)) {
+    const files = fs.readdirSync(weeksDir).filter((f: string) => f.endsWith('.json')).sort();
+    weeks = files.map((f: string) => JSON.parse(fs.readFileSync(path.join(weeksDir, f), 'utf8')));
+  }
+} catch {
+  // No weeks data yet
+}
+
+// Compute streaks (consecutive gold or green weeks)
+let currentStreak = 0;
+let bestStreak = 0;
+let tempStreak = 0;
+for (const week of weeks) {
+  if (week.tier === 'gold' || week.tier === 'green') {
+    tempStreak++;
+    if (tempStreak > bestStreak) bestStreak = tempStreak;
+  } else {
+    tempStreak = 0;
+  }
+}
+currentStreak = tempStreak;
+
+// Compute trend
+let trend = '—';
+if (weeks.length >= 4) {
+  const recent = weeks.slice(-2);
+  const earlier = weeks.slice(-4, -2);
+  const recentAvg = recent.reduce((s, w) => s + w.weekly_total, 0) / recent.length;
+  const earlierAvg = earlier.reduce((s, w) => s + w.weekly_total, 0) / earlier.length;
+  if (recentAvg > earlierAvg + 3) trend = 'Up';
+  else if (recentAvg < earlierAvg - 3) trend = 'Down';
+  else trend = 'Steady';
+} else if (weeks.length >= 2) {
+  const last = weeks[weeks.length - 1].weekly_total;
+  const prev = weeks[weeks.length - 2].weekly_total;
+  if (last > prev + 3) trend = 'Up';
+  else if (last < prev - 3) trend = 'Down';
+  else trend = 'Steady';
+}
+
+function formatDate(iso: string): string {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+function amountDisplay(type: string, amount: number): string {
+  if (type === 'withdrawal') return `−${amount}`;
+  if (type === 'set') return `=${amount}`;
+  return `+${amount}`;
+}
+---
+
+<section class="dashboard">
+  <h2 class="dashboard-heading">Status</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card accent">
+      <div class="stat-label">Reward Bank</div>
+      <div class="stat-value big">{balance} <span class="stat-unit">XP</span></div>
+      {lastUpdated && <div class="stat-sub">Updated {formatDate(lastUpdated)}</div>}
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">Weeks Played</div>
+      <div class="stat-value">{weeks.length}</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">Current Streak</div>
+      <div class="stat-value">{currentStreak}</div>
+      <div class="stat-sub">gold/green weeks</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">Best Streak</div>
+      <div class="stat-value">{bestStreak}</div>
+    </div>
+
+    {weeks.length >= 2 && (
+      <div class="stat-card">
+        <div class="stat-label">Trend</div>
+        <div class="stat-value">{trend}</div>
+      </div>
+    )}
+  </div>
+
+  {transactions.length > 0 && (
+    <div class="dash-section">
+      <h3>Recent Transactions</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Balance</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map(tx => (
+              <tr>
+                <td>{formatDate(tx.timestamp)}</td>
+                <td><code>{tx.type}</code></td>
+                <td class={tx.type === 'withdrawal' ? 'amt-neg' : 'amt-pos'}>
+                  {amountDisplay(tx.type, tx.amount)} XP
+                </td>
+                <td>{tx.balance_after} XP</td>
+                <td>{tx.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )}
+
+  {weeks.length > 0 && (
+    <div class="dash-section">
+      <h3>Weekly History</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Week Of</th>
+              <th>Total</th>
+              <th>Tier</th>
+              <th>Deposit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...weeks].reverse().slice(0, 8).map(w => (
+              <tr>
+                <td>{w.week_of}</td>
+                <td>{w.weekly_total}</td>
+                <td><span class={`tier tier-${w.tier}`}>{w.tier}</span></td>
+                <td>+{w.bank_deposit} XP</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )}
+
+  {transactions.length === 0 && weeks.length === 0 && (
+    <p class="empty-state">No activity yet. Complete your first weekly check-in to see stats here!</p>
+  )}
+</section>
+
+<style>
+  .dashboard {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+
+  .dashboard-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--sl-color-white);
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: var(--sl-color-gray-6);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    text-align: center;
+  }
+
+  .stat-card.accent {
+    grid-column: 1 / -1;
+    background: var(--sl-color-accent-low);
+    border-color: var(--sl-color-accent);
+  }
+
+  @media (min-width: 600px) {
+    .stat-card.accent {
+      grid-column: span 2;
+    }
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--sl-color-gray-2);
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--sl-color-white);
+    line-height: 1.2;
+  }
+
+  .stat-value.big {
+    font-size: 2.25rem;
+  }
+
+  .stat-unit {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--sl-color-gray-2);
+  }
+
+  .stat-sub {
+    font-size: 0.7rem;
+    color: var(--sl-color-gray-3);
+    margin-top: 0.2rem;
+  }
+
+  .dash-section {
+    margin-bottom: 2rem;
+  }
+
+  .dash-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--sl-color-white);
+    margin-bottom: 0.75rem;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid var(--sl-color-gray-5);
+    color: var(--sl-color-gray-2);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--sl-color-gray-6);
+    color: var(--sl-color-gray-1);
+  }
+
+  code {
+    font-size: 0.8rem;
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.2rem;
+    background: var(--sl-color-gray-5);
+  }
+
+  .amt-pos {
+    color: #22c55e;
+    font-weight: 600;
+  }
+
+  .amt-neg {
+    color: #ef4444;
+    font-weight: 600;
+  }
+
+  .tier {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .tier-gold {
+    background: #fbbf24;
+    color: #1a1a1a;
+  }
+
+  .tier-green {
+    background: #22c55e;
+    color: #1a1a1a;
+  }
+
+  .tier-yellow {
+    background: #eab308;
+    color: #1a1a1a;
+  }
+
+  .tier-red {
+    background: #ef4444;
+    color: #fff;
+  }
+
+  .empty-state {
+    color: var(--sl-color-gray-3);
+    font-style: italic;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+</style>

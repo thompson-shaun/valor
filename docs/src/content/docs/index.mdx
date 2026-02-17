@@ -6,15 +6,16 @@ hero:
   tagline: Earn points. Unlock rewards. Level up your week.
   actions:
     - text: Player's Guide
-      link: /player/guide/
+      link: /quest-mode/player/guide/
       icon: right-arrow
       variant: primary
     - text: Parent Guide
-      link: /parent/guide/
+      link: /quest-mode/parent/guide/
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import Dashboard from '../../components/Dashboard.astro';
 
 <CardGrid stagger>
   <Card title="Daily Quests" icon="pencil">
@@ -27,6 +28,8 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
     Your weekly total determines your level: Gold, Green, Yellow, or Red. Every Monday is a fresh start.
   </Card>
   <Card title="Reward Shop" icon="open-book">
-    Browse the [Reward Shop](/rewards/shop/) to see what your XP can buy — from screen time to a Nintendo Switch 2.
+    Browse the [Reward Shop](/quest-mode/rewards/shop/) to see what your XP can buy — from screen time to a Nintendo Switch 2.
   </Card>
 </CardGrid>
+
+<Dashboard />

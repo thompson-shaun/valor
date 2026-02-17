@@ -33,7 +33,7 @@ export default defineConfig({
 					],
 				},
 			],
-			customCss: ['./src/styles/print.css'],
+			customCss: ['./src/styles/custom.css', './src/styles/print.css'],
 		}),
 	],
 });

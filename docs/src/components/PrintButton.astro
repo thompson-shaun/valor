@@ -1,0 +1,38 @@
+---
+// Client-side print button — hidden when printing
+---
+
+<button class="print-btn" type="button">Print This Page</button>
+
+<script>
+  document.querySelector('.print-btn')?.addEventListener('click', () => {
+    window.print();
+  });
+</script>
+
+<style>
+  .print-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--sl-color-white);
+    background: var(--sl-color-gray-5);
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .print-btn:hover {
+    background: var(--sl-color-gray-4);
+  }
+
+  @media print {
+    .print-btn {
+      display: none !important;
+    }
+  }
+</style>

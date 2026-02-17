@@ -1,0 +1,4 @@
+/* Hero action button alignment */
+[data-page-type="splash"] .hero > .actions {
+  justify-content: center;
+}

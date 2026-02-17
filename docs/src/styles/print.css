@@ -1,11 +1,13 @@
 @media print {
-  /* Hide navigation and sidebar */
+  /* Hide navigation, sidebar, and interactive elements */
   nav,
   .sidebar,
   starlight-menu-button,
   .pagination-links,
   .right-sidebar,
-  header {
+  header,
+  .print-btn,
+  .dashboard {
     display: none !important;
   }
 
