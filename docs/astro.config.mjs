@@ -4,6 +4,8 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://thompson-shaun.github.io',
+	base: '/quest-mode',
 	integrations: [
 		starlight({
 			title: 'Quest Mode',
