@@ -12,25 +12,20 @@ export default defineConfig({
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/thompson-shaun/quest-mode' }],
 			sidebar: [
 				{ label: 'Home', slug: '' },
-				{ label: 'Status', slug: 'status' },
+				{
+					label: 'Play',
+					items: [
+						{ label: 'Status', slug: 'status' },
+						{ label: 'Weekly Tracker', slug: 'rules/tracker' },
+						{ label: 'Reward Shop', slug: 'rewards/shop' },
+						{ label: 'Quick Reference', slug: 'rules/quick-ref' },
+					],
+				},
 				{
 					label: 'Guides',
 					items: [
-						{ label: 'Parent Guide', slug: 'parent/guide' },
 						{ label: "Player's Guide", slug: 'player/guide' },
-					],
-				},
-				{
-					label: 'Rewards',
-					items: [
-						{ label: 'Reward Shop', slug: 'rewards/shop' },
-					],
-				},
-				{
-					label: 'Rules',
-					items: [
-						{ label: 'Quick Reference', slug: 'rules/quick-ref' },
-						{ label: 'Weekly Tracker', slug: 'rules/tracker' },
+						{ label: 'Parent Guide', slug: 'parent/guide' },
 					],
 				},
 			],

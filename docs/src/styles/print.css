@@ -7,7 +7,9 @@
   .right-sidebar,
   header,
   .print-btn,
-  .dashboard {
+  .dashboard,
+  .hero,
+  footer {
     display: none !important;
   }
 
@@ -21,36 +23,65 @@
     padding: 0 !important;
   }
 
-  /* Clean table borders */
+  /* Base font */
+  body {
+    font-size: 11pt !important;
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  /* Tables: visible borders on all cells including empty ones */
   table {
-    border-collapse: collapse;
-    width: 100%;
+    border-collapse: collapse !important;
+    width: 100% !important;
+    empty-cells: show !important;
   }
 
   th,
   td {
-    border: 1px solid #333;
-    padding: 4px 8px;
+    border: 1px solid #333 !important;
+    padding: 4px 6px !important;
+    min-height: 1.4em !important;
   }
 
-  /* Page breaks between major sections */
+  /* Ensure empty cells have height for writing in */
+  td:empty::after {
+    content: '\00a0';
+  }
+
+  /* Headings */
   h2 {
-    page-break-before: auto;
     page-break-after: avoid;
+    margin-top: 1em;
+    font-size: 14pt;
   }
 
   h3 {
     page-break-after: avoid;
+    font-size: 12pt;
   }
 
+  /* Keep tables together */
   table,
   figure {
     page-break-inside: avoid;
   }
 
+  /* Explicit page break marker */
+  .print-page-break {
+    page-break-before: always !important;
+  }
+
   /* Clean link display */
   a {
-    color: inherit;
-    text-decoration: none;
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  /* Horizontal rules: light divider */
+  hr {
+    border: none !important;
+    border-top: 1px solid #999 !important;
+    margin: 0.75em 0 !important;
   }
 }

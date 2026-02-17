@@ -1,4 +1,25 @@
-/* Hero action button alignment */
-[data-page-type="splash"] .hero > .actions {
+/* ---- Game-themed green accent ---- */
+:root {
+  --sl-color-accent-low: hsl(145, 40%, 14%);
+  --sl-color-accent: hsl(145, 65%, 42%);
+  --sl-color-accent-high: hsl(145, 75%, 72%);
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: hsl(145, 50%, 90%);
+  --sl-color-accent: hsl(145, 60%, 32%);
+  --sl-color-accent-high: hsl(145, 70%, 18%);
+}
+
+/* ---- Hero action buttons ---- */
+[data-page-type='splash'] .hero .action {
+  display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ---- Card grid: equal height, no stagger ---- */
+.card-grid {
+  gap: 1rem;
 }
