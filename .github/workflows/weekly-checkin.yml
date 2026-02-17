@@ -14,6 +14,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+      statuses: write
 
     steps:
       - name: Checkout
@@ -133,6 +134,14 @@ jobs:
           git add data/
           git commit -m "Weekly check-in from #${ISSUE_NUMBER}"
           git push -u origin "$branch"
+
+          # Run verify and post status check so auto-merge can proceed
+          sha=$(git rev-parse HEAD)
+          scripts/bank.sh verify && verify_state="success" || verify_state="failure"
+          gh api repos/${{ github.repository }}/statuses/$sha \
+            -f state="$verify_state" \
+            -f context="verify" \
+            -f description="Ledger verification"
 
           pr_url=$(gh pr create \
             --title "Weekly check-in from #${ISSUE_NUMBER}" \
