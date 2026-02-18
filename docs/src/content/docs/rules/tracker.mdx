@@ -5,9 +5,13 @@ description: Printable weekly tracker sheet for the Quest Mode point system.
 
 import PrintButton from '../../../components/PrintButton.astro';
 
-<PrintButton /> &nbsp; <a href="/quest-mode/weekly-tracker.xlsx" download>Download XLSX</a>
+<div class="tracker-actions">
+  <a href="/quest-mode/weekly-tracker.pdf" download class="download-btn">Download PDF</a>
+  <a href="/quest-mode/weekly-tracker.xlsx" download class="download-btn">Download XLSX</a>
+  <PrintButton />
+</div>
 
-Print this page or download the spreadsheet to use as your weekly tracking sheet. Fill in points each day and tally at the end of the week.
+Print this page or download the PDF/spreadsheet to use as your weekly tracking sheet. Fill in points each day and tally at the end of the week.
 
 ---
 

@@ -23,3 +23,39 @@
 .card-grid {
   gap: 1rem;
 }
+
+/* ---- Tracker page: download buttons ---- */
+.tracker-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--sl-color-accent);
+  color: var(--sl-color-black) !important;
+  transition: opacity 0.15s;
+}
+
+.download-btn:hover {
+  opacity: 0.85;
+}
+
+/* ---- Tracker tables: full-width, visible empty cells ---- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+td:empty::after {
+  content: '\00a0';
+}

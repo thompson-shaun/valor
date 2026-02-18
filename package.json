@@ -2,10 +2,13 @@
   "name": "quest-mode",
   "private": true,
   "scripts": {
-    "generate:tracker": "node scripts/generate-tracker.js",
+    "generate:tracker": "node scripts/generate-tracker.js && node scripts/generate-tracker-pdf.js",
+    "generate:xlsx": "node scripts/generate-tracker.js",
+    "generate:pdf": "node scripts/generate-tracker-pdf.js",
     "test": "bash tests/bank_test.sh"
   },
   "devDependencies": {
-    "exceljs": "^4.4.0"
+    "exceljs": "^4.4.0",
+    "pdfkit": "^0.17.2"
   }
 }
