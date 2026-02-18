@@ -115,6 +115,11 @@ function buildPage1(doc) {
     behaviorRow('______________________'),
     behaviorRow('______________________'),
     sectionCell('Deductions (max −8/day)', 9),
+    behaviorRow('Clip yellow (−2) / orange (−4) / red (−6)'),
+    behaviorRow('Not listening after 2 asks (−1)'),
+    behaviorRow('Screaming or tantrum (−2)'),
+    behaviorRow('Disrespectful language (−2)'),
+    behaviorRow('Lying (−3)'),
     behaviorRow('______________________'),
     [{ text: 'Daily Total', fill: SECTION_BG, bold: true }, ...Array(8).fill({ text: '', fill: SECTION_BG })],
   ];
@@ -144,7 +149,7 @@ function buildPage1(doc) {
 
   y += 6;
   doc.save().font('Helvetica').fontSize(9).fillColor('#000000')
-    .text('Bank: Before _____ + Deposit _____ − Spent _____ = After _____', LEFT, y)
+    .text('Starting Balance: _____ + Deposit _____ − Spent _____ = New Balance _____', LEFT, y)
     .restore();
 }
 
@@ -175,7 +180,34 @@ function buildPage2(doc) {
     ]);
   }
 
-  yL += 12;
+  // === LEFT COLUMN: Deductions Reference ===
+  yL += 16;
+  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Deductions', LEFT, yL).restore();
+  yL += 18;
+
+  const dedWidths = [220, 90];
+  yL = drawRow(doc, LEFT, yL, dedWidths, ROW_H, [headerCell('Behavior'), headerCell('Damage')]);
+
+  const deductions = [
+    ['Clip yellow / orange / red', '−2 / −4 / −6'],
+    ['Not listening after 2 asks', '−1'],
+    ['Screaming or tantrum', '−2'],
+    ['Disrespectful language', '−2'],
+    ['Lying', '−3'],
+  ];
+  for (const [behavior, damage] of deductions) {
+    yL = drawRow(doc, LEFT, yL, dedWidths, ROW_H, [
+      { text: behavior, size: 9 },
+      { text: damage, size: 9, align: 'center' },
+    ]);
+  }
+
+  yL += 6;
+  doc.save().font('Helvetica-Oblique').fontSize(8).fillColor('#000000')
+    .text('Max −8/day. Earned points are never removed.', LEFT, yL)
+    .restore();
+
+  yL += 16;
   doc.save().font('Helvetica-Oblique').fontSize(8).fillColor('#000000')
     .text('Protected: Swimming (Mon), Rock climbing (Wed, Sat)', LEFT, yL)
     .restore();

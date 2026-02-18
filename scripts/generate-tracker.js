@@ -105,6 +105,11 @@ async function main() {
     { name: '______________________', pts: '' },
     { name: '______________________', pts: '' },
     { section: 'Deductions (max −8/day)' },
+    { name: 'Clip yellow (−2) / orange (−4) / red (−6)', pts: '' },
+    { name: 'Not listening after 2 asks', pts: '−1' },
+    { name: 'Screaming or tantrum', pts: '−2' },
+    { name: 'Disrespectful language', pts: '−2' },
+    { name: 'Lying', pts: '−3' },
     { name: '______________________', pts: '' },
   ];
 
@@ -161,7 +166,7 @@ async function main() {
   }
 
   ws.addRow([]); // spacer
-  const balRow = ws.addRow(['Bank: Before _____ + Deposit _____ − Spent _____ = After _____']);
+  const balRow = ws.addRow(['Starting Balance: _____ + Deposit _____ − Spent _____ = New Balance _____']);
   ws.mergeCells(balRow.number, 1, balRow.number, 6);
   balRow.getCell(1).font = { size: 10 };
 
@@ -310,6 +315,43 @@ async function main() {
     r.getCell(1).alignment = { horizontal: 'center' };
     r.height = 20;
   }
+
+  qs.addRow([]);
+  qs.addRow([]);
+
+  // --- Deductions ---
+  const dedTitle = qs.addRow(['Deductions']);
+  qs.mergeCells(dedTitle.number, 1, dedTitle.number, 4);
+  dedTitle.getCell(1).font = { bold: true, size: 14, color: GREEN };
+  dedTitle.height = 24;
+
+  const dedHdr = qs.addRow(['Behavior', 'Damage']);
+  dedHdr.getCell(1).font = { bold: true, size: 10, color: HEADER_FG };
+  dedHdr.getCell(2).font = { bold: true, size: 10, color: HEADER_FG };
+  dedHdr.getCell(1).fill = headerFill(HEADER_BG);
+  dedHdr.getCell(2).fill = headerFill(HEADER_BG);
+  dedHdr.getCell(1).border = thinBorder();
+  dedHdr.getCell(2).border = thinBorder();
+  dedHdr.getCell(2).alignment = { horizontal: 'center' };
+
+  const deductionItems = [
+    ['Clip yellow / orange / red', '−2 / −4 / −6'],
+    ['Not listening after 2 asks', '−1'],
+    ['Screaming or tantrum', '−2'],
+    ['Disrespectful language', '−2'],
+    ['Lying', '−3'],
+  ];
+  for (const [behavior, damage] of deductionItems) {
+    const r = qs.addRow([behavior, damage]);
+    r.getCell(1).border = thinBorder();
+    r.getCell(2).border = thinBorder();
+    r.getCell(2).alignment = { horizontal: 'center' };
+    r.height = 18;
+  }
+
+  const dedNote = qs.addRow(['Max −8/day. Earned points are never removed.']);
+  qs.mergeCells(dedNote.number, 1, dedNote.number, 4);
+  dedNote.getCell(1).font = { italic: true, size: 9 };
 
   qs.addRow([]);
   const protTitle = qs.addRow(['Protected Activities (always safe)']);
