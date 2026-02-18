@@ -20,7 +20,6 @@ const RED_BG = { argb: 'FFFFF5F5' };
 const HEADER_BG = { argb: 'FF1A2E1A' };
 const HEADER_FG = { argb: 'FFFFFFFF' };
 const SECTION_BG = { argb: 'FFE8F5E9' };
-const LIGHT_GRAY = { argb: 'FFF5F5F5' };
 
 function headerFill(color) {
   return { type: 'pattern', pattern: 'solid', fgColor: color };
@@ -140,17 +139,16 @@ async function main() {
 
   ws.addRow([]); // spacer
 
-  // --- Weekly Summary ---
+  // --- Weekly Summary (compact) ---
   const sumTitle = ws.addRow(['Weekly Summary']);
   ws.mergeCells(sumTitle.number, 1, sumTitle.number, 4);
   sumTitle.getCell(1).font = { bold: true, size: 12, color: GREEN };
   sumTitle.height = 22;
 
   const summaryItems = [
-    ['Total Earned', ''],
-    ['Total Deductions', ''],
-    ['Weekly Total (earned − deductions)', ''],
+    ['Weekly Total (sum of daily totals)', ''],
     ['Weekly Level', ''],
+    ['Bank Deposit (half of total, round up)', ''],
   ];
   for (const [label, val] of summaryItems) {
     const r = ws.addRow([label, val]);
@@ -163,33 +161,7 @@ async function main() {
   }
 
   ws.addRow([]); // spacer
-
-  // --- Bank Deposit ---
-  const bankTitle = ws.addRow(['Bank Deposit (half of gross, round up)']);
-  ws.mergeCells(bankTitle.number, 1, bankTitle.number, 4);
-  bankTitle.getCell(1).font = { bold: true, size: 12, color: GREEN };
-  bankTitle.height = 22;
-
-  const bankHdr = ws.addRow(['Day', 'Gross Earned', 'Bank Deposit']);
-  for (let i = 1; i <= 3; i++) {
-    bankHdr.getCell(i).font = { bold: true, size: 9, color: HEADER_FG };
-    bankHdr.getCell(i).fill = headerFill(HEADER_BG);
-    bankHdr.getCell(i).border = thinBorder();
-    bankHdr.getCell(i).alignment = { horizontal: 'center' };
-  }
-
-  for (const day of [...DAYS, 'Week Total']) {
-    const r = ws.addRow([day, '', '']);
-    r.getCell(1).font = { bold: day === 'Week Total', size: 9 };
-    for (let i = 1; i <= 3; i++) {
-      r.getCell(i).border = thinBorder();
-      if (i > 1) r.getCell(i).alignment = { horizontal: 'center' };
-    }
-    r.height = 16;
-  }
-
-  ws.addRow([]); // spacer
-  const balRow = ws.addRow(['Bank Before: _____ + Deposits: _____ − Spent: _____ = Bank After: _____']);
+  const balRow = ws.addRow(['Bank: Before _____ + Deposit _____ − Spent _____ = After _____']);
   ws.mergeCells(balRow.number, 1, balRow.number, 6);
   balRow.getCell(1).font = { size: 10 };
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Generates a printable weekly tracker PDF for Quest Mode.
 // Page 1 (landscape): Score sheet + weekly summary
-// Page 2 (landscape): Bank deposit + reward shop + weekly levels
+// Page 2 (landscape): Reward shop + weekly levels (quick reference)
 //
-// Uses PDFKit directly (bundled with pdfmake).
+// Uses PDFKit directly.
 // Output: docs/public/weekly-tracker.pdf
 // Usage: node scripts/generate-tracker-pdf.js
 
@@ -17,13 +17,11 @@ const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const DARK_GREEN = [26, 46, 26];
 const GREEN = [34, 197, 94];
 const SECTION_BG = [232, 245, 233];
-const WHITE = [255, 255, 255];
 const GOLD_BG = [255, 253, 231];
 const GREEN_BG = [240, 255, 244];
 const YELLOW_BG = [255, 251, 235];
 const RED_BG = [255, 245, 245];
 
-// Draw a filled rect then stroke border
 function drawCell(doc, x, y, w, h, { fill, border = true } = {}) {
   if (fill) {
     doc.save().rect(x, y, w, h).fill(fill).restore();
@@ -33,7 +31,6 @@ function drawCell(doc, x, y, w, h, { fill, border = true } = {}) {
   }
 }
 
-// Draw text inside a cell
 function cellText(doc, text, x, y, w, h, { font = 'Helvetica', size = 8, color = '#000000', align = 'left', padX = 3 } = {}) {
   doc.save().font(font).fontSize(size).fillColor(color);
   const textY = y + (h - size) / 2;
@@ -41,7 +38,6 @@ function cellText(doc, text, x, y, w, h, { font = 'Helvetica', size = 8, color =
   doc.restore();
 }
 
-// Draw a full table row
 function drawRow(doc, x, y, widths, height, cells) {
   let cx = x;
   for (let i = 0; i < cells.length; i++) {
@@ -92,7 +88,6 @@ function buildPage1(doc) {
   const colWidths = [195, 42, 42, 42, 42, 42, 42, 42, 50];
   const ROW_H = 16;
 
-  // Header row
   const headerCells = [
     { ...headerCell('Behavior'), align: 'left' },
     ...DAYS.map(d => headerCell(d)),
@@ -100,7 +95,6 @@ function buildPage1(doc) {
   ];
   y = drawRow(doc, LEFT, y, colWidths, ROW_H, headerCells);
 
-  // Behavior rows
   const rows = [
     sectionCell('Morning', 9),
     behaviorRow('Wake up without drama (+1)'),
@@ -122,7 +116,6 @@ function buildPage1(doc) {
     behaviorRow('______________________'),
     sectionCell('Deductions (max −8/day)', 9),
     behaviorRow('______________________'),
-    // Daily Total
     [{ text: 'Daily Total', fill: SECTION_BG, bold: true }, ...Array(8).fill({ text: '', fill: SECTION_BG })],
   ];
 
@@ -130,7 +123,7 @@ function buildPage1(doc) {
     y = drawRow(doc, LEFT, y, colWidths, ROW_H, row);
   }
 
-  // Weekly Summary
+  // Weekly Summary — compact
   y += 10;
   doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Weekly Summary', LEFT, y).restore();
   y += 18;
@@ -138,10 +131,9 @@ function buildPage1(doc) {
   const sumWidths = [250, 80];
   y = drawRow(doc, LEFT, y, sumWidths, ROW_H, [headerCell(''), headerCell('Value')]);
   const summaryItems = [
-    'Total Earned',
-    'Total Deductions',
-    'Weekly Total (earned − deductions)',
+    'Weekly Total (sum of daily totals)',
     'Weekly Level',
+    'Bank Deposit (half of total, round up)',
   ];
   for (const label of summaryItems) {
     y = drawRow(doc, LEFT, y, sumWidths, 18, [
@@ -149,41 +141,21 @@ function buildPage1(doc) {
       { text: '' },
     ]);
   }
+
+  y += 6;
+  doc.save().font('Helvetica').fontSize(9).fillColor('#000000')
+    .text('Bank: Before _____ + Deposit _____ − Spent _____ = After _____', LEFT, y)
+    .restore();
 }
 
 function buildPage2(doc) {
   const LEFT = 30;
   const MID = 370;
-  let yL = 30; // left column y
-  let yR = 30; // right column y
+  let yL = 30;
+  let yR = 30;
   const ROW_H = 16;
 
-  // === LEFT COLUMN: Bank Deposit ===
-  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Bank Deposit', LEFT, yL).restore();
-  yL += 18;
-
-  const bankWidths = [70, 90, 150];
-  yL = drawRow(doc, LEFT, yL, bankWidths, ROW_H, [
-    headerCell('Day'),
-    headerCell('Gross Earned'),
-    headerCell('Bank Deposit (half, round up)'),
-  ]);
-  for (const d of DAYS) {
-    yL = drawRow(doc, LEFT, yL, bankWidths, ROW_H, [
-      { text: d, size: 9 }, { text: '' }, { text: '' },
-    ]);
-  }
-  yL = drawRow(doc, LEFT, yL, bankWidths, ROW_H, [
-    { text: 'Week Total', bold: true, size: 9 }, { text: '' }, { text: '' },
-  ]);
-
-  yL += 8;
-  doc.save().font('Helvetica').fontSize(9).fillColor('#000000')
-    .text('Bank Before: _____ + Deposits: _____ − Spent: _____ = After: _____', LEFT, yL)
-    .restore();
-  yL += 20;
-
-  // Weekly Levels
+  // === LEFT COLUMN: Weekly Levels ===
   doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Weekly Levels', LEFT, yL).restore();
   yL += 18;
 
@@ -213,7 +185,6 @@ function buildPage2(doc) {
   yR += 18;
 
   const rewWidths = [260, 60];
-
   yR = drawRow(doc, MID, yR, rewWidths, ROW_H, [headerCell('Reward'), headerCell('Cost')]);
 
   function rewardSectionHeader(title) {
