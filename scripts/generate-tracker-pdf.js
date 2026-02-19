@@ -114,12 +114,12 @@ function buildPage1(doc) {
     sectionCell('Bonus', 9),
     behaviorRow('______________________'),
     behaviorRow('______________________'),
-    sectionCell('Deductions (max −8/day)', 9),
-    behaviorRow('Clip yellow (−2) / orange (−4) / red (−6)'),
-    behaviorRow('Not listening after 2 asks (−1)'),
-    behaviorRow('Screaming or tantrum (−2)'),
-    behaviorRow('Disrespectful language (−2)'),
-    behaviorRow('Lying (−3)'),
+    sectionCell('Deductions (max -8/day)', 9),
+    behaviorRow('Clip yellow (-2) / orange (-4) / red (-6)'),
+    behaviorRow('Not listening after 2 asks (-1)'),
+    behaviorRow('Screaming or tantrum (-2)'),
+    behaviorRow('Disrespectful language (-2)'),
+    behaviorRow('Lying (-3)'),
     behaviorRow('______________________'),
     [{ text: 'Daily Total', fill: SECTION_BG, bold: true }, ...Array(8).fill({ text: '', fill: SECTION_BG })],
   ];
@@ -128,29 +128,6 @@ function buildPage1(doc) {
     y = drawRow(doc, LEFT, y, colWidths, ROW_H, row);
   }
 
-  // Weekly Summary — compact
-  y += 10;
-  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Weekly Summary', LEFT, y).restore();
-  y += 18;
-
-  const sumWidths = [250, 80];
-  y = drawRow(doc, LEFT, y, sumWidths, ROW_H, [headerCell(''), headerCell('Value')]);
-  const summaryItems = [
-    'Weekly Total (sum of daily totals)',
-    'Weekly Level',
-    'Bank Deposit (half of total, round up)',
-  ];
-  for (const label of summaryItems) {
-    y = drawRow(doc, LEFT, y, sumWidths, 18, [
-      { text: label, bold: true, size: 9 },
-      { text: '' },
-    ]);
-  }
-
-  y += 6;
-  doc.save().font('Helvetica').fontSize(9).fillColor('#000000')
-    .text('Starting Balance: _____ + Deposit _____ − Spent _____ = New Balance _____', LEFT, y)
-    .restore();
 }
 
 function buildPage2(doc) {
@@ -180,31 +157,28 @@ function buildPage2(doc) {
     ]);
   }
 
-  // === LEFT COLUMN: Deductions Reference ===
+  // === LEFT COLUMN: Weekly Summary ===
   yL += 16;
-  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Deductions', LEFT, yL).restore();
+  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Weekly Summary', LEFT, yL).restore();
   yL += 18;
 
-  const dedWidths = [220, 90];
-  yL = drawRow(doc, LEFT, yL, dedWidths, ROW_H, [headerCell('Behavior'), headerCell('Damage')]);
-
-  const deductions = [
-    ['Clip yellow / orange / red', '−2 / −4 / −6'],
-    ['Not listening after 2 asks', '−1'],
-    ['Screaming or tantrum', '−2'],
-    ['Disrespectful language', '−2'],
-    ['Lying', '−3'],
+  const sumWidths = [250, 80];
+  yL = drawRow(doc, LEFT, yL, sumWidths, ROW_H, [headerCell(''), headerCell('Value')]);
+  const summaryItems = [
+    'Weekly Total (sum of daily totals)',
+    'Weekly Level',
+    'Bank Deposit (half of total, round up)',
   ];
-  for (const [behavior, damage] of deductions) {
-    yL = drawRow(doc, LEFT, yL, dedWidths, ROW_H, [
-      { text: behavior, size: 9 },
-      { text: damage, size: 9, align: 'center' },
+  for (const label of summaryItems) {
+    yL = drawRow(doc, LEFT, yL, sumWidths, 18, [
+      { text: label, bold: true, size: 9 },
+      { text: '' },
     ]);
   }
 
   yL += 6;
-  doc.save().font('Helvetica-Oblique').fontSize(8).fillColor('#000000')
-    .text('Max −8/day. Earned points are never removed.', LEFT, yL)
+  doc.save().font('Helvetica').fontSize(9).fillColor('#000000')
+    .text('Starting Balance: _____ + Deposit _____ - Spent _____ = New Balance _____', LEFT, yL)
     .restore();
 
   yL += 16;

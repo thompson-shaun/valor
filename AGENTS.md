@@ -8,7 +8,7 @@ Quest Mode is a gamified behavior point system for a child. It uses token econom
 - **Config** (`config/`) — YAML files defining behaviors, rewards, settings, and thresholds
 - **Bank** (`data/`) — JSON-based transaction ledger tracking the reward bank balance
 - **GitHub workflows** (`.github/`) — Pages deployment and issue-driven reward updates
-- **Bank skill** (`.claude/skills/bank.md`) — Claude Code skill for bank operations
+- **Skills** (`.claude/skills/`) — Claude Code skills for bank operations (`/bank`), shop management (`/shop`), and weekly check-in (`/checkin`)
 
 ## File Structure
 
@@ -82,6 +82,7 @@ Issue-driven workflows use two approaches:
 **Plain shell** (deterministic, structured input):
 - `bank-transaction` — Parses issue form, runs `scripts/bank.sh`, creates PR with auto-merge
 - `weekly-checkin` — Parses issue form, computes tier + deposit, creates PR with auto-merge
+- `claim-reward` — Parses reward selection, validates cost, withdraws from bank, creates PR with auto-merge
 
 **Claude agent** (requires judgment):
 - `reward-update` — Claude interprets the request and edits `config/rewards.yaml` + docs

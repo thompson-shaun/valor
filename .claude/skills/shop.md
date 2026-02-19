@@ -1,21 +1,22 @@
 ---
-name: reward
+name: shop
 description: View and manage the Quest Mode reward shop
 user_invocable: true
 ---
 
-# /reward — Reward Shop Management
+# /shop — Reward Shop Management
 
 Manage the Quest Mode reward shop. The source of truth is `config/rewards.yaml`.
 
 ## Parse the command
 
-The user invokes `/reward [subcommand] [args...]`:
+The user invokes `/shop [subcommand] [args...]`:
 
-- `/reward` or `/reward list` — Display all rewards as a formatted table
-- `/reward add <category> "<name>" <cost> ["description"]` — Add a new reward
-- `/reward remove <category> "<name>"` — Remove a reward
-- `/reward update <category> "<name>" <cost>` — Change a reward's cost
+- `/shop` or `/shop list` — Display all rewards as a formatted table
+- `/shop claim "<name>"` — Claim a reward (withdraw cost from bank)
+- `/shop add <category> "<name>" <cost> ["description"]` — Add a new reward
+- `/shop remove <category> "<name>"` — Remove a reward
+- `/shop update <category> "<name>" <cost>` — Change a reward's cost
 
 Categories: `weekday`, `weekend`, `long_term`
 
@@ -23,6 +24,15 @@ Categories: `weekday`, `weekend`, `long_term`
 
 1. Read `config/rewards.yaml`.
 2. Display all rewards grouped by category as a nicely formatted table with name, cost, and whether approval is required.
+
+## Claim operation
+
+1. Read `config/rewards.yaml`.
+2. Find the reward by name (case-insensitive, partial match is fine if unambiguous).
+3. If the reward has `requires_approval: true`, warn the user and ask for confirmation before proceeding.
+4. Check the current bank balance by running `scripts/bank.sh status`. If insufficient funds, tell the user and stop.
+5. Run the withdrawal: `scripts/bank.sh withdraw <cost> "Claimed: <reward name>"`.
+6. Display the result: reward claimed, amount spent, new balance.
 
 ## Add / Remove / Update operations
 

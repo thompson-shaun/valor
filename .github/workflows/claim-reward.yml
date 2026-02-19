@@ -1,0 +1,113 @@
+name: Claim Reward
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  process-claim:
+    if: >-
+      contains(github.event.issue.labels.*.name, 'claim-reward') &&
+      github.event.issue.user.login == 'thompson-shaun'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      statuses: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Parse issue and process claim
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          # Parse reward selection from issue body
+          reward_line=$(echo "$ISSUE_BODY" | sed -n '/### Reward/{n;n;p;}' | xargs)
+          player=$(echo "$ISSUE_BODY" | sed -n '/### Player/{n;n;p;}' | tr -d '[:space:]')
+          notes=$(echo "$ISSUE_BODY" | sed -n '/### Notes/{n;n;p;}' | xargs)
+
+          echo "Reward line: $reward_line"
+          echo "Player: $player"
+          echo "Notes: $notes"
+
+          if [[ -z "$reward_line" ]]; then
+            echo "::error::Missing reward selection"
+            exit 1
+          fi
+
+          # Extract cost from the reward line, e.g. "Boba or special drink (20 XP)"
+          cost=$(echo "$reward_line" | grep -oP '\((\d+) XP\)' | grep -oP '\d+')
+          # Extract reward name (everything before the cost parenthetical)
+          reward_name=$(echo "$reward_line" | sed 's/ *([0-9]* XP)$//')
+
+          echo "Reward: $reward_name"
+          echo "Cost: $cost"
+
+          if [[ -z "$cost" || -z "$reward_name" ]]; then
+            echo "::error::Could not parse reward name or cost"
+            exit 1
+          fi
+
+          # Build description
+          description="Claimed: ${reward_name}"
+          if [[ -n "$notes" && "$notes" != "_No response_" ]]; then
+            description="${description} — ${notes}"
+          fi
+
+          # Run withdrawal
+          cmd=(scripts/bank.sh --no-commit)
+          if [[ -n "$player" && "$player" != "_No response_" && "$player" != "_Noresponse_" ]]; then
+            cmd+=(--player "$player")
+          fi
+          cmd+=(withdraw "$cost" "$description")
+
+          echo "Running: ${cmd[*]}"
+          "${cmd[@]}"
+
+      - name: Create PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit"
+            gh issue close "$ISSUE_NUMBER" --comment "No changes were needed."
+            exit 0
+          fi
+
+          branch="claim-reward/${ISSUE_NUMBER}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/
+          git commit -m "Claim reward from #${ISSUE_NUMBER}"
+          git push -u origin "$branch"
+
+          # Run verify and post status check
+          sha=$(git rev-parse HEAD)
+          scripts/bank.sh verify && verify_state="success" || verify_state="failure"
+          gh api repos/${{ github.repository }}/statuses/$sha \
+            -f state="$verify_state" \
+            -f context="verify" \
+            -f description="Ledger verification"
+
+          pr_url=$(gh pr create \
+            --title "Claim reward from #${ISSUE_NUMBER}" \
+            --body "Automated reward claim from issue #${ISSUE_NUMBER}.
+
+          Fixes #${ISSUE_NUMBER}" \
+            --head "$branch" \
+            --base main)
+
+          gh pr merge "$branch" --auto --squash --delete-branch
+          gh issue close "$ISSUE_NUMBER" --comment "PR created: $pr_url"
+          echo "Created PR: $pr_url"
