@@ -89,7 +89,7 @@ jobs:
             --title "Bank transaction (manual)" \
             --body "Manual bank transaction triggered by workflow run ${{ github.run_id }}." \
             --head "$branch" \
-            --base main)
+            --base main) || { echo "Failed to create PR"; exit 1; }
 
           if [[ "${{ inputs.auto_merge }}" == "true" ]]; then
             gh pr merge "$branch" --auto --squash --delete-branch

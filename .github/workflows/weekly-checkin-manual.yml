@@ -7,6 +7,10 @@ on:
         description: Weekly total (points)
         required: true
         type: string
+      week_of:
+        description: Week start date (YYYY-MM-DD). Defaults to last Monday.
+        required: false
+        type: string
       player:
         description: Player
         required: true
@@ -47,6 +51,7 @@ jobs:
         run: |
           set -euo pipefail
           weekly_total="${{ inputs.weekly_total }}"
+          week_of="${{ inputs.week_of }}"
           player="${{ inputs.player }}"
           notes="${{ inputs.notes }}"
 
@@ -55,7 +60,15 @@ jobs:
             exit 1
           fi
 
-          monday=$(date -d "last monday" +%Y-%m-%d 2>/dev/null || date -v-monday +%Y-%m-%d 2>/dev/null)
+          if [[ -n "$week_of" ]]; then
+            if ! date -d "$week_of" +%Y-%m-%d >/dev/null 2>&1; then
+              echo "Invalid week_of date. Expected YYYY-MM-DD." >&2
+              exit 1
+            fi
+            monday=$(date -d "$week_of" +%Y-%m-%d)
+          else
+            monday=$(date -d "last monday" +%Y-%m-%d 2>/dev/null || date -v-monday +%Y-%m-%d 2>/dev/null)
+          fi
           echo "Week of: $monday"
 
           tier=$(node -e "
@@ -134,7 +147,7 @@ jobs:
             --title "Weekly check-in (manual)" \
             --body "Manual weekly check-in triggered by workflow run ${{ github.run_id }}." \
             --head "$branch" \
-            --base main)
+            --base main) || { echo "Failed to create PR"; exit 1; }
 
           if [[ "${{ inputs.auto_merge }}" == "true" ]]; then
             gh pr merge "$branch" --auto --squash --delete-branch
