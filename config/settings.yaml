@@ -5,6 +5,9 @@ bank:
   # Default player name used when --player is not specified.
   # Player data lives in data/<player>/
   default_player: default
+  # Player options for workflows and tooling
+  players:
+    - default
 
 weekly_thresholds:
   gold: 80

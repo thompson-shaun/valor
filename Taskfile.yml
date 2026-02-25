@@ -1,0 +1,41 @@
+version: "3"
+
+tasks:
+  generate:workflow-inputs:
+    desc: Generate workflow input dropdowns from config
+    cmds:
+      - node scripts/generate-workflow-inputs.js
+
+  verify:workflow-inputs:
+    desc: Verify workflow inputs match config
+    cmds:
+      - node scripts/verify-workflow-inputs.js
+
+  verify:bank:
+    desc: Verify ledger integrity for all players
+    cmds:
+      - |
+        failed=0
+        for player_dir in data/*/; do
+          player=$(basename "$player_dir")
+          echo "--- Verifying player: $player ---"
+          if ! scripts/bank.sh --player "$player" verify; then
+            failed=1
+          fi
+        done
+        if [[ "$failed" -ne 0 ]]; then
+          echo "Ledger verification failed!"
+          exit 1
+        fi
+
+  test:
+    desc: Run bank tests
+    cmds:
+      - bash tests/bank_test.sh
+
+  verify:
+    desc: Verify ledgers, workflow inputs, and tests
+    cmds:
+      - task: verify:bank
+      - task: verify:workflow-inputs
+      - task: test

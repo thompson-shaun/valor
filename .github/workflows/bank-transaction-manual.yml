@@ -1,0 +1,98 @@
+name: Bank Transaction (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: Transaction type
+        required: true
+        type: choice
+        options:
+          - deposit
+          - withdraw
+          - set
+      amount:
+        description: Amount (positive integer; set can be 0)
+        required: true
+        type: string
+      description:
+        description: Description
+        required: true
+        type: string
+      player:
+        description: Player
+        required: true
+        type: choice
+        options:
+          # BEGIN GENERATED PLAYERS
+          - "default"
+          # END GENERATED PLAYERS
+      auto_merge:
+        description: Auto-merge PR after verify
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  transact:
+    if: github.actor == 'thompson-shaun'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      statuses: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run transaction
+        run: |
+          set -euo pipefail
+          scripts/bank.sh --no-commit --player "${{ inputs.player }}" "${{ inputs.type }}" "${{ inputs.amount }}" "${{ inputs.description }}"
+
+      - name: Create PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          branch="bank-transaction/manual-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/
+          git commit -m "Bank transaction (manual)"
+          git push -u origin "$branch"
+
+          sha=$(git rev-parse HEAD)
+          if scripts/bank.sh verify && bash tests/bank_test.sh; then
+            verify_state="success"
+          else
+            verify_state="failure"
+          fi
+          gh api repos/${{ github.repository }}/statuses/$sha \
+            -f state="$verify_state" \
+            -f context="verify" \
+            -f description="Ledger verification"
+
+          pr_url=$(gh pr create \
+            --title "Bank transaction (manual)" \
+            --body "Manual bank transaction triggered by workflow run ${{ github.run_id }}." \
+            --head "$branch" \
+            --base main)
+
+          if [[ "${{ inputs.auto_merge }}" == "true" ]]; then
+            gh pr merge "$branch" --auto --squash --delete-branch
+          fi
+
+          echo "Created PR: $pr_url"

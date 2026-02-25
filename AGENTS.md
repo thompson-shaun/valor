@@ -70,28 +70,22 @@ All commands accept an optional `--player <name>` flag. If omitted, uses `defaul
 
 ## Reward Table Changes
 
-Reward updates follow an issue-driven workflow:
-1. Open an issue using the "Reward Change" template
-2. Label it `reward-update`
-3. The GitHub Actions workflow parses the issue and opens a PR updating `config/rewards.yaml` and the docs
+Reward updates are handled via normal pull requests and review. Update `config/rewards.yaml` and the docs together.
 
-## GitHub Actions — Issue Workflows
+## GitHub Actions — Manual Workflows
 
-Issue-driven workflows use two approaches:
+Manual workflows use `workflow_dispatch` and open PRs:
 
-**Plain shell** (deterministic, structured input):
-- `bank-transaction` — Parses issue form, runs `scripts/bank.sh`, creates PR with auto-merge
-- `weekly-checkin` — Parses issue form, computes tier + deposit, creates PR with auto-merge
-- `claim-reward` — Parses reward selection, validates cost, withdraws from bank, creates PR with auto-merge
+- `Bank Transaction (Manual)` — Runs `scripts/bank.sh` and opens a PR (optional auto-merge)
+- `Weekly Check-In (Manual)` — Computes tier + deposit, writes weekly summary, opens a PR (optional auto-merge)
+- `Claim Reward (Manual)` — Withdraws from bank and opens a PR (optional auto-merge)
+- `Verify Ledger (Manual)` — Runs ledger verification and tests
 
-**Claude agent** (requires judgment):
-- `reward-update` — Claude interprets the request and edits `config/rewards.yaml` + docs
-- `@claude` comments — Ad-hoc requests on any issue or PR
+Workflow input dropdowns are generated from config via `scripts/generate-workflow-inputs.js`.
 
-When working on an issue via the Claude agent workflow (label `claude`, assignment, or `@claude` mention), always:
-1. Make the required changes and commit them to the branch
-2. Push the branch to the remote
-3. Create a pull request using `gh pr create` with `Fixes #<issue-number>` in the body so the issue auto-closes on merge
+## Taskfile and Hooks
+
+Common tasks are available in `Taskfile.yml`. To keep workflow inputs in sync with config locally, enable the pre-commit hook in `.githooks/`.
 
 ## Content Conventions
 

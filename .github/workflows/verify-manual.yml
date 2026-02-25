@@ -1,12 +1,13 @@
-name: Verify Ledger
+name: Verify Ledger (Manual)
 
 on:
-  pull_request:
-    branches: [main]
+  workflow_dispatch: {}
 
 jobs:
   verify:
+    if: github.actor == 'thompson-shaun'
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -1,0 +1,123 @@
+name: Claim Reward (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      reward:
+        description: Reward
+        required: true
+        type: choice
+        options:
+          # BEGIN GENERATED REWARDS
+          - "Extra 30 min screen time (10 XP)"
+          - "Small treat (candy, snack) (10 XP)"
+          - "Stay up 20 min past bedtime (15 XP)"
+          - "Boba or special drink (20 XP)"
+          - "Pick the family movie (20 XP)"
+          - "Extra 1 hour screen time (25 XP)"
+          - "Pick dinner for the family (30 XP)"
+          - "Stay up 30 min past bedtime (15 XP)"
+          - "Disney trip (3-4 hours) (40 XP)"
+          - "Small toy or book (50 XP)"
+          - "Special outing (just him + parent) (60 XP)"
+          - "Big reward (100 XP)"
+          - "Nintendo Switch 2 (250 XP)"
+          # END GENERATED REWARDS
+      player:
+        description: Player
+        required: true
+        type: choice
+        options:
+          # BEGIN GENERATED PLAYERS
+          - "default"
+          # END GENERATED PLAYERS
+      notes:
+        description: Notes (optional)
+        required: false
+        type: string
+      auto_merge:
+        description: Auto-merge PR after verify
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  claim:
+    if: github.actor == 'thompson-shaun'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      statuses: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Process claim
+        run: |
+          set -euo pipefail
+          reward_line="${{ inputs.reward }}"
+          player="${{ inputs.player }}"
+          notes="${{ inputs.notes }}"
+
+          cost=$(echo "$reward_line" | grep -oP '\((\d+) XP\)' | grep -oP '\d+')
+          reward_name=$(echo "$reward_line" | sed 's/ *([0-9]* XP)$//')
+
+          if [[ -z "$cost" || -z "$reward_name" ]]; then
+            echo "Could not parse reward name or cost" >&2
+            exit 1
+          fi
+
+          description="Claimed: ${reward_name}"
+          if [[ -n "$notes" ]]; then
+            description="${description} — ${notes}"
+          fi
+
+          scripts/bank.sh --no-commit --player "$player" withdraw "$cost" "$description"
+
+      - name: Create PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          branch="claim-reward/manual-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/
+          git commit -m "Claim reward (manual)"
+          git push -u origin "$branch"
+
+          sha=$(git rev-parse HEAD)
+          if scripts/bank.sh verify && bash tests/bank_test.sh; then
+            verify_state="success"
+          else
+            verify_state="failure"
+          fi
+          gh api repos/${{ github.repository }}/statuses/$sha \
+            -f state="$verify_state" \
+            -f context="verify" \
+            -f description="Ledger verification"
+
+          pr_url=$(gh pr create \
+            --title "Claim reward (manual)" \
+            --body "Manual reward claim triggered by workflow run ${{ github.run_id }}." \
+            --head "$branch" \
+            --base main)
+
+          if [[ "${{ inputs.auto_merge }}" == "true" ]]; then
+            gh pr merge "$branch" --auto --squash --delete-branch
+          fi
+
+          echo "Created PR: $pr_url"

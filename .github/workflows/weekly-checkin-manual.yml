@@ -1,0 +1,143 @@
+name: Weekly Check-In (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      weekly_total:
+        description: Weekly total (points)
+        required: true
+        type: string
+      player:
+        description: Player
+        required: true
+        type: choice
+        options:
+          # BEGIN GENERATED PLAYERS
+          - "default"
+          # END GENERATED PLAYERS
+      notes:
+        description: Notes (optional)
+        required: false
+        type: string
+      auto_merge:
+        description: Auto-merge PR after verify
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  checkin:
+    if: github.actor == 'thompson-shaun'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      statuses: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Process check-in
+        run: |
+          set -euo pipefail
+          weekly_total="${{ inputs.weekly_total }}"
+          player="${{ inputs.player }}"
+          notes="${{ inputs.notes }}"
+
+          if ! [[ "$weekly_total" =~ ^[0-9]+$ ]]; then
+            echo "Weekly total must be a non-negative integer" >&2
+            exit 1
+          fi
+
+          monday=$(date -d "last monday" +%Y-%m-%d 2>/dev/null || date -v-monday +%Y-%m-%d 2>/dev/null)
+          echo "Week of: $monday"
+
+          tier=$(node -e "
+            const fs = require('fs');
+            const text = fs.readFileSync('config/settings.yaml', 'utf8');
+            const gold = parseInt(text.match(/gold:\s*(\d+)/)[1]);
+            const green = parseInt(text.match(/green:\s*(\d+)/)[1]);
+            const yellow = parseInt(text.match(/yellow:\s*(\d+)/)[1]);
+            const total = ${weekly_total};
+            if (total >= gold) console.log('gold');
+            else if (total >= green) console.log('green');
+            else if (total >= yellow) console.log('yellow');
+            else console.log('red');
+          ")
+          echo "Tier: $tier"
+
+          deposit_output=$(scripts/bank.sh calc-deposit "$weekly_total")
+          echo "$deposit_output"
+          deposit=$(echo "$deposit_output" | grep "Bank deposit:" | grep -o '[0-9]\+')
+          echo "Deposit amount: $deposit"
+
+          if [[ "$deposit" -gt 0 ]]; then
+            scripts/bank.sh --no-commit --player "$player" deposit "$deposit" "Week of ${monday}"
+          fi
+
+          mkdir -p "data/${player}/weeks"
+          ts=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          notes_json=$(node -e "console.log(JSON.stringify(process.argv[1] || ''))" -- "$notes")
+
+          node -e "
+            const summary = {
+              week_of: '${monday}',
+              recorded_at: '${ts}',
+              weekly_total: ${weekly_total},
+              tier: '${tier}',
+              bank_deposit: ${deposit},
+              notes: ${notes_json}
+            };
+            require('fs').writeFileSync(
+              'data/${player}/weeks/${monday}.json',
+              JSON.stringify(summary, null, 2) + '\n'
+            );
+          "
+          echo "Wrote weekly summary to data/${player}/weeks/${monday}.json"
+
+      - name: Create PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          branch="weekly-checkin/manual-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/
+          git commit -m "Weekly check-in (manual)"
+          git push -u origin "$branch"
+
+          sha=$(git rev-parse HEAD)
+          if scripts/bank.sh verify && bash tests/bank_test.sh; then
+            verify_state="success"
+          else
+            verify_state="failure"
+          fi
+          gh api repos/${{ github.repository }}/statuses/$sha \
+            -f state="$verify_state" \
+            -f context="verify" \
+            -f description="Ledger verification"
+
+          pr_url=$(gh pr create \
+            --title "Weekly check-in (manual)" \
+            --body "Manual weekly check-in triggered by workflow run ${{ github.run_id }}." \
+            --head "$branch" \
+            --base main)
+
+          if [[ "${{ inputs.auto_merge }}" == "true" ]]; then
+            gh pr merge "$branch" --auto --squash --delete-branch
+          fi
+
+          echo "Created PR: $pr_url"

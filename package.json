@@ -5,6 +5,7 @@
     "generate:tracker": "node scripts/generate-tracker.js && node scripts/generate-tracker-pdf.js",
     "generate:xlsx": "node scripts/generate-tracker.js",
     "generate:pdf": "node scripts/generate-tracker-pdf.js",
+    "generate:workflow-inputs": "node scripts/generate-workflow-inputs.js",
     "test": "bash tests/bank_test.sh"
   },
   "devDependencies": {

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+node scripts/generate-workflow-inputs.js
+
+if ! git diff --quiet .github/workflows/*-manual.yml; then
+  echo "Workflow inputs are out of date. Run: node scripts/generate-workflow-inputs.js"
+  git --no-pager diff .github/workflows/*-manual.yml
+  exit 1
+fi

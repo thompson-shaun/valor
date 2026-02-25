@@ -43,18 +43,19 @@ All point values, rewards, and settings live in `config/`:
 
 All changes go through pull requests. Issue-driven workflows create a branch, commit changes, and open a PR. A required CI check (`verify`) validates ledger integrity and runs tests before any PR can merge. Workflows only run for the repo owner.
 
-| Issue label | Workflow | What it does | Merge |
+| Trigger | Workflow | What it does | Merge |
 |---|---|---|---|
-| `bank-transaction` | Bank Transaction | Parses issue form, runs `bank.sh` | Auto-merge after CI passes |
-| `weekly-checkin` | Weekly Check-In | Parses issue form, computes tier + bank deposit | Auto-merge after CI passes |
-| `reward-update` | Claude | Claude edits `config/rewards.yaml` and docs | Manual review required |
-| `claude` / `@claude` | Claude | Ad-hoc agent requests on issues or PRs | Depends on task |
+| `workflow_dispatch` | Bank Transaction (Manual) | Runs `bank.sh` deposit/withdraw/set and opens a PR | Optional auto-merge |
+| `workflow_dispatch` | Weekly Check-In (Manual) | Computes tier + deposit, writes weekly summary, opens a PR | Optional auto-merge |
+| `workflow_dispatch` | Claim Reward (Manual) | Withdraws for a reward and opens a PR | Optional auto-merge |
+| `workflow_dispatch` | Verify Ledger (Manual) | Replays ledgers + runs tests | N/A |
 
 The **Verify Ledger** CI workflow runs on every PR to `main`:
 1. Replays each player's `bank-log.jsonl` and confirms the running total matches `bank.json`
 2. Runs the full `tests/bank_test.sh` suite
+3. Verifies workflow inputs match `config/`
 
-Only GitHub-owned (`actions/*`) and Anthropic (`anthropics/*`) actions are used — no third-party community actions.
+Only GitHub-owned (`actions/*`) actions are used — no third-party community actions.
 
 ## Development
 
@@ -64,6 +65,23 @@ The docs site uses [Astro Starlight](https://starlight.astro.build/):
 cd docs
 npm install
 npm run dev
+```
+
+### Taskfile
+
+Common tasks use Taskfile:
+
+```bash
+task generate:workflow-inputs
+task verify
+```
+
+### Git Hooks
+
+To enable the pre-commit hook that keeps workflow inputs in sync:
+
+```bash
+bash scripts/setup-githooks.sh
 ```
 
 ## License
