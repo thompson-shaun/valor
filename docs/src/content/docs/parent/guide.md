@@ -109,7 +109,7 @@ Valor Points earned each day are split into two tracks. The Valor Standing deter
 
 **When can he spend?** He earns all week. Weekday rewards can be redeemed the same day (Mon–Fri). Weekend rewards are redeemable on Sat–Sun only. Long-term rewards can be redeemed anytime once he has enough saved up.
 
-See the full [Vault Shop](../rewards/shop/) for all available rewards.
+See the full [Vault Shop](../../rewards/shop/) for all available rewards.
 
 ---
 
