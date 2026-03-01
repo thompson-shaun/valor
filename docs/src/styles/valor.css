@@ -59,6 +59,9 @@
   --sl-color-accent:      #F0C040;
   --sl-color-accent-high: #1A2A3E;
 
+  --sl-color-text: var(--sl-color-gray-1);
+  --sl-color-text-accent: var(--sl-color-gray-2);
+
   --sl-color-green:        #059669;
   --sl-color-green-low:    #D1FAE5;
   --sl-color-orange:       #C2410C;
@@ -129,6 +132,11 @@ h1, h2, h3, h4 {
   color: var(--sl-color-gray-2);
 }
 
+:root,
+:root[data-theme='light'] {
+  --sl-color-text-invert: var(--sl-color-white);
+}
+
 /* ---- Hero action buttons ---- */
 [data-page-type='splash'] .hero .action {
   display: flex;
@@ -180,6 +188,11 @@ h1, h2, h3, h4 {
 
 .card-grid .card h3 {
   font-size: 1.1rem;
+}
+
+:root:not([data-theme='dark']) .card-grid .card .title,
+:root:not([data-theme='dark']) .card-grid .card h3 {
+  color: var(--sl-color-gray-1);
 }
 
 /* Card icon backgrounds — tier-mapped per feature card */
