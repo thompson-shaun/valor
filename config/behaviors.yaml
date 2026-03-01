@@ -62,12 +62,15 @@ bonus:
   - name: Helps without being asked
     points: 2
     description: Spontaneous helpfulness
-  - name: Handles frustration calmly
+  - name: Uses calming tools when upset
     points: 2
-    description: Uses words, walks away, takes a breath
-  - name: Accepts "no" gracefully
+    description: Breathes, takes space, uses words, asks for help
+  - name: Accepts "no" and stays regulated
     points: 2
-    description: No tantrum when told he can't do something
+    description: Disappointed but respectful
+  - name: Owns a mistake (oops card)
+    points: 2
+    description: Tells the truth and helps repair it
   - name: Exceptional kindness or effort
     points: 3
     description: Goes above and beyond — parent discretion
@@ -85,15 +88,9 @@ deductions:
   - name: Not following instructions after 2 asks
     points: -1
     description: Gave a fair chance first
-  - name: Screaming / tantrum
-    points: -2
-    description: Losing control at home
   - name: Disrespectful language
     points: -2
     description: Name-calling, rude talk
-  - name: Lying
-    points: -3
-    description: Trust is important
 
 rules:
   max_deduction_per_day: 8

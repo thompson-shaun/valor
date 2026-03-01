@@ -54,8 +54,9 @@ Points are awarded throughout the day. A great day can earn 15–20 points. A ty
 | Behavior | Points | Notes |
 |---|:---:|---|
 | Helps without being asked | +2 | Spontaneous helpfulness |
-| Handles frustration calmly | +2 | Uses words, walks away, takes a breath |
-| Accepts "no" gracefully | +2 | No tantrum when told he can't do something |
+| Uses calming tools when upset | +2 | Breathes, takes space, uses words, asks for help |
+| Accepts "no" and stays regulated | +2 | Disappointed but respectful |
+| Owns a mistake (oops card) | +2 | Tells the truth and helps repair it |
 | Exceptional kindness or effort | +3 | Goes above and beyond — parent discretion |
 
 *Daily max earning potential: approximately 15–20 points. Weekly potential: 105–140 on a great week.*
@@ -72,9 +73,11 @@ Deductions exist but are used sparingly. The goal is a roughly 4:1 ratio of earn
 | Behavior clip drops to orange | −4 | Significant behavior issue |
 | Behavior clip hits red (parent contact) | −6 | Serious — this is a big deal |
 | Not following instructions after 2 asks | −1 | Gave a fair chance first |
-| Screaming / tantrum | −2 | Losing control at home |
 | Disrespectful language | −2 | Name-calling, rude talk |
-| Lying | −3 | Trust is important |
+
+:::note
+Only deduct for skills you know he already has. If he doesn’t have the skill yet, treat it as a coaching moment and reward the skill when it shows up.
+:::
 
 :::caution
 Never deduct more than 8 points in a single day. If things go that badly, the day is already a learning moment — piling on more deductions will feel hopeless and he'll disengage from the system entirely. Cap the damage and move on.
@@ -129,7 +132,7 @@ Ask his teacher to continue the clip chart and send a quick daily report (even a
 2. Award points in the moment, not at the end of the day. Immediacy matters for ADHD brains.
 3. Never threaten points you won't actually take. Follow through every time or the system loses credibility.
 4. Narrate what he did right when giving points: "That's 2 points for handling that so calmly" — not just "good job."
-5. When deducting, stay calm and factual: "That's −2 for screaming. You still have X points today." No lectures.
+5. When deducting, stay calm and factual: "That's −2 for disrespectful language. You still have X points today." No lectures.
 6. Review the week together on Sunday. Celebrate wins. Problem-solve rough spots. Ask him what was hard.
 
 ### Adjusting Over Time
@@ -137,6 +140,58 @@ Ask his teacher to continue the clip chart and send a quick daily report (even a
 This system is a starting point. After 2–3 weeks, review what's working and what isn't. If he's consistently hitting Gold Week, raise the bar slightly. If he's never getting above Yellow, the targets may be too hard. The system should be challenging but achievable, with Gold Week happening maybe 1 in 3–4 weeks.
 
 ---
+
+## Tone and Tenor (Secure Attachment Lens)
+
+Use a **safe / seen / soothed / secure** mindset. The goal is guidance without fear.
+
+- **Safe:** Am I a source of safety or a source of threat right now?
+- **Seen:** Before teaching, name what you see: “You’re having a hard time.”
+- **Soothed:** Stay with the feeling first, then coach the skill.
+- **Secure:** Communicate “You are loved even when you mess up.”
+
+When you need a reset, model it: “I’m feeling frustrated, I’m going to take a minute, and we’ll solve this after I calm down.”
+
+## Positive Intent Reframe
+
+Assume the best possible intent in the moment. Instead of “You’re choosing to be bad,” try:
+- “You didn’t know what else to do.”
+- “Your body feels really overwhelmed.”
+- “You need help with this skill.”
+
+This keeps you regulated and makes coaching easier.
+
+## The Oops Card (Owning Mistakes)
+
+Normalize mistakes and reward ownership.
+
+- “Oops, mistake — we can fix it.”
+- Reward telling the truth and helping repair.
+- Separate **embarrassment** from **shame**. Mistakes are okay; we repair them.
+
+## Choices Within Boundaries
+
+Give choices that keep the goal intact:
+- “Homework is happening. Do you want to sit here or on the couch?”
+- “Brush teeth now or after pajamas?”
+
+Avoid fake choices (“Do homework or don’t”). The goal is fixed; the path is flexible.
+
+## Chore Time (Family Value)
+
+Use a simple family value script:
+- “In our family, we help each other.”
+- “It’s family help time — how do you want to be helpful?”
+
+## Mealtime Structure (Neutral, Not Punitive)
+
+Timers are fine if used to teach structure, not to punish.
+
+- Set a clear meal window (ex: 30 minutes).
+- Use a **visual timer** and give a 5‑minute warning.
+- “Dinner is open until the timer ends. Dessert happens if dinner is finished.”
+
+If it doesn’t happen today, it’s okay — try again tomorrow.
 
 :::tip[The Bigger Picture]
 This point system is a tool, not a silver bullet. It works best alongside other supports: making sure school is appropriately challenging for a gifted learner, consistent physical activity, enough sleep, and potentially working with a behavioral therapist who specializes in ADHD. The system gives him a framework for understanding that choices have outcomes — but the real win is when he starts making good choices because they feel right, not just because of the points.

@@ -107,9 +107,7 @@ async function main() {
     { section: 'Deductions (max −8/day)' },
     { name: 'Clip yellow (−2) / orange (−4) / red (−6)', pts: '' },
     { name: 'Not listening after 2 asks', pts: '−1' },
-    { name: 'Screaming or tantrum', pts: '−2' },
     { name: 'Disrespectful language', pts: '−2' },
-    { name: 'Lying', pts: '−3' },
     { name: '______________________', pts: '' },
   ];
 
@@ -337,9 +335,7 @@ async function main() {
   const deductionItems = [
     ['Clip yellow / orange / red', '−2 / −4 / −6'],
     ['Not listening after 2 asks', '−1'],
-    ['Screaming or tantrum', '−2'],
     ['Disrespectful language', '−2'],
-    ['Lying', '−3'],
   ];
   for (const [behavior, damage] of deductionItems) {
     const r = qs.addRow([behavior, damage]);

@@ -10,7 +10,7 @@ description: One-page cheat sheet for the Quest Mode point system.
 | Morning | 5 | Wake up, make bed, get dressed, breakfast, ready on time |
 | School | 5 | Clip green (+3) or above green (+5), homework (+2) |
 | Evening | 5 | Dinner, follow instructions, positive attitude, bedtime, reading |
-| Bonus | uncapped | Helps (+2), calm frustration (+2), accepts no (+2), exceptional (+3) |
+| Bonus | uncapped | Helps (+2), calming tools (+2), accepts no (+2), owns mistakes (+2), exceptional (+3) |
 
 **Typical day: 10–12 pts. Perfect day: 15–20 pts.**
 
@@ -20,9 +20,7 @@ description: One-page cheat sheet for the Quest Mode point system.
 |---|:---:|
 | Clip yellow / orange / red | −2 / −4 / −6 |
 | Not listening after 2 asks | −1 |
-| Screaming or tantrum | −2 |
 | Disrespectful language | −2 |
-| Lying | −3 |
 
 **Max deductions per day: 8. Earned points are never removed.**
 

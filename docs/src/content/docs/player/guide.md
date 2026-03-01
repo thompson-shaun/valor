@@ -67,12 +67,17 @@ These are special missions. They can happen anytime and they're worth extra XP. 
 | Quest | XP |
 |---|:---:|
 | Help someone without being asked | +2 XP |
-| Handle frustration calmly (deep breaths, walk away, use words) | +2 XP |
-| Accept "no" without a tantrum or argument | +2 XP |
+| Use calming tools when upset (breathing, space, words) | +2 XP |
+| Accept "no" and stay regulated | +2 XP |
+| Own a mistake and help fix it (oops card) | +2 XP |
 | Do something extra kind or put in extra effort | +3 XP |
 
 :::tip[PRO TIP]
 Bonus Quests are the secret to having a Gold Week. Look for chances to earn them every day!
+:::
+
+:::note[OOPS CARD]
+Everyone makes mistakes. If you own it and help fix it, you can earn XP.
 :::
 
 ---
@@ -87,9 +92,7 @@ Just like in a game, some choices cost you. These take XP away from your daily s
 | Behavior clip drops to orange | −4 XP |
 | Behavior clip hits red | −6 XP |
 | Not listening after being asked twice | −1 XP |
-| Screaming or having a tantrum | −2 XP |
 | Being disrespectful | −2 XP |
-| Lying | −3 XP |
 
 :::note[IMPORTANT]
 The most damage you can take in one day is −8 XP. And XP you earned earlier in the day is always safe — it can't be taken away.

@@ -117,9 +117,7 @@ function buildPage1(doc) {
     sectionCell('Deductions (max -8/day)', 9),
     behaviorRow('Clip yellow (-2) / orange (-4) / red (-6)'),
     behaviorRow('Not listening after 2 asks (-1)'),
-    behaviorRow('Screaming or tantrum (-2)'),
     behaviorRow('Disrespectful language (-2)'),
-    behaviorRow('Lying (-3)'),
     behaviorRow('______________________'),
     [{ text: 'Daily Total', fill: SECTION_BG, bold: true }, ...Array(8).fill({ text: '', fill: SECTION_BG })],
   ];
