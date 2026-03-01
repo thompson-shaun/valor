@@ -219,7 +219,7 @@ h1, h2, h3, h4 {
 
 :root:not([data-theme='dark']) nav.sidebar .large,
 :root[data-theme='light'] nav.sidebar .large {
-  color: var(--sl-color-gray-1) !important;
+  color: #FDF3D0 !important;
 }
 
 :root:not([data-theme='dark']) nav.sidebar a,
@@ -273,6 +273,23 @@ h1, h2, h3, h4 {
 :root:not([data-theme='dark']) header.header .sl-link-button:hover,
 :root[data-theme='light'] header.header .sl-link-button:hover {
   color: var(--valor-gold-text);
+}
+
+:root:not([data-theme='dark']) header.header input[type='search'],
+:root[data-theme='light'] header.header input[type='search'] {
+  background-color: #FDF3D0;
+  border-color: #F0C040;
+  color: #1A2A3E;
+}
+
+:root:not([data-theme='dark']) header.header input[type='search']::placeholder,
+:root[data-theme='light'] header.header input[type='search']::placeholder {
+  color: #4E6A8A;
+}
+
+:root:not([data-theme='dark']) header.header :is(button, svg, .site-title),
+:root[data-theme='light'] header.header :is(button, svg, .site-title) {
+  color: #8A6408;
 }
 
 :root:not([data-theme='dark']) .right-sidebar-panel a,
