@@ -132,20 +132,28 @@ h1, h2, h3, h4 {
   color: var(--sl-color-gray-2);
 }
 
+:root:not([data-theme='dark']) [data-page-type='splash'] .hero h1 {
+  color: var(--sl-color-gray-1);
+}
+
+:root:not([data-theme='dark']) [data-page-type='splash'] .hero .tagline {
+  color: var(--sl-color-gray-2);
+}
+
 :root,
 :root[data-theme='light'] {
   --sl-color-text-invert: var(--sl-color-white);
 }
 
 /* ---- Hero action buttons ---- */
-[data-page-type='splash'] .hero .action {
+[data-page-type='splash'] .hero .actions {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
 
-[data-page-type='splash'] .hero .action a {
+[data-page-type='splash'] .hero .actions .sl-link-button {
   border-radius: 999px;
   padding: 0.6rem 1.2rem;
   font-weight: 600;
@@ -155,16 +163,24 @@ h1, h2, h3, h4 {
   box-shadow: 0 10px 20px rgba(240, 192, 64, 0.12);
 }
 
-[data-page-type='splash'] .hero .action a:is(:hover, :focus-visible) {
+[data-page-type='splash'] .hero .actions .sl-link-button:is(:hover, :focus-visible) {
   transform: translateY(-1px);
   box-shadow: 0 12px 24px rgba(240, 192, 64, 0.2);
 }
 
-:root:not([data-theme='dark']) [data-page-type='splash'] .hero .action a {
-  border: 1px solid #d8c4a1;
-  background: #fff6e7;
-  color: #0f1623;
-  box-shadow: 0 8px 18px rgba(212, 160, 23, 0.2);
+:root:not([data-theme='dark']) [data-page-type='splash'] .hero .actions .sl-link-button {
+  border: 1px solid color-mix(in srgb, var(--sl-color-accent) 65%, #ffffff);
+  background: var(--sl-color-accent);
+  color: var(--sl-color-accent-high);
+  box-shadow: 0 8px 18px rgba(240, 192, 64, 0.25);
+}
+
+:root:not([data-theme='dark']) [data-page-type='splash'] .hero .actions .sl-link-button.secondary,
+:root:not([data-theme='dark']) [data-page-type='splash'] .hero .actions .sl-link-button.minimal {
+  background: transparent;
+  color: var(--sl-color-gray-2);
+  border-color: transparent;
+  box-shadow: none;
 }
 
 /* ---- Card grid ---- */
