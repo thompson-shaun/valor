@@ -18,7 +18,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Status', slug: 'status' },
 						{ label: 'Weekly Tracker', slug: 'rules/tracker' },
-						{ label: 'Reward List', slug: 'rewards/shop' },
+						{ label: 'Vault Shop', slug: 'rewards/shop' },
 						{ label: 'Quick Reference', slug: 'rules/quick-ref' },
 					],
 				},
@@ -30,7 +30,7 @@ export default defineConfig({
 					],
 				},
 			],
-			customCss: ['./src/styles/custom.css', './src/styles/print.css'],
+			customCss: ['./src/styles/valor.css', './src/styles/print.css'],
 		}),
 	],
 });

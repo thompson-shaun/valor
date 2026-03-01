@@ -1,4 +1,4 @@
-name: Bank Transaction (Manual)
+name: Transactions (Manual)
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - deposit
-          - withdraw
+          - redeem
           - set
       amount:
         description: Amount (positive integer; set can be 0)
@@ -54,7 +54,7 @@ jobs:
       - name: Run transaction
         run: |
           set -euo pipefail
-          scripts/bank.sh --no-commit --player "${{ inputs.player }}" "${{ inputs.type }}" "${{ inputs.amount }}" "${{ inputs.description }}"
+          scripts/vault.sh --no-commit --player "${{ inputs.player }}" "${{ inputs.type }}" "${{ inputs.amount }}" "${{ inputs.description }}"
 
       - name: Create PR
         env:
@@ -66,16 +66,16 @@ jobs:
             exit 0
           fi
 
-          branch="bank-transaction/manual-${{ github.run_id }}"
+          branch="transactions/manual-${{ github.run_id }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
           git add data/
-          git commit -m "Bank transaction (manual)"
+          git commit -m "Transaction (manual)"
           git push -u origin "$branch"
 
           sha=$(git rev-parse HEAD)
-          if scripts/bank.sh verify && bash tests/bank_test.sh; then
+          if scripts/vault.sh verify && bash tests/vault_test.sh; then
             verify_state="success"
           else
             verify_state="failure"
@@ -86,8 +86,8 @@ jobs:
             -f description="Ledger verification"
 
           pr_url=$(gh pr create \
-            --title "Bank transaction (manual)" \
-            --body "Manual bank transaction triggered by workflow run ${{ github.run_id }}." \
+            --title "Transaction (manual)" \
+            --body "Manual transaction triggered by workflow run ${{ github.run_id }}." \
             --head "$branch" \
             --base main) || { echo "Failed to create PR"; exit 1; }
 

@@ -38,12 +38,12 @@ Complete these before you leave for school.
 
 ### School Quests
 
-Your teacher tracks these with the behavior clip. You report your color when you get home.
+Your teacher tracks these with the color clip. You report your color when you get home.
 
 | Quest | VP |
 |---|:---:|
-| Behavior clip stays on green | +3 |
-| Behavior clip moves ABOVE green | +5 |
+| Clip stays on green | +3 |
+| Clip moves ABOVE green | +5 |
 | Homework done without a fight | +2 |
 
 *Note: If your clip goes above green, you get +5 (not +3 and +5). It replaces it.*
@@ -90,9 +90,9 @@ Just like in a game, some choices cause a dip. The good news: you can always ear
 
 | What Happened | Dip |
 |---|:---:|
-| Behavior clip drops to yellow | −2 |
-| Behavior clip drops to orange | −4 |
-| Behavior clip hits red | −6 |
+| Clip drops to yellow | −2 |
+| Clip drops to orange | −4 |
+| Clip hits red | −6 |
 | Not listening after being asked twice | −1 |
 | Being disrespectful | −2 |
 
@@ -102,13 +102,13 @@ The biggest dip you can take in one day is −8. And Valor Points you earned ear
 
 ---
 
-## THE REWARD SHOP
+## THE VAULT SHOP
 
 This is the fun part. You save up Valor Points in the Vault and redeem them for rewards. The Vault carries over from week to week, so you can save up for the really big stuff!
 
 **How it works:** Every day, half of the Valor Points you earned go into the Vault.
 
-Check out the full [Reward List](../rewards/shop/) to see everything you can redeem!
+Check out the full [Vault Shop](../rewards/shop/) to see everything you can redeem!
 
 ---
 
@@ -118,7 +118,7 @@ At the end of every week (Sunday night), your Valor Standing decides your rank f
 
 ### LEGEND RANK — 80+
 
-Everything is unlocked! Full screen time, all activities, PLUS you get a bonus reward from the shop. This is the level you're going for.
+Everything is unlocked! Full screen time, all activities, PLUS you get a bonus reward from the Vault Shop. This is the level you're going for.
 
 ### CHAMPION RANK — 60 to 79
 
@@ -136,7 +136,7 @@ No fun screens for the weekend. You still get swimming and rock climbing though 
 
 ## GAME RULES
 
-1. Every Monday the weekly Valor Points reset to zero. Brand new game, brand new chance.
+1. Every Monday the Valor Standing resets to zero. Brand new game, brand new chance.
 2. The Vault does NOT reset. You keep saving those up.
 3. Valor Points you earn in the morning are locked in. Even if you have a tough afternoon, the morning VP stays.
 4. Swimming and rock climbing can never be taken away. Ever.

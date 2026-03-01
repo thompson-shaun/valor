@@ -1,12 +1,12 @@
 ---
 name: rewards
-description: View and manage the Valor reward list
+description: View and manage the Valor Vault Shop
 user_invocable: true
 ---
 
-# /rewards — Reward List Management
+# /rewards — Vault Shop Management
 
-Manage the Valor reward list. The source of truth is `config/rewards.yaml`.
+Manage the Valor Vault Shop. The source of truth is `config/rewards.yaml`.
 
 ## Parse the command
 
@@ -30,8 +30,8 @@ Categories: `weekday`, `weekend`, `long_term`
 1. Read `config/rewards.yaml`.
 2. Find the reward by name (case-insensitive, partial match is fine if unambiguous).
 3. If the reward has `requires_approval: true`, warn the user and ask for confirmation before proceeding.
-4. Check the current Vault balance by running `scripts/bank.sh status`. If insufficient funds, tell the user and stop.
-5. Run the withdrawal: `scripts/bank.sh withdraw <cost> "Claimed: <reward name>"`.
+4. Check the current Vault balance by running `scripts/vault.sh status`. If insufficient funds, tell the user and stop.
+5. Run the redemption: `scripts/vault.sh redeem <cost> "Claimed: <reward name>"`.
 6. Display the result: reward redeemed, amount spent, new balance.
 
 ## Add / Remove / Update operations

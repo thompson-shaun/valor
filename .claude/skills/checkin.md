@@ -31,9 +31,9 @@ If `--player` is not specified, read `default_player` from `config/settings.yaml
    - 40–59: Knight
    - Below 40: Recruit
 
-4. **Compute Vault deposit.** Run `scripts/bank.sh calc-deposit <weekly_total>` to get the deposit amount using the configured `deposit_percent`.
+4. **Compute Vault deposit.** Run `scripts/vault.sh calc-deposit <weekly_total>` to get the deposit amount using the configured `deposit_percent`.
 
-5. **Deposit to the Vault.** Run `scripts/bank.sh [--player <name>] deposit <amount> "Week of <monday-date>"`.
+5. **Deposit to the Vault.** Run `scripts/vault.sh [--player <name>] deposit <amount> "Week of <monday-date>"`.
 
 6. **Store weekly summary.** Write `data/<player>/weeks/<monday-date>.json`:
    ```json

@@ -19,7 +19,7 @@ tasks:
         for player_dir in data/*/; do
           player=$(basename "$player_dir")
           echo "--- Verifying player: $player ---"
-          if ! scripts/bank.sh --player "$player" verify; then
+          if ! scripts/vault.sh --player "$player" verify; then
             failed=1
           fi
         done
@@ -31,7 +31,7 @@ tasks:
   test:
     desc: Run bank tests
     cmds:
-      - bash tests/bank_test.sh
+      - bash tests/vault_test.sh
 
   verify:
     desc: Verify ledgers, workflow inputs, and tests

@@ -1,5 +1,5 @@
 name: Claim Reward
-description: Spend XP from the bank to claim a reward
+description: Redeem VP from the Vault to claim a reward
 title: "[Claim] "
 labels: ["claim-reward"]
 body:
@@ -8,19 +8,19 @@ body:
     attributes:
       label: Reward
       options:
-        - "Extra 30 min screen time (10 XP)"
-        - "Small treat - candy, snack (10 XP)"
-        - "Stay up 20 min past bedtime (15 XP)"
-        - "Boba or special drink (20 XP)"
-        - "Pick the family movie (20 XP)"
-        - "Extra 1 hour screen time (25 XP)"
-        - "Pick dinner for the family (30 XP)"
-        - "Stay up 30 min past bedtime (15 XP)"
-        - "Disney trip - 3-4 hours (40 XP)"
-        - "Small toy or book (50 XP)"
-        - "Special outing - just him + parent (60 XP)"
-        - "Big reward (100 XP)"
-        - "Nintendo Switch 2 (250 XP)"
+        - "Extra 30 min screen time (10 VP)"
+        - "Small treat - candy, snack (10 VP)"
+        - "Stay up 20 min past bedtime (15 VP)"
+        - "Boba or special drink (20 VP)"
+        - "Pick the family movie (20 VP)"
+        - "Extra 1 hour screen time (25 VP)"
+        - "Pick dinner for the family (30 VP)"
+        - "Stay up 30 min past bedtime (15 VP)"
+        - "Disney trip - 3-4 hours (40 VP)"
+        - "Small toy or book (50 VP)"
+        - "Special outing - just him + parent (60 VP)"
+        - "Big reward (100 VP)"
+        - "Nintendo Switch 2 (250 VP)"
     validations:
       required: true
 

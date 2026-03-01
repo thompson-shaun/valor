@@ -187,8 +187,8 @@ async function main() {
     { width: 12 },
   ];
 
-  // --- Reward List ---
-  const shopTitle = qs.addRow(['Reward List']);
+  // --- Vault Shop ---
+  const shopTitle = qs.addRow(['Vault Shop']);
   qs.mergeCells(shopTitle.number, 1, shopTitle.number, 4);
   shopTitle.getCell(1).font = { bold: true, size: 16, color: GREEN };
   shopTitle.height = 28;

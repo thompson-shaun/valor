@@ -184,8 +184,8 @@ function buildPage2(doc) {
     .text('Protected: Swimming (Mon), Rock climbing (Wed, Sat)', LEFT, yL)
     .restore();
 
-  // === RIGHT COLUMN: Reward List ===
-  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Reward List', MID, yR).restore();
+  // === RIGHT COLUMN: Vault Shop ===
+  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Vault Shop', MID, yR).restore();
   yR += 18;
 
   const rewWidths = [260, 60];

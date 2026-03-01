@@ -1,13 +1,13 @@
 name: Weekly Check-In
-description: Record a week's total points
+description: Record a week's Valor Standing (VP)
 title: "[Check-in] Week of "
 labels: ["weekly-checkin"]
 body:
   - type: input
     id: weekly_total
     attributes:
-      label: Weekly Total
-      description: Total points for the week (earned minus deductions)
+      label: Valor Standing (VP)
+      description: Weekly total VP (earned minus dips)
       placeholder: e.g., 75
     validations:
       required: true

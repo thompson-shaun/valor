@@ -79,7 +79,7 @@ jobs:
             description="${description} — ${notes}"
           fi
 
-          scripts/bank.sh --no-commit --player "$player" withdraw "$cost" "$description"
+          scripts/vault.sh --no-commit --player "$player" redeem "$cost" "$description"
 
       - name: Create PR
         env:
@@ -100,7 +100,7 @@ jobs:
           git push -u origin "$branch"
 
           sha=$(git rev-parse HEAD)
-          if scripts/bank.sh verify && bash tests/bank_test.sh; then
+          if scripts/vault.sh verify && bash tests/vault_test.sh; then
             verify_state="success"
           else
             verify_state="failure"

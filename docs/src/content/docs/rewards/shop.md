@@ -1,5 +1,5 @@
 ---
-title: Reward List
+title: The Vault Shop
 description: Browse all the rewards you can redeem with your Valor Points.
 ---
 

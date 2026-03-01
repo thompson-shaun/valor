@@ -23,7 +23,7 @@ jobs:
           for player_dir in data/*/; do
             player=$(basename "$player_dir")
             echo "--- Verifying player: $player ---"
-            if ! scripts/bank.sh --player "$player" verify; then
+            if ! scripts/vault.sh --player "$player" verify; then
               failed=1
             fi
           done
@@ -45,7 +45,7 @@ jobs:
         run: node scripts/verify-workflow-inputs.js
 
       - name: Run bank tests
-        run: bash tests/bank_test.sh
+        run: bash tests/vault_test.sh
 
       - name: Build docs
         working-directory: ./docs

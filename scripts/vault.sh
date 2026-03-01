@@ -3,12 +3,13 @@ set -euo pipefail
 
 # Valor Vault — transaction script
 # Usage:
-#   bank.sh [--player <name>] [--no-commit] status
-#   bank.sh [--player <name>] [--no-commit] deposit <amount> <description>
-#   bank.sh [--player <name>] [--no-commit] withdraw <amount> <description>
-#   bank.sh [--player <name>] [--no-commit] set <amount> <description>
-#   bank.sh [--player <name>] [--no-commit] verify
-#   bank.sh calc-deposit <gross_earned>                     Calculate Vault deposit from daily gross
+#   vault.sh [--player <name>] [--no-commit] status
+#   vault.sh [--player <name>] [--no-commit] deposit <amount> <description>
+#   vault.sh [--player <name>] [--no-commit] redeem <amount> <description>
+#   vault.sh [--player <name>] [--no-commit] withdraw <amount> <description>
+#   vault.sh [--player <name>] [--no-commit] set <amount> <description>
+#   vault.sh [--player <name>] [--no-commit] verify
+#   vault.sh calc-deposit <gross_earned>                     Calculate Vault deposit from daily gross
 #
 # Flags:
 #   --no-commit   Skip auto-commit after transactions (env: BANK_NO_COMMIT=true)
@@ -84,7 +85,7 @@ cmd_status() {
   local balance
   balance=$(get_balance)
   echo "Player: $PLAYER"
-  echo "Vault Balance: $balance Valor Points"
+  echo "VP Balance: $balance VP"
   echo ""
 
   local line_count
@@ -224,8 +225,12 @@ cmd_transact() {
     require('fs').writeFileSync('$BANK_FILE', JSON.stringify(bank, null, 2) + '\n');
   "
 
-  echo "$type: $amount Valor Points"
-  echo "New balance: $new_balance Valor Points"
+  local action_label="$type"
+  if [[ "$type" == "withdrawal" ]]; then
+    action_label="redeem"
+  fi
+  echo "$action_label: $amount VP"
+  echo "New balance: $new_balance VP"
   echo ""
   cmd_verify
 
@@ -233,7 +238,7 @@ cmd_transact() {
   if [[ "$NO_COMMIT" != "true" ]]; then
     if git -C "$REPO_ROOT" rev-parse --git-dir >/dev/null 2>&1; then
       git -C "$REPO_ROOT" add "$DATA_DIR"
-      git -C "$REPO_ROOT" commit -m "$type: $amount Valor — $description"
+      git -C "$REPO_ROOT" commit -m "$action_label: $amount VP — $description"
     fi
   fi
 }
@@ -247,8 +252,8 @@ cmd_calc_deposit() {
   fi
 
   if [[ "$gross" -eq 0 ]]; then
-    echo "Daily gross earned: 0 Valor Points"
-    echo "Vault deposit: 0 Valor Points"
+    echo "Daily gross earned: 0 VP"
+    echo "Vault deposit: 0 VP"
     return
   fi
 
@@ -263,9 +268,9 @@ cmd_calc_deposit() {
   local deposit
   deposit=$(node -e "console.log(Math.ceil($gross * $percent / 100))")
 
-  echo "Daily gross earned: $gross Valor Points"
+  echo "Daily gross earned: $gross VP"
   echo "Deposit rate: $percent%"
-  echo "Vault deposit: $deposit Valor Points (rounded up)"
+  echo "Vault deposit: $deposit VP (rounded up)"
 }
 
 # --- Main ---
@@ -278,25 +283,25 @@ case "$subcommand" in
   verify)
     cmd_verify
     ;;
-  deposit|withdrawal|withdraw|set)
-    if [[ "$subcommand" == "withdraw" ]]; then
+  deposit|withdrawal|withdraw|redeem|set)
+    if [[ "$subcommand" == "withdraw" || "$subcommand" == "redeem" ]]; then
       subcommand="withdrawal"
     fi
     if [[ $# -lt 3 ]]; then
-      echo "Usage: bank.sh $subcommand <amount> <description>" >&2
+      echo "Usage: vault.sh $subcommand <amount> <description>" >&2
       exit 1
     fi
     cmd_transact "$subcommand" "$2" "$3"
     ;;
   calc-deposit)
     if [[ $# -lt 2 ]]; then
-      echo "Usage: bank.sh calc-deposit <gross_earned>" >&2
+      echo "Usage: vault.sh calc-deposit <gross_earned>" >&2
       exit 1
     fi
     cmd_calc_deposit "$2"
     ;;
   *)
-    echo "Usage: bank.sh [--player <name>] {status|deposit|withdraw|set|verify|calc-deposit} [args]" >&2
+    echo "Usage: vault.sh [--player <name>] {status|deposit|redeem|withdraw|set|verify|calc-deposit} [args]" >&2
     exit 1
     ;;
 esac

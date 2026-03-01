@@ -1,7 +1,7 @@
-name: Bank Transaction
-description: Deposit, withdraw, or set the reward bank balance
-title: "[Bank] "
-labels: ["bank-transaction"]
+name: Transaction
+description: Deposit, redeem, or set the Vault balance
+title: "[Transaction] "
+labels: ["transactions"]
 body:
   - type: dropdown
     id: type
@@ -9,7 +9,7 @@ body:
       label: Transaction Type
       options:
         - deposit
-        - withdrawal
+        - redeem
         - set
     validations:
       required: true
@@ -17,7 +17,7 @@ body:
   - type: input
     id: amount
     attributes:
-      label: Amount
+      label: Amount (VP)
       placeholder: e.g., 10
     validations:
       required: true

@@ -85,13 +85,13 @@ jobs:
           ")
           echo "Tier: $tier"
 
-          deposit_output=$(scripts/bank.sh calc-deposit "$weekly_total")
+          deposit_output=$(scripts/vault.sh calc-deposit "$weekly_total")
           echo "$deposit_output"
           deposit=$(echo "$deposit_output" | grep "Vault deposit:" | grep -o '[0-9]\+')
           echo "Deposit amount: $deposit"
 
           if [[ "$deposit" -gt 0 ]]; then
-            scripts/bank.sh --no-commit --player "$player" deposit "$deposit" "Week of ${monday}"
+            scripts/vault.sh --no-commit --player "$player" deposit "$deposit" "Week of ${monday}"
           fi
 
           mkdir -p "data/${player}/weeks"
@@ -157,7 +157,7 @@ jobs:
           git push -u origin "$branch"
 
           sha=$(git rev-parse HEAD)
-          if scripts/bank.sh verify && bash tests/bank_test.sh; then
+          if scripts/vault.sh verify && bash tests/vault_test.sh; then
             verify_state="success"
           else
             verify_state="failure"

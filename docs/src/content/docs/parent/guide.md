@@ -103,30 +103,30 @@ If he earns VP in the morning and dips later, he keeps the morning VP. Never ret
 
 ---
 
-## Reward List
+## The Vault Shop
 
 Valor Points earned each day are split into two tracks. The Valor Standing determines his weekly rank (see next section). Separately, he accumulates Vault Valor Points that he can redeem on items from the list below. Each day, half his earned VP (rounded up) goes into the Vault. This gives him something tangible to save toward.
 
 **When can he spend?** He earns all week. Weekday rewards can be redeemed the same day (Mon–Fri). Weekend rewards are redeemable on Sat–Sun only. Long-term rewards can be redeemed anytime once he has enough saved up.
 
-See the full [Reward List](../rewards/shop/) for all available rewards.
+See the full [Vault Shop](../rewards/shop/) for all available rewards.
 
 ---
 
 ## Weekly Ranks
 
-At the end of each week (Sunday night), add up the full weekly Valor Points (earned minus dips). This total determines the rank for the following week.
+At the end of each week (Sunday night), add up the Valor Standing (earned VP minus dips). This total determines the rank for the following week.
 
 | Valor Standing | Rank | What It Means |
 |---|---|---|
-| **80+** | **LEGEND** | Full privileges + bonus reward from the list |
+| **80+** | **LEGEND** | Full privileges + bonus reward from the Vault Shop |
 | **60–79** | **CHAMPION** | Full privileges — screens, activities, all good |
 | **40–59** | **KNIGHT** | Keep activities, but screen time cut in half on weekend |
 | **Below 40** | **RECRUIT** | No recreational screens for the weekend (activities stay) |
 
 **Why activities always stay:** Swimming and rock climbing are exercise, and exercise is one of the single best things for an ADHD brain. Removing physical outlets as punishment actually makes behavior worse. These are protected no matter what.
 
-**Mid-week checkpoint (optional):** On Wednesday evening, check the running total. If he's already on pace for Legend (40+ VP by Wednesday), give him a small bonus — maybe +3 VP or a small treat. This keeps momentum going and rewards consistency.
+**Mid-week checkpoint (optional):** On Wednesday evening, check the running Valor Standing. If he's already on pace for Legend (40+ VP by Wednesday), give him a small bonus — maybe +3 VP or a small treat. This keeps momentum going and rewards consistency.
 
 ---
 

@@ -10,7 +10,7 @@ const SETTINGS = path.join(REPO_ROOT, 'config', 'settings.yaml');
 const REWARDS = path.join(REPO_ROOT, 'config', 'rewards.yaml');
 
 const WORKFLOWS = [
-  path.join(REPO_ROOT, '.github', 'workflows', 'bank-transaction-manual.yml'),
+  path.join(REPO_ROOT, '.github', 'workflows', 'transactions-manual.yml'),
   path.join(REPO_ROOT, '.github', 'workflows', 'weekly-checkin-manual.yml'),
   path.join(REPO_ROOT, '.github', 'workflows', 'claim-reward-manual.yml'),
 ];
