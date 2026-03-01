@@ -1,6 +1,6 @@
 ---
 title: The Hero's Guide
-description: The official hero's guide to Valor — earn valor, complete quests, unlock rewards.
+description: The official hero's guide to Valor — earn Valor Points, complete quests, unlock rewards.
 ---
 
 > **YOUR MISSION:** Good choices fill the Vault.
@@ -9,12 +9,12 @@ description: The official hero's guide to Valor — earn valor, complete quests,
 
 ## GAME START
 
-This is your guide to Valor. You earn valor by making good choices, finishing your quests, and showing up every day. It all goes into your Vault — and your Vault never forgets a good day.
+This is your guide to Valor. You earn Valor Points (VP) by making good choices, finishing your quests, and showing up every day. It all goes into your Vault — and your Vault never forgets a good day.
 
 Every Monday is a brand new game.
 Every day is a new level.
-Every good choice earns you valor.
-Stack enough valor and you unlock awesome stuff.
+Every good choice earns you Valor Points (VP).
+Stack enough VP and you unlock awesome stuff.
 
 **Ready? Let's go.**
 
@@ -22,13 +22,13 @@ Stack enough valor and you unlock awesome stuff.
 
 ## DAILY QUESTS
 
-These are missions you can complete every single day. Each one earns you valor. A perfect day is worth 15 or more valor!
+These are missions you can complete every single day. Each one earns you Valor Points. A perfect day is worth 15 or more VP!
 
 ### Morning Quests
 
 Complete these before you leave for school.
 
-| Quest | Valor |
+| Quest | VP |
 |---|:---:|
 | Wake up without drama | +1 |
 | Make your bed | +1 |
@@ -40,7 +40,7 @@ Complete these before you leave for school.
 
 Your teacher tracks these with the behavior clip. You report your color when you get home.
 
-| Quest | Valor |
+| Quest | VP |
 |---|:---:|
 | Behavior clip stays on green | +3 |
 | Behavior clip moves ABOVE green | +5 |
@@ -52,7 +52,7 @@ Your teacher tracks these with the behavior clip. You report your color when you
 
 Complete these between after-school and bedtime.
 
-| Quest | Valor |
+| Quest | VP |
 |---|:---:|
 | Eat dinner on time (no dragging it out) | +1 |
 | Follow instructions the first time | +1 |
@@ -64,9 +64,9 @@ Complete these between after-school and bedtime.
 
 ## BONUS QUESTS
 
-These are special missions. They can happen anytime and they're worth extra valor. Think of them as power-ups.
+These are special missions. They can happen anytime and they're worth extra VP. Think of them as power-ups.
 
-| Quest | Valor |
+| Quest | VP |
 |---|:---:|
 | Help someone without being asked | +2 |
 | Use calming tools when upset (breathing, space, words) | +2 |
@@ -79,14 +79,14 @@ Bonus Quests are the secret to hitting Legend rank. Look for chances to earn the
 :::
 
 :::note[OOPS CARD]
-Everyone makes mistakes. If you own it and help fix it, you can earn valor.
+Everyone makes mistakes. If you own it and help fix it, you can earn Valor Points.
 :::
 
 ---
 
 ## VALOR DIPS
 
-Just like in a game, some choices cause a dip. The good news: you can always earn more valor tomorrow.
+Just like in a game, some choices cause a dip. The good news: you can always earn more VP tomorrow.
 
 | What Happened | Dip |
 |---|:---:|
@@ -97,16 +97,16 @@ Just like in a game, some choices cause a dip. The good news: you can always ear
 | Being disrespectful | −2 |
 
 :::note[IMPORTANT]
-The biggest dip you can take in one day is −8. And valor you earned earlier in the day is always safe — it can't be taken away.
+The biggest dip you can take in one day is −8. And Valor Points you earned earlier in the day are always safe — they can't be taken away.
 :::
 
 ---
 
 ## THE REWARD SHOP
 
-This is the fun part. You save up valor in the Vault and redeem it for rewards. The Vault carries over from week to week, so you can save up for the really big stuff!
+This is the fun part. You save up Valor Points in the Vault and redeem them for rewards. The Vault carries over from week to week, so you can save up for the really big stuff!
 
-**How it works:** Every day, half of the valor you earned goes into the Vault.
+**How it works:** Every day, half of the Valor Points you earned go into the Vault.
 
 Check out the full [Reward List](/rewards/shop/) to see everything you can redeem!
 
@@ -114,7 +114,7 @@ Check out the full [Reward List](/rewards/shop/) to see everything you can redee
 
 ## YOUR WEEKLY RANK
 
-At the end of every week (Sunday night), your valor standing decides your rank for the next week.
+At the end of every week (Sunday night), your Valor Standing decides your rank for the next week.
 
 ### LEGEND RANK — 80+
 
@@ -136,13 +136,13 @@ No fun screens for the weekend. You still get swimming and rock climbing though 
 
 ## GAME RULES
 
-1. Every Monday the weekly valor resets to zero. Brand new game, brand new chance.
+1. Every Monday the weekly Valor Points reset to zero. Brand new game, brand new chance.
 2. The Vault does NOT reset. You keep saving those up.
-3. Valor you earn in the morning is locked in. Even if you have a tough afternoon, the morning valor stays.
+3. Valor Points you earn in the morning are locked in. Even if you have a tough afternoon, the morning VP stays.
 4. Swimming and rock climbing can never be taken away. Ever.
 5. You can redeem from the Vault anytime — just ask Mom or Dad.
-6. YOU get to write your own valor on the board when you earn it.
+6. YOU get to write your own VP on the board when you earn it.
 
 ---
 
-> **Remember: every single day is a chance to earn valor. Even if yesterday was rough, today is a brand new level. Go earn it!**
+> **Remember: every single day is a chance to earn VP. Even if yesterday was rough, today is a brand new level. Go earn it!**

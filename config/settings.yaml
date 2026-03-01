@@ -1,5 +1,5 @@
 bank:
-  # Percentage of daily gross earned valor deposited into the Vault.
+  # Percentage of daily gross earned Valor Points (VP) deposited into the Vault.
   # Applied as: daily_vault_deposit = ceil(daily_gross_earned * deposit_percent / 100)
   deposit_percent: 50
   # Default player name used when --player is not specified.
@@ -22,6 +22,13 @@ tier_names:
     yellow: Knight
     red: Recruit
   players: {}
+  # Princess variant example (per-player override):
+  # players:
+  #   aria:
+  #     gold: Queen
+  #     green: Duchess
+  #     yellow: Lady
+  #     red: Page
 
 midweek_checkpoint:
   enabled: true

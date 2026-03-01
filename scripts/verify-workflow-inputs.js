@@ -100,7 +100,7 @@ function main() {
   const rewardsText = readFile(REWARDS);
 
   const players = parsePlayers(settingsText);
-  const rewards = parseRewards(rewardsText).map((r) => `${r.name} (${r.cost} Valor)`);
+  const rewards = parseRewards(rewardsText).map((r) => `${r.name} (${r.cost} VP)`);
 
   let ok = true;
   for (const workflow of WORKFLOWS) {

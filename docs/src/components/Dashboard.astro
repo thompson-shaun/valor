@@ -106,7 +106,7 @@ function typeLabel(type: string): string {
   <div class="stat-grid">
     <div class="stat-card accent">
       <div class="stat-label">The Vault</div>
-      <div class="stat-value big">{balance} <span class="stat-unit">Valor</span></div>
+      <div class="stat-value big">{balance} <span class="stat-unit">VP</span></div>
       {lastUpdated && <div class="stat-sub">Updated {formatDate(lastUpdated)}</div>}
     </div>
 
@@ -154,9 +154,9 @@ function typeLabel(type: string): string {
                 <td>{formatDate(tx.timestamp)}</td>
                 <td><code>{typeLabel(tx.type)}</code></td>
                 <td class={tx.type === 'withdrawal' ? 'amt-neg' : 'amt-pos'}>
-                  {amountDisplay(tx.type, tx.amount)} Valor
+                  {amountDisplay(tx.type, tx.amount)} VP
                 </td>
-                <td>{tx.balance_after} Valor</td>
+                <td>{tx.balance_after} VP</td>
                 <td>{tx.description}</td>
               </tr>
             ))}
@@ -185,7 +185,7 @@ function typeLabel(type: string): string {
                 <td>{w.week_of}</td>
                 <td>{w.weekly_total}</td>
                 <td><span class={`tier tier-${w.tier}`}>{tierLabel(w.tier, w.tier_name)}</span></td>
-                <td>+{w.bank_deposit} Valor</td>
+                <td>+{w.bank_deposit} VP</td>
               </tr>
             ))}
           </tbody>

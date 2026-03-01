@@ -119,7 +119,7 @@ function buildPage1(doc) {
     behaviorRow('Not listening after 2 asks (-1)'),
     behaviorRow('Disrespectful language (-2)'),
     behaviorRow('______________________'),
-    [{ text: 'Daily Valor', fill: SECTION_BG, bold: true }, ...Array(8).fill({ text: '', fill: SECTION_BG })],
+    [{ text: 'Daily VP', fill: SECTION_BG, bold: true }, ...Array(8).fill({ text: '', fill: SECTION_BG })],
   ];
 
   for (const row of rows) {
@@ -140,7 +140,7 @@ function buildPage2(doc) {
   yL += 18;
 
   const lvlWidths = [60, 250];
-  yL = drawRow(doc, LEFT, yL, lvlWidths, ROW_H, [headerCell('Valor'), headerCell('Rank')]);
+  yL = drawRow(doc, LEFT, yL, lvlWidths, ROW_H, [headerCell('VP'), headerCell('Rank')]);
 
   const levels = [
     { pts: '80+', desc: 'Legend — full privileges + bonus reward', bg: GOLD_BG },
@@ -207,21 +207,21 @@ function buildPage2(doc) {
 
   const rewardRows = [
     rewardSectionHeader('Weekday (Mon–Fri)'),
-    rewardRow('Extra 30 min screen time', '10 Valor'),
-    rewardRow('Small treat (candy, snack)', '10 Valor'),
-    rewardRow('Stay up 20 min past bedtime', '15 Valor'),
+    rewardRow('Extra 30 min screen time', '10 VP'),
+    rewardRow('Small treat (candy, snack)', '10 VP'),
+    rewardRow('Stay up 20 min past bedtime', '15 VP'),
     rewardSectionHeader('Weekend (Sat–Sun)'),
-    rewardRow('Boba or special drink', '20 Valor'),
-    rewardRow('Pick the family movie', '20 Valor'),
-    rewardRow('Extra 1 hour screen time', '25 Valor'),
-    rewardRow('Pick dinner for the family', '30 Valor'),
-    rewardRow('Stay up 30 min past bedtime', '15 Valor'),
-    rewardRow('Disney trip (3–4 hours)', '40 Valor'),
+    rewardRow('Boba or special drink', '20 VP'),
+    rewardRow('Pick the family movie', '20 VP'),
+    rewardRow('Extra 1 hour screen time', '25 VP'),
+    rewardRow('Pick dinner for the family', '30 VP'),
+    rewardRow('Stay up 30 min past bedtime', '15 VP'),
+    rewardRow('Disney trip (3–4 hours)', '40 VP'),
     rewardSectionHeader('Save-Up (anytime)'),
-    rewardRow('Small toy or book', '50 Valor'),
-    rewardRow('Special outing (1:1 with parent)', '60 Valor'),
-    rewardRow('Big reward (new game, experience)', '100 Valor'),
-    rewardRow('Nintendo Switch 2', '250 Valor', { bold: true, fill: GOLD_BG }),
+    rewardRow('Small toy or book', '50 VP'),
+    rewardRow('Special outing (1:1 with parent)', '60 VP'),
+    rewardRow('Big reward (new game, experience)', '100 VP'),
+    rewardRow('Nintendo Switch 2', '250 VP', { bold: true, fill: GOLD_BG }),
   ];
 
   for (const row of rewardRows) {

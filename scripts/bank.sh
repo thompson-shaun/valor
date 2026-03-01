@@ -84,7 +84,7 @@ cmd_status() {
   local balance
   balance=$(get_balance)
   echo "Player: $PLAYER"
-  echo "Vault Balance: $balance Valor"
+  echo "Vault Balance: $balance Valor Points"
   echo ""
 
   local line_count
@@ -224,8 +224,8 @@ cmd_transact() {
     require('fs').writeFileSync('$BANK_FILE', JSON.stringify(bank, null, 2) + '\n');
   "
 
-  echo "$type: $amount Valor"
-  echo "New balance: $new_balance Valor"
+  echo "$type: $amount Valor Points"
+  echo "New balance: $new_balance Valor Points"
   echo ""
   cmd_verify
 
@@ -247,8 +247,8 @@ cmd_calc_deposit() {
   fi
 
   if [[ "$gross" -eq 0 ]]; then
-    echo "Daily gross earned: 0 Valor"
-    echo "Vault deposit: 0 Valor"
+    echo "Daily gross earned: 0 Valor Points"
+    echo "Vault deposit: 0 Valor Points"
     return
   fi
 
@@ -263,9 +263,9 @@ cmd_calc_deposit() {
   local deposit
   deposit=$(node -e "console.log(Math.ceil($gross * $percent / 100))")
 
-  echo "Daily gross earned: $gross Valor"
+  echo "Daily gross earned: $gross Valor Points"
   echo "Deposit rate: $percent%"
-  echo "Vault deposit: $deposit Valor (rounded up)"
+  echo "Vault deposit: $deposit Valor Points (rounded up)"
 }
 
 # --- Main ---

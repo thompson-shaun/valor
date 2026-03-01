@@ -5,15 +5,15 @@ description: Full rules, values, and implementation guide for Valor.
 
 ## How It Works
 
-Valor is a point system built on one idea: good choices compound. Kids earn valor throughout the day, bank it in the Vault, and redeem it for real rewards. The system is designed so that even on rough days, the good choices still count.
+Valor is a point system built on one idea: good choices compound. Kids earn Valor Points (VP) throughout the day, bank them in the Vault, and redeem them for real rewards. The system is designed so that even on rough days, the good choices still count.
 
 ## Core Principles
 
 1. **Earning is the focus.** Most of the system is about recognizing good choices, not punishing bad ones.
-2. **Fresh start every Monday.** Valor standings reset so every week is a new opportunity. Vault balance carries over.
+2. **Fresh start every Monday.** Valor Standing resets so every week is a new opportunity. Vault balance carries over.
 3. **Activities stay.** Swimming and rock climbing are never on the line — physical activity is non-negotiable and good for the brain.
-4. **Two tracks.** Valor standing determines rank (Legend/Champion/Knight/Recruit). Vault valor can be redeemed anytime.
-5. **Be consistent.** The system only works if valor is tracked daily and rules are applied the same way every time.
+4. **Two tracks.** Valor Standing determines rank (Legend/Champion/Knight/Recruit). Vault Valor Points can be redeemed anytime.
+5. **Be consistent.** The system only works if VP is tracked daily and rules are applied the same way every time.
 
 ---
 
@@ -31,13 +31,13 @@ This system doesn’t replace professional support. It’s a practical framework
 
 ---
 
-## Earning Valor
+## Earning Valor Points
 
-Valor is awarded throughout the day. A great day can earn 15–20 valor. A typical solid day is around 10–12.
+Valor Points are awarded throughout the day. A great day can earn 15–20 VP. A typical solid day is around 10–12 VP.
 
 ### Morning Routine (up to 5 pts/day)
 
-| Behavior | Valor | Notes |
+| Behavior | VP | Notes |
 |---|:---:|---|
 | Wake up without drama | +1 | Gets up when called, no meltdown |
 | Make bed | +1 | Doesn't need to be perfect |
@@ -47,7 +47,7 @@ Valor is awarded throughout the day. A great day can earn 15–20 valor. A typic
 
 ### School (up to 5 pts/day)
 
-| Behavior | Valor | Notes |
+| Behavior | VP | Notes |
 |---|:---:|---|
 | Behavior clip stays green | +3 | Baseline good day at school |
 | Behavior clip moves UP from green | +5 | Replaces the +3 above (not stacked) |
@@ -55,7 +55,7 @@ Valor is awarded throughout the day. A great day can earn 15–20 valor. A typic
 
 ### Evening Routine (up to 5 pts/day)
 
-| Behavior | Valor | Notes |
+| Behavior | VP | Notes |
 |---|:---:|---|
 | Eat dinner on time | +1 | Stays at table, finishes in reasonable time |
 | Follow instructions on first ask | +1 | Responds to a request without needing repeats |
@@ -65,7 +65,7 @@ Valor is awarded throughout the day. A great day can earn 15–20 valor. A typic
 
 ### Bonus Points (anytime)
 
-| Behavior | Valor | Notes |
+| Behavior | VP | Notes |
 |---|:---:|---|
 | Helps without being asked | +2 | Spontaneous helpfulness |
 | Uses calming tools when upset | +2 | Breathes, takes space, uses words, asks for help |
@@ -73,7 +73,7 @@ Valor is awarded throughout the day. A great day can earn 15–20 valor. A typic
 | Owns a mistake (oops card) | +2 | Tells the truth and helps repair it |
 | Exceptional kindness or effort | +3 | Goes above and beyond — parent discretion |
 
-*Daily max earning potential: approximately 15–20 valor. Weekly potential: 105–140 on a great week.*
+*Daily max earning potential: approximately 15–20 VP. Weekly potential: 105–140 on a great week.*
 
 ---
 
@@ -94,18 +94,18 @@ Only dip for skills you know he already has. If he doesn’t have the skill yet,
 :::
 
 :::caution
-Never dip more than 8 valor in a single day. If things go that badly, the day is already a learning moment — piling on more dips will feel hopeless and he'll disengage from the system entirely. Cap the dip and move on.
+Never dip more than 8 VP in a single day. If things go that badly, the day is already a learning moment — piling on more dips will feel hopeless and he'll disengage from the system entirely. Cap the dip and move on.
 :::
 
 :::note
-If he earns valor in the morning and dips later, he keeps the morning valor. Never retroactively remove earned valor. This teaches him that good choices still count even when he has a rough patch later.
+If he earns VP in the morning and dips later, he keeps the morning VP. Never retroactively remove earned VP. This teaches him that good choices still count even when he has a rough patch later.
 :::
 
 ---
 
 ## Reward List
 
-Valor earned each day is split into two tracks. The valor standing determines his weekly rank (see next section). Separately, he accumulates Vault valor that he can redeem on items from the list below. Each day, half his earned valor (rounded up) goes into the Vault. This gives him something tangible to save toward.
+Valor Points earned each day are split into two tracks. The Valor Standing determines his weekly rank (see next section). Separately, he accumulates Vault Valor Points that he can redeem on items from the list below. Each day, half his earned VP (rounded up) goes into the Vault. This gives him something tangible to save toward.
 
 **When can he spend?** He earns all week. Weekday rewards can be redeemed the same day (Mon–Fri). Weekend rewards are redeemable on Sat–Sun only. Long-term rewards can be redeemed anytime once he has enough saved up.
 
@@ -115,9 +115,9 @@ See the full [Reward List](/rewards/shop/) for all available rewards.
 
 ## Weekly Ranks
 
-At the end of each week (Sunday night), add up the full weekly valor (earned minus dips). This total determines the rank for the following week.
+At the end of each week (Sunday night), add up the full weekly Valor Points (earned minus dips). This total determines the rank for the following week.
 
-| Valor | Rank | What It Means |
+| Valor Standing | Rank | What It Means |
 |---|---|---|
 | **80+** | **LEGEND** | Full privileges + bonus reward from the list |
 | **60–79** | **CHAMPION** | Full privileges — screens, activities, all good |
@@ -126,7 +126,7 @@ At the end of each week (Sunday night), add up the full weekly valor (earned min
 
 **Why activities always stay:** Swimming and rock climbing are exercise, and exercise is one of the single best things for an ADHD brain. Removing physical outlets as punishment actually makes behavior worse. These are protected no matter what.
 
-**Mid-week checkpoint (optional):** On Wednesday evening, check the running total. If he's already on pace for Legend (40+ valor by Wednesday), give him a small bonus — maybe +3 bonus valor or a small treat. This keeps momentum going and rewards consistency.
+**Mid-week checkpoint (optional):** On Wednesday evening, check the running total. If he's already on pace for Legend (40+ VP by Wednesday), give him a small bonus — maybe +3 VP or a small treat. This keeps momentum going and rewards consistency.
 
 ---
 
@@ -138,15 +138,15 @@ Start by tracking only the earning side for the first week. No dips yet. This le
 
 ### Communicating with School
 
-Ask his teacher to continue the clip chart and send a quick daily report (even a one-word text: green/yellow/orange/red). You assign valor when he gets home based on the report.
+Ask his teacher to continue the clip chart and send a quick daily report (even a one-word text: green/yellow/orange/red). You assign VP when he gets home based on the report.
 
 ### Rules for Parents
 
 1. Both parents must be consistent. If Mom gives a point, Dad honors it (and vice versa). Discuss disagreements privately.
-2. Award valor in the moment, not at the end of the day. Immediacy matters for ADHD brains.
-3. Never threaten valor you won't actually dip. Follow through every time or the system loses credibility.
-4. Narrate what he did right when giving valor: "That's 2 valor for handling that so calmly" — not just "good job."
-5. When dipping, stay calm and factual: "That's −2 for disrespectful language. You still have X valor today." No lectures.
+2. Award Valor Points in the moment, not at the end of the day. Immediacy matters for ADHD brains.
+3. Never threaten VP you won't actually dip. Follow through every time or the system loses credibility.
+4. Narrate what he did right when giving VP: "That's 2 VP for handling that so calmly" — not just "good job."
+5. When dipping, stay calm and factual: "That's −2 for disrespectful language. You still have X VP today." No lectures.
 6. Review the week together on Sunday. Celebrate wins. Problem-solve rough spots. Ask him what was hard.
 
 ### Adjusting Over Time
@@ -208,5 +208,5 @@ Timers are fine if used to teach structure, not to punish.
 If it doesn’t happen today, it’s okay — try again tomorrow.
 
 :::tip[The Bigger Picture]
-This system is a tool, not a silver bullet. It works best alongside other supports: making sure school is appropriately challenging for a gifted learner, consistent physical activity, enough sleep, and potentially working with a behavioral therapist who specializes in ADHD. The system gives him a framework for understanding that choices have outcomes — but the real win is when he starts making good choices because they feel right, not just because of the valor.
+This system is a tool, not a silver bullet. It works best alongside other supports: making sure school is appropriately challenging for a gifted learner, consistent physical activity, enough sleep, and potentially working with a behavioral therapist who specializes in ADHD. The system gives him a framework for understanding that choices have outcomes — but the real win is when he starts making good choices because they feel right, not just because of VP.
 :::

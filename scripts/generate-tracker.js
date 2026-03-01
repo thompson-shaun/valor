@@ -131,7 +131,7 @@ async function main() {
   }
 
   // --- Daily Total row ---
-  const totalRow = ws.addRow(['Daily Valor', '', '', '', '', '', '', '', '']);
+  const totalRow = ws.addRow(['Daily VP', '', '', '', '', '', '', '', '']);
   totalRow.getCell(1).font = { bold: true, size: 10 };
   totalRow.getCell(1).fill = headerFill(SECTION_BG);
   totalRow.eachCell((cell, colNumber) => {
@@ -205,9 +205,9 @@ async function main() {
   wdTitle.getCell(2).alignment = { horizontal: 'center' };
 
   const weekdayRewards = [
-    ['Extra 30 min screen time', '10 Valor'],
-    ['Small treat (candy, snack)', '10 Valor'],
-    ['Stay up 20 min past bedtime', '15 Valor'],
+    ['Extra 30 min screen time', '10 VP'],
+    ['Small treat (candy, snack)', '10 VP'],
+    ['Stay up 20 min past bedtime', '15 VP'],
   ];
   for (const [name, cost] of weekdayRewards) {
     const r = qs.addRow([name, cost]);
@@ -230,12 +230,12 @@ async function main() {
   weTitle.getCell(2).alignment = { horizontal: 'center' };
 
   const weekendRewards = [
-    ['Boba or special drink', '20 Valor'],
-    ['Pick the family movie', '20 Valor'],
-    ['Extra 1 hour screen time', '25 Valor'],
-    ['Pick dinner for the family', '30 Valor'],
-    ['Stay up 30 min past bedtime', '15 Valor'],
-    ['Disney trip (3–4 hours)', '40 Valor'],
+    ['Boba or special drink', '20 VP'],
+    ['Pick the family movie', '20 VP'],
+    ['Extra 1 hour screen time', '25 VP'],
+    ['Pick dinner for the family', '30 VP'],
+    ['Stay up 30 min past bedtime', '15 VP'],
+    ['Disney trip (3–4 hours)', '40 VP'],
   ];
   for (const [name, cost] of weekendRewards) {
     const r = qs.addRow([name, cost]);
@@ -258,10 +258,10 @@ async function main() {
   suTitle.getCell(2).alignment = { horizontal: 'center' };
 
   const saveUpRewards = [
-    ['Small toy or book (under $15)', '50 Valor'],
-    ['Special outing (1:1 with parent)', '60 Valor'],
-    ['Big reward (new game, experience)', '100 Valor'],
-    ['Nintendo Switch 2', '250 Valor'],
+    ['Small toy or book (under $15)', '50 VP'],
+    ['Special outing (1:1 with parent)', '60 VP'],
+    ['Big reward (new game, experience)', '100 VP'],
+    ['Nintendo Switch 2', '250 VP'],
   ];
   for (const [name, cost] of saveUpRewards) {
     const r = qs.addRow([name, cost]);
@@ -286,7 +286,7 @@ async function main() {
   lvlTitle.getCell(1).font = { bold: true, size: 14, color: GREEN };
   lvlTitle.height = 24;
 
-  const lvlHdr = qs.addRow(['Valor', 'Rank', 'Result']);
+  const lvlHdr = qs.addRow(['VP', 'Rank', 'Result']);
   qs.mergeCells(lvlHdr.number, 2, lvlHdr.number, 3);
   for (let i = 1; i <= 3; i++) {
     lvlHdr.getCell(i).font = { bold: true, size: 10, color: HEADER_FG };
@@ -345,7 +345,7 @@ async function main() {
     r.height = 18;
   }
 
-  const dedNote = qs.addRow(['Max −8/day. Earned valor is never removed.']);
+  const dedNote = qs.addRow(['Max −8/day. Earned VP is never removed.']);
   qs.mergeCells(dedNote.number, 1, dedNote.number, 4);
   dedNote.getCell(1).font = { italic: true, size: 9 };
 

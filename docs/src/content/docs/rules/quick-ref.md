@@ -12,7 +12,7 @@ description: One-page cheat sheet for the Valor system.
 | Evening | 5 | Dinner, follow instructions, positive attitude, bedtime, reading |
 | Bonus | uncapped | Helps (+2), calming tools (+2), accepts no (+2), owns mistakes (+2), exceptional (+3) |
 
-**Typical day: 10–12 valor. Perfect day: 15–20 valor.**
+**Typical day: 10–12 VP. Perfect day: 15–20 VP.**
 
 ## Dips
 
@@ -22,11 +22,11 @@ description: One-page cheat sheet for the Valor system.
 | Not listening after 2 asks | −1 |
 | Disrespectful language | −2 |
 
-**Max dip per day: 8. Earned valor is never removed.**
+**Max dip per day: 8. Earned VP is never removed.**
 
 ## Weekly Ranks
 
-| Valor | Rank | Result |
+| Valor Standing | Rank | Result |
 |---|---|---|
 | 80+ | Legend | Full privileges + bonus reward |
 | 60–79 | Champion | Full privileges |
@@ -35,7 +35,7 @@ description: One-page cheat sheet for the Valor system.
 
 ## The Vault
 
-- **Vault deposit:** half of daily gross earned, rounded up
+- **Vault deposit:** half of daily gross VP earned, rounded up
 - **Never resets** — carries over week to week
 - **Redeem anytime** by asking Mom or Dad
 

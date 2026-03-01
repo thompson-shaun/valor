@@ -1,13 +1,13 @@
 # Valor
 
-Valor turns daily routines into quests, good choices into earned valor, and consistency into real rewards. Every good day fills the Vault. Do good. Bank it.
+Valor turns daily routines into quests, good choices into earned Valor Points (VP), and consistency into real rewards. Every good day fills the Vault. Do good. Bank it.
 
 ## How It Works
 
-Kids earn valor throughout the day by completing quests — morning routines, school behavior, evening tasks, and bonus challenges. Valor flows into two tracks:
+Kids earn Valor Points (VP) throughout the day by completing quests — morning routines, school behavior, evening tasks, and bonus challenges. Valor Points flow into two tracks:
 
 - **Valor Standing** — resets every Monday, determines the rank (Legend/Champion/Knight/Recruit) for the following week
-- **The Vault** — a persistent, rolling balance used to redeem rewards from the list
+- **The Vault** — a persistent, rolling balance of Valor Points used to redeem rewards from the list
 
 The system is designed around a ~4:1 earning-to-losing ratio. Good choices always count, even on rough days.
 
@@ -15,7 +15,7 @@ The system is designed around a ~4:1 earning-to-losing ratio. Good choices alway
 
 - **[Parent Guide](docs/src/content/docs/parents/guide.md)** — full rules, point values, implementation details
 - **[Player's Guide](docs/src/content/docs/players/guide.md)** — kid-facing version with game language
-- **[Reward List](docs/src/content/docs/rewards/shop.md)** — what valor can buy
+- **[Reward List](docs/src/content/docs/rewards/shop.md)** — what VP can buy
 
 ## The Vault
 
@@ -23,8 +23,8 @@ Use the `/vault` Claude Code skill or `scripts/bank.sh` directly to manage the V
 
 ```
 /vault                                    # Show balance and recent transactions
-/vault deposit 10 "Daily deposit"         # Add valor
-/vault redeem 20 "Bought boba"            # Redeem valor
+/vault deposit 10 "Daily deposit"         # Add Valor Points
+/vault redeem 20 "Bought boba"            # Redeem Valor Points
 /vault set 100 "Manual correction"        # Set exact balance
 /vault --player kidname deposit 10 "..."  # Specify a player
 ```

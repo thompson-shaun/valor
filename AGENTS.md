@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Valor is a gamified behavior system for a child. It uses token economy principles with game language (valor, quests, ranks) to reinforce positive behavior. This repo contains:
+Valor is a gamified behavior system for a child. It uses token economy principles with game language (Valor Points, quests, ranks) to reinforce positive behavior. This repo contains:
 
 - **Docs site** (`docs/`) — Astro Starlight site with parent guide, player guide, reward shop, and quick reference
 - **Config** (`config/`) — YAML files defining behaviors, rewards, settings, and thresholds
@@ -22,7 +22,7 @@ game-plan/
 ├── docs/                  # Astro Starlight site
 │   └── src/content/docs/  # Site content (guides, rewards, rules)
 ├── config/
-│   ├── behaviors.yaml     # All behaviors and valor values
+│   ├── behaviors.yaml     # All behaviors and Valor Point values
 │   ├── rewards.yaml       # Reward list items and costs
 │   └── settings.yaml      # Vault deposit %, thresholds, rules
 ├── data/
@@ -42,13 +42,13 @@ These are non-negotiable rules grounded in behavioral science:
 
 1. **Earning > punishment.** The system is ~4:1 earning-to-losing ratio. Always feel mostly positive.
 2. **8-point daily dip cap.** Prevents hopelessness on bad days. Once hit, stop dipping.
-3. **Earned valor is locked in.** Morning valor can never be retroactively removed. Dips are separate line items.
+3. **Earned Valor Points are locked in.** Morning Valor Points can never be retroactively removed. Dips are separate line items.
 4. **The Vault never resets.** The Vault carries over week to week. It only changes via deposits and withdrawals.
 5. **Weekly total resets every Monday.** Fresh start each week.
 6. **Physical activities are protected.** Swimming and rock climbing are never removed regardless of tier.
 7. **Vault deposits use gross earned (before dips).** Good choices always count toward the Vault even on rough days.
 8. **Vault deposit percentage is configurable.** See `config/settings.yaml` for the `deposit_percent` parameter (default 50%). Formula: `daily_vault_deposit = ceil(daily_gross_earned * deposit_percent / 100)`. Always round up.
-9. **Config-driven.** All valor values, rewards, and thresholds live in YAML. Never hardcode.
+9. **Config-driven.** All Valor Point values, rewards, and thresholds live in YAML. Never hardcode.
 10. **Append-only ledger.** Never delete entries from `bank-log.jsonl`. All Vault changes are auditable.
 
 ## Vault Skill (`/vault`)
@@ -57,8 +57,8 @@ The `/vault` Claude Code skill manages the Vault via `scripts/bank.sh`. Player d
 
 ### Usage
 - `/vault` — Show current balance and recent transactions
-- `/vault deposit <amount> "<description>"` — Add valor to the Vault
-- `/vault redeem <amount> "<description>"` — Redeem valor from the Vault
+- `/vault deposit <amount> "<description>"` — Add Valor Points to the Vault
+- `/vault redeem <amount> "<description>"` — Redeem Valor Points from the Vault
 - `/vault set <amount> "<description>"` — Set balance to an exact value (corrections only)
 
 All commands accept an optional `--player <name>` flag. If omitted, uses `default_player` from `config/settings.yaml`.
@@ -89,6 +89,6 @@ Common tasks are available in `Taskfile.yml`. To keep workflow inputs in sync wi
 
 ## Content Conventions
 
-- Parent-facing content uses calm, principled language (valor, Vault, rewards)
-- Player-facing content uses game language (valor, quests, ranks, dips)
+- Parent-facing content uses calm, principled language (Valor Points, Vault, rewards)
+- Player-facing content uses game language (VP, quests, ranks, dips)
 - No PII in any committed file
