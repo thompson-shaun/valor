@@ -190,6 +190,17 @@ h1, h2, h3, h4 {
   box-shadow: none;
 }
 
+/* ---- Light mode content headings ---- */
+:root:not([data-theme='dark']) .sl-markdown-content :is(h1, h2, h3, h4, h5, h6),
+:root[data-theme='light'] .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--sl-color-gray-1) !important;
+}
+
+:root:not([data-theme='dark']) .sl-markdown-content strong,
+:root[data-theme='light'] .sl-markdown-content strong {
+  color: var(--sl-color-gray-1);
+}
+
 /* ---- Card grid ---- */
 .card-grid {
   gap: 1.2rem;
