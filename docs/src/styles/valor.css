@@ -5,69 +5,77 @@
   --sl-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* Light mode — default + explicit light selector */
-:root,
-:root[data-theme='light'] {
-  --sl-color-white:  #f5efe0;
-  --sl-color-gray-6: #ede5d4;
-  --sl-color-gray-5: #ddd5c4;
-  --sl-color-gray-4: #8fa8c8;
-  --sl-color-gray-3: #4e6a8a;
-  --sl-color-gray-2: #2e4468;
-  --sl-color-gray-1: #1a2a3e;
-  --sl-color-black:  #0f1623;
+:root[data-theme='dark'] {
+  --sl-color-black:  #0F1623;
+  --sl-color-gray-6: #162032;
+  --sl-color-gray-5: #1A2A3E;
+  --sl-color-gray-4: #2E4468;
+  --sl-color-gray-3: #4E6A8A;
+  --sl-color-gray-2: #8FA8C8;
+  --sl-color-gray-1: #F5EFE0;
+  --sl-color-white:  #FFFFFF;
 
-  --sl-color-accent-low:  #fdf3d0;
-  --sl-color-accent:      #f0c040;
-  --sl-color-accent-high: #1a2a3e;
+  --sl-color-accent-low:  #1A3A6A;
+  --sl-color-accent:      #F0C040;
+  --sl-color-accent-high: #F5D980;
 
-  --sl-color-green:        #059669;
-  --sl-color-green-low:    #d1fae5;
-  --sl-color-orange:       #c2410c;
-  --sl-color-orange-low:   #ffedd5;
-  --sl-color-blue:         #1d4ed8;
-  --sl-color-blue-low:     #dbeafe;
-  --sl-color-red:          #c2410c;
-  --sl-color-red-low:      #ffedd5;
+  --sl-color-green:        #34D399;
+  --sl-color-green-low:    #0D3D2A;
+  --sl-color-orange:       #FB923C;
+  --sl-color-orange-low:   #3D1F0A;
+  --sl-color-blue:         #60A5FA;
+  --sl-color-blue-low:     #0D2240;
+  --sl-color-red:          #FB923C;
+  --sl-color-red-low:      #3D1F0A;
 
-  --valor-gold:       #f0c040;
-  --valor-gold-text:  #8a6408;
-  --valor-gold-muted: #a07820;
-  --valor-dip:        #c2410c;
-  --valor-success:    #059669;
+  --valor-gold:        #F0C040;
+  --valor-gold-muted:  #A07820;
+  --valor-dip:         #FB923C;
+  --valor-success:     #34D399;
 
-  --tier-legend:   #f0c040;
-  --tier-champion: #cbd5e1;
-  --tier-knight:   #cd853f;
-  --tier-recruit:  #64748b;
-  --tier-queen:    #e8a0bf;
-  --tier-duchess:  #c4a0d0;
-  --tier-lady:     #a0b4d0;
-  --tier-page:     #64748b;
+  --tier-legend:   #F0C040;
+  --tier-champion: #CBD5E1;
+  --tier-knight:   #CD853F;
+  --tier-recruit:  #64748B;
+
+  --tier-queen:    #E8A0BF;
+  --tier-duchess:  #C4A0D0;
+  --tier-lady:     #A0B4D0;
+  --tier-page:     #64748B;
 }
 
-:root[data-theme='dark'] {
-  --sl-color-black:  #0f1623;
-  --sl-color-gray-6: #162032;
-  --sl-color-gray-5: #1a2a3e;
-  --sl-color-gray-4: #2e4468;
-  --sl-color-gray-3: #4e6a8a;
-  --sl-color-gray-2: #8fa8c8;
-  --sl-color-gray-1: #f5efe0;
-  --sl-color-white:  #ffffff;
+:root,
+:root[data-theme='light'] {
+  --sl-color-white:  #F5EFE0;
+  --sl-color-gray-6: #EDE5D4;
+  --sl-color-gray-5: #DDD5C4;
+  --sl-color-gray-4: #8FA8C8;
+  --sl-color-gray-3: #4E6A8A;
+  --sl-color-gray-2: #2E4468;
+  --sl-color-gray-1: #1A2A3E;
+  --sl-color-black:  #0F1623;
 
-  --sl-color-accent-low:  #1a3a6a;
-  --sl-color-accent:      #f0c040;
-  --sl-color-accent-high: #f5d980;
+  --sl-color-accent-low:  #FDF3D0;
+  --sl-color-accent:      #F0C040;
+  --sl-color-accent-high: #1A2A3E;
 
-  --sl-color-green:     #34d399;
-  --sl-color-green-low: #0d3d2a;
-  --sl-color-orange:    #fb923c;
-  --sl-color-orange-low:#3d1f0a;
-  --sl-color-blue:      #60a5fa;
-  --sl-color-blue-low:  #0d2240;
-  --sl-color-red:       #fb923c;
-  --sl-color-red-low:   #3d1f0a;
+  --sl-color-green:        #059669;
+  --sl-color-green-low:    #D1FAE5;
+  --sl-color-orange:       #C2410C;
+  --sl-color-orange-low:   #FFEDD5;
+  --sl-color-blue:         #1D4ED8;
+  --sl-color-blue-low:     #DBEAFE;
+  --sl-color-red:          #C2410C;
+  --sl-color-red-low:      #FFEDD5;
+
+  --valor-gold:        #F0C040;
+  --valor-gold-text:   #8A6408;
+  --valor-dip:         #C2410C;
+  --valor-success:     #059669;
+}
+
+:root {
+  --hero-bg-light: linear-gradient(135deg, #f9f0dd 0%, #f4e2bf 45%, #e6f1e8 100%);
 }
 
 body {
@@ -91,19 +99,22 @@ h1, h2, h3, h4 {
 
 /* ---- Hero ---- */
 [data-page-type='splash'] .hero {
-  background-image:
-    radial-gradient(ellipse at top left, rgba(240, 192, 64, 0.18) 0%, transparent 60%),
-    linear-gradient(135deg, #0f1b2b 0%, #132237 55%, #0f2a23 100%);
   border: 1px solid #1f2a3b;
   border-radius: 18px;
   padding: 2.5rem;
   box-shadow: 0 18px 32px rgba(0, 0, 0, 0.3);
 }
 
+:root[data-theme='dark'] [data-page-type='splash'] .hero {
+  background-image:
+    radial-gradient(ellipse at top left, rgba(240, 192, 64, 0.18) 0%, transparent 60%),
+    linear-gradient(135deg, #0f1b2b 0%, #132237 55%, #0f2a23 100%);
+}
+
 :root:not([data-theme='dark']) [data-page-type='splash'] .hero {
   background-image:
     radial-gradient(ellipse at top left, rgba(240, 192, 64, 0.12) 0%, transparent 55%),
-    linear-gradient(135deg, #f9f0dd 0%, #f4e2bf 45%, #e6f1e8 100%);
+    var(--hero-bg-light);
   border-color: #e2d2b5;
   box-shadow: 0 12px 30px rgba(11, 27, 43, 0.12);
 }
@@ -171,11 +182,31 @@ h1, h2, h3, h4 {
   font-size: 1.1rem;
 }
 
-/* Card icon backgrounds */
-.card-icon,
-[class*="card"] [class*="icon"] {
-  background-color: var(--valor-gold-muted);
-  color: var(--valor-gold);
+/* Card icon backgrounds — tier-mapped per feature card */
+.card-grid .card:nth-child(1) {
+  --sl-card-border: var(--tier-legend);
+  --sl-card-bg: color-mix(in srgb, var(--tier-legend) 18%, transparent);
+}
+
+.card-grid .card:nth-child(2) {
+  --sl-card-border: var(--tier-champion);
+  --sl-card-bg: color-mix(in srgb, var(--tier-champion) 18%, transparent);
+}
+
+.card-grid .card:nth-child(3) {
+  --sl-card-border: var(--tier-knight);
+  --sl-card-bg: color-mix(in srgb, var(--tier-knight) 18%, transparent);
+}
+
+.card-grid .card:nth-child(4) {
+  --sl-card-border: var(--tier-recruit);
+  --sl-card-bg: color-mix(in srgb, var(--tier-recruit) 18%, transparent);
+}
+
+.card-grid .card .icon {
+  border-color: var(--sl-card-border);
+  background-color: var(--sl-card-bg);
+  color: var(--sl-card-border);
 }
 
 /* Links */
