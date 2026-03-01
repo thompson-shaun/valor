@@ -108,7 +108,7 @@ This is the fun part. You save up Valor Points in the Vault and redeem them for 
 
 **How it works:** Every day, half of the Valor Points you earned go into the Vault.
 
-Check out the full [Reward List](/rewards/shop/) to see everything you can redeem!
+Check out the full [Reward List](../rewards/shop/) to see everything you can redeem!
 
 ---
 

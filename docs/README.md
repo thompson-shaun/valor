@@ -27,6 +27,17 @@ Inside of your Astro + Starlight project, you'll see the following folders and f
 
 Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
 
+## Base URL helpers
+
+Use the shared site constants when you need repo-aware links in MDX:
+
+```mdx
+import { BASE_URL, PROJECT_BASE_URL } from '../_includes/site';
+```
+
+- `BASE_URL` is the repo base path (e.g. `/valor`) for assets like the weekly tracker.
+- `PROJECT_BASE_URL` is the full GitHub Pages URL.
+
 Images can be added to `src/assets/` and embedded in Markdown with a relative link.
 
 Static assets, like favicons, can be placed in the `public/` directory.

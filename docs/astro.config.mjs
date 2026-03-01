@@ -1,15 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { PROJECT_PATH, REPO_URL, SITE_HOST } from './src/config/site.js';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://thompson-shaun.github.io',
-	base: '/valor',
+	site: SITE_HOST,
+	base: PROJECT_PATH,
 	integrations: [
 		starlight({
 			title: 'Valor',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/thompson-shaun/valor' }],
+			social: [{ icon: 'github', label: 'GitHub', href: REPO_URL }],
 			sidebar: [
 				{ label: 'Home', slug: '' },
 				{
