@@ -62,8 +62,8 @@
   --sl-color-text: var(--sl-color-gray-1);
   --sl-color-text-accent: var(--sl-color-accent-high);
   --sl-color-text-invert: var(--sl-color-gray-1);
-  --sl-color-bg-nav: var(--sl-color-gray-6);
-  --sl-color-bg-sidebar: var(--sl-color-gray-6);
+  --sl-color-bg-nav: #0F1623;
+  --sl-color-bg-sidebar: #0F1623;
 
   --sl-color-green:        #059669;
   --sl-color-green-low:    #D1FAE5;
@@ -224,20 +224,20 @@ h1, h2, h3, h4 {
 
 :root:not([data-theme='dark']) nav.sidebar a,
 :root[data-theme='light'] nav.sidebar a {
-  color: var(--sl-color-gray-2) !important;
+  color: #F5EFE0 !important;
 }
 
 :root:not([data-theme='dark']) nav.sidebar a:hover,
 :root[data-theme='light'] nav.sidebar a:hover,
 :root:not([data-theme='dark']) nav.sidebar a:focus,
 :root[data-theme='light'] nav.sidebar a:focus {
-  color: var(--sl-color-gray-1) !important;
-  background-color: var(--sl-color-accent-low);
+  color: #FDF3D0 !important;
+  background-color: rgba(240, 192, 64, 0.18);
 }
 
 :root:not([data-theme='dark']) nav.sidebar a[aria-current='page'],
 :root[data-theme='light'] nav.sidebar a[aria-current='page'] {
-  color: var(--sl-color-gray-1) !important;
+  color: #0F1623 !important;
   background-color: var(--sl-color-accent);
 }
 
