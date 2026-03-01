@@ -132,12 +132,15 @@ h1, h2, h3, h4 {
   color: var(--sl-color-gray-2);
 }
 
-:root:not([data-theme='dark']) [data-page-type='splash'] .hero h1,
-:root:not([data-theme='dark']) [data-page-type='splash'] .hero h1[data-page-title] {
+:root:not([data-theme='dark']) .hero h1,
+:root:not([data-theme='dark']) .hero h1[data-page-title],
+:root[data-theme='light'] .hero h1,
+:root[data-theme='light'] .hero h1[data-page-title] {
   color: var(--sl-color-gray-1) !important;
 }
 
-:root:not([data-theme='dark']) [data-page-type='splash'] .hero .tagline {
+:root:not([data-theme='dark']) .hero .tagline,
+:root[data-theme='light'] .hero .tagline {
   color: var(--sl-color-gray-2) !important;
 }
 
@@ -169,17 +172,20 @@ h1, h2, h3, h4 {
   box-shadow: 0 12px 24px rgba(240, 192, 64, 0.2);
 }
 
-:root:not([data-theme='dark']) [data-page-type='splash'] .hero .actions .sl-link-button.primary {
+:root:not([data-theme='dark']) .hero .actions .sl-link-button.primary,
+:root[data-theme='light'] .hero .actions .sl-link-button.primary {
   border: 1px solid color-mix(in srgb, var(--sl-color-accent) 65%, #ffffff);
   background: var(--sl-color-accent) !important;
   color: var(--sl-color-accent-high) !important;
   box-shadow: 0 8px 18px rgba(240, 192, 64, 0.25);
 }
 
-:root:not([data-theme='dark']) [data-page-type='splash'] .hero .actions .sl-link-button.secondary,
-:root:not([data-theme='dark']) [data-page-type='splash'] .hero .actions .sl-link-button.minimal {
+:root:not([data-theme='dark']) .hero .actions .sl-link-button.secondary,
+:root:not([data-theme='dark']) .hero .actions .sl-link-button.minimal,
+:root[data-theme='light'] .hero .actions .sl-link-button.secondary,
+:root[data-theme='light'] .hero .actions .sl-link-button.minimal {
   background: transparent;
-  color: var(--sl-color-gray-2);
+  color: var(--sl-color-gray-2) !important;
   border-color: transparent;
   box-shadow: none;
 }
@@ -215,27 +221,38 @@ h1, h2, h3, h4 {
 /* Card icon backgrounds — tier-mapped per feature card */
 .card-grid .card:nth-child(1) {
   --sl-card-border: var(--tier-legend);
-  --sl-card-bg: color-mix(in srgb, var(--tier-legend) 18%, transparent);
 }
 
 .card-grid .card:nth-child(2) {
   --sl-card-border: var(--tier-champion);
-  --sl-card-bg: color-mix(in srgb, var(--tier-champion) 18%, transparent);
 }
 
 .card-grid .card:nth-child(3) {
   --sl-card-border: var(--tier-knight);
-  --sl-card-bg: color-mix(in srgb, var(--tier-knight) 18%, transparent);
 }
 
 .card-grid .card:nth-child(4) {
   --sl-card-border: var(--tier-recruit);
-  --sl-card-bg: color-mix(in srgb, var(--tier-recruit) 18%, transparent);
+}
+
+.card-grid .card:nth-child(1) .icon {
+  background-color: rgba(240, 192, 64, 0.18);
+}
+
+.card-grid .card:nth-child(2) .icon {
+  background-color: rgba(203, 213, 225, 0.25);
+}
+
+.card-grid .card:nth-child(3) .icon {
+  background-color: rgba(205, 133, 63, 0.22);
+}
+
+.card-grid .card:nth-child(4) .icon {
+  background-color: rgba(100, 116, 139, 0.22);
 }
 
 .card-grid .card .icon {
   border-color: var(--sl-card-border);
-  background-color: var(--sl-card-bg);
   color: var(--sl-card-border);
 }
 
