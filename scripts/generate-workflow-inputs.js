@@ -98,7 +98,7 @@ function main() {
   }
 
   const playerLines = players.map((p) => `- ${yamlQuote(p)}`);
-  const rewardLines = rewards.map((r) => `- ${yamlQuote(`${r.name} (${r.cost} XP)`)}`);
+  const rewardLines = rewards.map((r) => `- ${yamlQuote(`${r.name} (${r.cost} Valor)`)}`);
 
   for (const workflow of WORKFLOWS) {
     let text = readFile(workflow);

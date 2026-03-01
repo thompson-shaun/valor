@@ -1,14 +1,14 @@
-# Quest Mode — Agent Instructions
+# Valor — Agent Instructions
 
 ## Project Overview
 
-Quest Mode is a gamified behavior point system for a child. It uses token economy principles with game language (XP, quests, levels) to reinforce positive behavior. This repo contains:
+Valor is a gamified behavior system for a child. It uses token economy principles with game language (valor, quests, ranks) to reinforce positive behavior. This repo contains:
 
 - **Docs site** (`docs/`) — Astro Starlight site with parent guide, player guide, reward shop, and quick reference
 - **Config** (`config/`) — YAML files defining behaviors, rewards, settings, and thresholds
-- **Bank** (`data/`) — JSON-based transaction ledger tracking the reward bank balance
+- **Vault** (`data/`) — JSON-based transaction ledger tracking the Vault balance
 - **GitHub workflows** (`.github/`) — Pages deployment and issue-driven reward updates
-- **Skills** (`.claude/skills/`) — Claude Code skills for bank operations (`/bank`), shop management (`/shop`), and weekly check-in (`/checkin`)
+- **Skills** (`.claude/skills/`) — Claude Code skills for Vault operations (`/vault`), reward list management (`/rewards`), and weekly check-in (`/checkin`)
 
 ## File Structure
 
@@ -22,9 +22,9 @@ game-plan/
 ├── docs/                  # Astro Starlight site
 │   └── src/content/docs/  # Site content (guides, rewards, rules)
 ├── config/
-│   ├── behaviors.yaml     # All behaviors and point values
-│   ├── rewards.yaml       # Reward shop items and costs
-│   └── settings.yaml      # Bank deposit %, thresholds, rules
+│   ├── behaviors.yaml     # All behaviors and valor values
+│   ├── rewards.yaml       # Reward list items and costs
+│   └── settings.yaml      # Vault deposit %, thresholds, rules
 ├── data/
 │   └── <player>/           # One directory per player
 │       ├── bank.json       # Current balance (materialized view)
@@ -41,25 +41,25 @@ game-plan/
 These are non-negotiable rules grounded in behavioral science:
 
 1. **Earning > punishment.** The system is ~4:1 earning-to-losing ratio. Always feel mostly positive.
-2. **8-point daily deduction cap.** Prevents hopelessness on bad days. Once hit, stop deducting.
-3. **Earned points are locked in.** Morning points can never be retroactively removed. Deductions are separate line items.
-4. **Bank never resets.** The reward bank carries over week to week. It only changes via deposits and withdrawals.
+2. **8-point daily dip cap.** Prevents hopelessness on bad days. Once hit, stop dipping.
+3. **Earned valor is locked in.** Morning valor can never be retroactively removed. Dips are separate line items.
+4. **The Vault never resets.** The Vault carries over week to week. It only changes via deposits and withdrawals.
 5. **Weekly total resets every Monday.** Fresh start each week.
 6. **Physical activities are protected.** Swimming and rock climbing are never removed regardless of tier.
-7. **Bank deposits use gross earned (before deductions).** Good choices always count toward the bank even on rough days.
-8. **Bank deposit percentage is configurable.** See `config/settings.yaml` for the `deposit_percent` parameter (default 50%). Formula: `daily_bank_deposit = ceil(daily_gross_earned * deposit_percent / 100)`. Always round up.
-9. **Config-driven.** All point values, rewards, and thresholds live in YAML. Never hardcode.
-10. **Append-only ledger.** Never delete entries from `bank-log.jsonl`. All bank changes are auditable.
+7. **Vault deposits use gross earned (before dips).** Good choices always count toward the Vault even on rough days.
+8. **Vault deposit percentage is configurable.** See `config/settings.yaml` for the `deposit_percent` parameter (default 50%). Formula: `daily_vault_deposit = ceil(daily_gross_earned * deposit_percent / 100)`. Always round up.
+9. **Config-driven.** All valor values, rewards, and thresholds live in YAML. Never hardcode.
+10. **Append-only ledger.** Never delete entries from `bank-log.jsonl`. All Vault changes are auditable.
 
-## Bank Skill (`/bank`)
+## Vault Skill (`/vault`)
 
-The `/bank` Claude Code skill manages the reward bank via `scripts/bank.sh`. Player data lives in `data/<player>/`.
+The `/vault` Claude Code skill manages the Vault via `scripts/bank.sh`. Player data lives in `data/<player>/`.
 
 ### Usage
-- `/bank` — Show current balance and recent transactions
-- `/bank deposit <amount> "<description>"` — Add points to the bank
-- `/bank withdraw <amount> "<description>"` — Spend points from the bank
-- `/bank set <amount> "<description>"` — Set balance to an exact value (corrections only)
+- `/vault` — Show current balance and recent transactions
+- `/vault deposit <amount> "<description>"` — Add valor to the Vault
+- `/vault redeem <amount> "<description>"` — Redeem valor from the Vault
+- `/vault set <amount> "<description>"` — Set balance to an exact value (corrections only)
 
 All commands accept an optional `--player <name>` flag. If omitted, uses `default_player` from `config/settings.yaml`.
 
@@ -77,7 +77,7 @@ Reward updates are handled via normal pull requests and review. Update `config/r
 Manual workflows use `workflow_dispatch` and open PRs:
 
 - `Bank Transaction (Manual)` — Runs `scripts/bank.sh` and opens a PR (optional auto-merge)
-- `Weekly Check-In (Manual)` — Computes tier + deposit, writes weekly summary, opens a PR (optional auto-merge)
+- `Weekly Check-In (Manual)` — Computes rank + Vault deposit, writes weekly summary, opens a PR (optional auto-merge)
 - `Claim Reward (Manual)` — Withdraws from bank and opens a PR (optional auto-merge)
 - `Verify Ledger (Manual)` — Runs ledger verification and tests
 
@@ -89,6 +89,6 @@ Common tasks are available in `Taskfile.yml`. To keep workflow inputs in sync wi
 
 ## Content Conventions
 
-- Parent-facing content uses standard language (points, behaviors, rewards)
-- Player-facing content uses game language (XP, quests, damage, levels)
+- Parent-facing content uses calm, principled language (valor, Vault, rewards)
+- Player-facing content uses game language (valor, quests, ranks, dips)
 - No PII in any committed file

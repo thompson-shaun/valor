@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Quest Mode Reward Bank — transaction script
+# Valor Vault — transaction script
 # Usage:
 #   bank.sh [--player <name>] [--no-commit] status
 #   bank.sh [--player <name>] [--no-commit] deposit <amount> <description>
 #   bank.sh [--player <name>] [--no-commit] withdraw <amount> <description>
 #   bank.sh [--player <name>] [--no-commit] set <amount> <description>
 #   bank.sh [--player <name>] [--no-commit] verify
-#   bank.sh calc-deposit <gross_earned>                     Calculate bank deposit from daily gross
+#   bank.sh calc-deposit <gross_earned>                     Calculate Vault deposit from daily gross
 #
 # Flags:
 #   --no-commit   Skip auto-commit after transactions (env: BANK_NO_COMMIT=true)
@@ -84,7 +84,7 @@ cmd_status() {
   local balance
   balance=$(get_balance)
   echo "Player: $PLAYER"
-  echo "Bank Balance: $balance XP"
+  echo "Vault Balance: $balance Valor"
   echo ""
 
   local line_count
@@ -224,8 +224,8 @@ cmd_transact() {
     require('fs').writeFileSync('$BANK_FILE', JSON.stringify(bank, null, 2) + '\n');
   "
 
-  echo "$type: $amount XP"
-  echo "New balance: $new_balance XP"
+  echo "$type: $amount Valor"
+  echo "New balance: $new_balance Valor"
   echo ""
   cmd_verify
 
@@ -233,7 +233,7 @@ cmd_transact() {
   if [[ "$NO_COMMIT" != "true" ]]; then
     if git -C "$REPO_ROOT" rev-parse --git-dir >/dev/null 2>&1; then
       git -C "$REPO_ROOT" add "$DATA_DIR"
-      git -C "$REPO_ROOT" commit -m "$type: $amount XP — $description"
+      git -C "$REPO_ROOT" commit -m "$type: $amount Valor — $description"
     fi
   fi
 }
@@ -247,8 +247,8 @@ cmd_calc_deposit() {
   fi
 
   if [[ "$gross" -eq 0 ]]; then
-    echo "Daily gross earned: 0 XP"
-    echo "Bank deposit: 0 XP"
+    echo "Daily gross earned: 0 Valor"
+    echo "Vault deposit: 0 Valor"
     return
   fi
 
@@ -263,9 +263,9 @@ cmd_calc_deposit() {
   local deposit
   deposit=$(node -e "console.log(Math.ceil($gross * $percent / 100))")
 
-  echo "Daily gross earned: $gross XP"
+  echo "Daily gross earned: $gross Valor"
   echo "Deposit rate: $percent%"
-  echo "Bank deposit: $deposit XP (rounded up)"
+  echo "Vault deposit: $deposit Valor (rounded up)"
 }
 
 # --- Main ---

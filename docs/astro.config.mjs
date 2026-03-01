@@ -8,7 +8,7 @@ export default defineConfig({
 	base: '/quest-mode',
 	integrations: [
 		starlight({
-			title: 'Quest Mode',
+			title: 'Valor',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/thompson-shaun/quest-mode' }],
 			sidebar: [
 				{ label: 'Home', slug: '' },
@@ -17,15 +17,15 @@ export default defineConfig({
 					items: [
 						{ label: 'Status', slug: 'status' },
 						{ label: 'Weekly Tracker', slug: 'rules/tracker' },
-						{ label: 'Reward Shop', slug: 'rewards/shop' },
+						{ label: 'Reward List', slug: 'rewards/shop' },
 						{ label: 'Quick Reference', slug: 'rules/quick-ref' },
 					],
 				},
 				{
 					label: 'Guides',
 					items: [
-						{ label: "Player's Guide", slug: 'player/guide' },
-						{ label: 'Parent Guide', slug: 'parent/guide' },
+						{ label: "Hero's Guide", slug: 'player/guide' },
+						{ label: "Warden's Guide", slug: 'parent/guide' },
 					],
 				},
 			],

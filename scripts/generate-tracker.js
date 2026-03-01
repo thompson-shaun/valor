@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Generates a printable weekly tracker XLSX for Quest Mode.
+// Generates a printable weekly tracker XLSX for Valor.
 // Output: docs/public/weekly-tracker.xlsx
 //
 // Usage: node scripts/generate-tracker.js
@@ -32,7 +32,7 @@ function thinBorder() {
 
 async function main() {
   const wb = new ExcelJS.Workbook();
-  wb.creator = 'Quest Mode';
+  wb.creator = 'Valor';
 
   // ===== Sheet 1: Weekly Tracker =====
   const ws = wb.addWorksheet('Weekly Tracker', {
@@ -60,7 +60,7 @@ async function main() {
   ];
 
   // --- Title ---
-  const titleRow = ws.addRow(['Quest Mode — Weekly Tracker']);
+  const titleRow = ws.addRow(['Valor — Weekly Tracker']);
   ws.mergeCells(titleRow.number, 1, titleRow.number, 9);
   titleRow.getCell(1).font = { bold: true, size: 16, color: GREEN };
   titleRow.height = 28;
@@ -104,7 +104,7 @@ async function main() {
     { section: 'Bonus' },
     { name: '______________________', pts: '' },
     { name: '______________________', pts: '' },
-    { section: 'Deductions (max −8/day)' },
+    { section: 'Dips (max −8/day)' },
     { name: 'Clip yellow (−2) / orange (−4) / red (−6)', pts: '' },
     { name: 'Not listening after 2 asks', pts: '−1' },
     { name: 'Disrespectful language', pts: '−2' },
@@ -131,7 +131,7 @@ async function main() {
   }
 
   // --- Daily Total row ---
-  const totalRow = ws.addRow(['Daily Total', '', '', '', '', '', '', '', '']);
+  const totalRow = ws.addRow(['Daily Valor', '', '', '', '', '', '', '', '']);
   totalRow.getCell(1).font = { bold: true, size: 10 };
   totalRow.getCell(1).fill = headerFill(SECTION_BG);
   totalRow.eachCell((cell, colNumber) => {
@@ -149,9 +149,9 @@ async function main() {
   sumTitle.height = 22;
 
   const summaryItems = [
-    ['Weekly Total (sum of daily totals)', ''],
-    ['Weekly Level', ''],
-    ['Bank Deposit (half of total, round up)', ''],
+    ['Valor Standing (sum of daily totals)', ''],
+    ['Weekly Rank', ''],
+    ['Vault Deposit (half of total, round up)', ''],
   ];
   for (const [label, val] of summaryItems) {
     const r = ws.addRow([label, val]);
@@ -164,7 +164,7 @@ async function main() {
   }
 
   ws.addRow([]); // spacer
-  const balRow = ws.addRow(['Starting Balance: _____ + Deposit _____ − Spent _____ = New Balance _____']);
+  const balRow = ws.addRow(['Vault Balance: _____ + Deposit _____ − Redeemed _____ = New Balance _____']);
   ws.mergeCells(balRow.number, 1, balRow.number, 6);
   balRow.getCell(1).font = { size: 10 };
 
@@ -187,8 +187,8 @@ async function main() {
     { width: 12 },
   ];
 
-  // --- Reward Shop ---
-  const shopTitle = qs.addRow(['Reward Shop']);
+  // --- Reward List ---
+  const shopTitle = qs.addRow(['Reward List']);
   qs.mergeCells(shopTitle.number, 1, shopTitle.number, 4);
   shopTitle.getCell(1).font = { bold: true, size: 16, color: GREEN };
   shopTitle.height = 28;
@@ -205,9 +205,9 @@ async function main() {
   wdTitle.getCell(2).alignment = { horizontal: 'center' };
 
   const weekdayRewards = [
-    ['Extra 30 min screen time', '10 XP'],
-    ['Small treat (candy, snack)', '10 XP'],
-    ['Stay up 20 min past bedtime', '15 XP'],
+    ['Extra 30 min screen time', '10 Valor'],
+    ['Small treat (candy, snack)', '10 Valor'],
+    ['Stay up 20 min past bedtime', '15 Valor'],
   ];
   for (const [name, cost] of weekdayRewards) {
     const r = qs.addRow([name, cost]);
@@ -230,12 +230,12 @@ async function main() {
   weTitle.getCell(2).alignment = { horizontal: 'center' };
 
   const weekendRewards = [
-    ['Boba or special drink', '20 XP'],
-    ['Pick the family movie', '20 XP'],
-    ['Extra 1 hour screen time', '25 XP'],
-    ['Pick dinner for the family', '30 XP'],
-    ['Stay up 30 min past bedtime', '15 XP'],
-    ['Disney trip (3–4 hours)', '40 XP'],
+    ['Boba or special drink', '20 Valor'],
+    ['Pick the family movie', '20 Valor'],
+    ['Extra 1 hour screen time', '25 Valor'],
+    ['Pick dinner for the family', '30 Valor'],
+    ['Stay up 30 min past bedtime', '15 Valor'],
+    ['Disney trip (3–4 hours)', '40 Valor'],
   ];
   for (const [name, cost] of weekendRewards) {
     const r = qs.addRow([name, cost]);
@@ -258,10 +258,10 @@ async function main() {
   suTitle.getCell(2).alignment = { horizontal: 'center' };
 
   const saveUpRewards = [
-    ['Small toy or book (under $15)', '50 XP'],
-    ['Special outing (1:1 with parent)', '60 XP'],
-    ['Big reward (new game, experience)', '100 XP'],
-    ['Nintendo Switch 2', '250 XP'],
+    ['Small toy or book (under $15)', '50 Valor'],
+    ['Special outing (1:1 with parent)', '60 Valor'],
+    ['Big reward (new game, experience)', '100 Valor'],
+    ['Nintendo Switch 2', '250 Valor'],
   ];
   for (const [name, cost] of saveUpRewards) {
     const r = qs.addRow([name, cost]);
@@ -281,12 +281,12 @@ async function main() {
   qs.addRow([]);
 
   // --- Weekly Levels ---
-  const lvlTitle = qs.addRow(['Weekly Levels']);
+  const lvlTitle = qs.addRow(['Weekly Ranks']);
   qs.mergeCells(lvlTitle.number, 1, lvlTitle.number, 4);
   lvlTitle.getCell(1).font = { bold: true, size: 14, color: GREEN };
   lvlTitle.height = 24;
 
-  const lvlHdr = qs.addRow(['Points', 'Level', 'Result']);
+  const lvlHdr = qs.addRow(['Valor', 'Rank', 'Result']);
   qs.mergeCells(lvlHdr.number, 2, lvlHdr.number, 3);
   for (let i = 1; i <= 3; i++) {
     lvlHdr.getCell(i).font = { bold: true, size: 10, color: HEADER_FG };
@@ -296,10 +296,10 @@ async function main() {
   }
 
   const levels = [
-    { pts: '80+', name: 'GOLD', result: 'Full privileges + bonus reward', bg: { argb: 'FFFFFDE7' } },
-    { pts: '60–79', name: 'GREEN', result: 'Full privileges', bg: GREEN_BG },
-    { pts: '40–59', name: 'YELLOW', result: 'Weekend screens halved', bg: YELLOW_BG },
-    { pts: 'Below 40', name: 'RED', result: 'No weekend rec screens', bg: RED_BG },
+    { pts: '80+', name: 'LEGEND', result: 'Full privileges + bonus reward', bg: { argb: 'FFFFFDE7' } },
+    { pts: '60–79', name: 'CHAMPION', result: 'Full privileges', bg: GREEN_BG },
+    { pts: '40–59', name: 'KNIGHT', result: 'Weekend screens halved', bg: YELLOW_BG },
+    { pts: 'Below 40', name: 'RECRUIT', result: 'No weekend rec screens', bg: RED_BG },
   ];
   for (const lvl of levels) {
     const r = qs.addRow([lvl.pts, lvl.name, lvl.result]);
@@ -318,12 +318,12 @@ async function main() {
   qs.addRow([]);
 
   // --- Deductions ---
-  const dedTitle = qs.addRow(['Deductions']);
+  const dedTitle = qs.addRow(['Dips']);
   qs.mergeCells(dedTitle.number, 1, dedTitle.number, 4);
   dedTitle.getCell(1).font = { bold: true, size: 14, color: GREEN };
   dedTitle.height = 24;
 
-  const dedHdr = qs.addRow(['Behavior', 'Damage']);
+  const dedHdr = qs.addRow(['Behavior', 'Dip']);
   dedHdr.getCell(1).font = { bold: true, size: 10, color: HEADER_FG };
   dedHdr.getCell(2).font = { bold: true, size: 10, color: HEADER_FG };
   dedHdr.getCell(1).fill = headerFill(HEADER_BG);
@@ -345,7 +345,7 @@ async function main() {
     r.height = 18;
   }
 
-  const dedNote = qs.addRow(['Max −8/day. Earned points are never removed.']);
+  const dedNote = qs.addRow(['Max −8/day. Earned valor is never removed.']);
   qs.mergeCells(dedNote.number, 1, dedNote.number, 4);
   dedNote.getCell(1).font = { italic: true, size: 9 };
 

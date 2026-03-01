@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Generates a printable weekly tracker PDF for Quest Mode.
+// Generates a printable weekly tracker PDF for Valor.
 // Page 1 (landscape): Score sheet + weekly summary
 // Page 2 (landscape): Reward shop + weekly levels (quick reference)
 //
@@ -78,7 +78,7 @@ function buildPage1(doc) {
   let y = 30;
 
   // Title
-  doc.save().font('Helvetica-Bold').fontSize(18).fillColor(GREEN).text('Quest Mode — Weekly Tracker', LEFT, y).restore();
+  doc.save().font('Helvetica-Bold').fontSize(18).fillColor(GREEN).text('Valor — Weekly Tracker', LEFT, y).restore();
   y += 26;
 
   doc.save().font('Helvetica').fontSize(11).fillColor('#000000').text('Week of: _______________________', LEFT, y).restore();
@@ -114,12 +114,12 @@ function buildPage1(doc) {
     sectionCell('Bonus', 9),
     behaviorRow('______________________'),
     behaviorRow('______________________'),
-    sectionCell('Deductions (max -8/day)', 9),
+    sectionCell('Dips (max -8/day)', 9),
     behaviorRow('Clip yellow (-2) / orange (-4) / red (-6)'),
     behaviorRow('Not listening after 2 asks (-1)'),
     behaviorRow('Disrespectful language (-2)'),
     behaviorRow('______________________'),
-    [{ text: 'Daily Total', fill: SECTION_BG, bold: true }, ...Array(8).fill({ text: '', fill: SECTION_BG })],
+    [{ text: 'Daily Valor', fill: SECTION_BG, bold: true }, ...Array(8).fill({ text: '', fill: SECTION_BG })],
   ];
 
   for (const row of rows) {
@@ -136,17 +136,17 @@ function buildPage2(doc) {
   const ROW_H = 16;
 
   // === LEFT COLUMN: Weekly Levels ===
-  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Weekly Levels', LEFT, yL).restore();
+  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Weekly Ranks', LEFT, yL).restore();
   yL += 18;
 
   const lvlWidths = [60, 250];
-  yL = drawRow(doc, LEFT, yL, lvlWidths, ROW_H, [headerCell('Points'), headerCell('Level')]);
+  yL = drawRow(doc, LEFT, yL, lvlWidths, ROW_H, [headerCell('Valor'), headerCell('Rank')]);
 
   const levels = [
-    { pts: '80+', desc: 'Gold — full privileges + bonus reward', bg: GOLD_BG },
-    { pts: '60–79', desc: 'Green — full privileges', bg: GREEN_BG },
-    { pts: '40–59', desc: 'Yellow — weekend screens halved', bg: YELLOW_BG },
-    { pts: 'Below 40', desc: 'Red — no weekend rec screens', bg: RED_BG },
+    { pts: '80+', desc: 'Legend — full privileges + bonus reward', bg: GOLD_BG },
+    { pts: '60–79', desc: 'Champion — full privileges', bg: GREEN_BG },
+    { pts: '40–59', desc: 'Knight — weekend screens halved', bg: YELLOW_BG },
+    { pts: 'Below 40', desc: 'Recruit — no weekend rec screens', bg: RED_BG },
   ];
   for (const lvl of levels) {
     yL = drawRow(doc, LEFT, yL, lvlWidths, 18, [
@@ -163,9 +163,9 @@ function buildPage2(doc) {
   const sumWidths = [250, 80];
   yL = drawRow(doc, LEFT, yL, sumWidths, ROW_H, [headerCell(''), headerCell('Value')]);
   const summaryItems = [
-    'Weekly Total (sum of daily totals)',
-    'Weekly Level',
-    'Bank Deposit (half of total, round up)',
+    'Valor Standing (sum of daily totals)',
+    'Weekly Rank',
+    'Vault Deposit (half of total, round up)',
   ];
   for (const label of summaryItems) {
     yL = drawRow(doc, LEFT, yL, sumWidths, 18, [
@@ -176,7 +176,7 @@ function buildPage2(doc) {
 
   yL += 6;
   doc.save().font('Helvetica').fontSize(9).fillColor('#000000')
-    .text('Starting Balance: _____ + Deposit _____ - Spent _____ = New Balance _____', LEFT, yL)
+    .text('Vault Balance: _____ + Deposit _____ - Redeemed _____ = New Balance _____', LEFT, yL)
     .restore();
 
   yL += 16;
@@ -184,8 +184,8 @@ function buildPage2(doc) {
     .text('Protected: Swimming (Mon), Rock climbing (Wed, Sat)', LEFT, yL)
     .restore();
 
-  // === RIGHT COLUMN: Reward Shop ===
-  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Reward Shop', MID, yR).restore();
+  // === RIGHT COLUMN: Reward List ===
+  doc.save().font('Helvetica-Bold').fontSize(12).fillColor(GREEN).text('Reward List', MID, yR).restore();
   yR += 18;
 
   const rewWidths = [260, 60];
@@ -207,21 +207,21 @@ function buildPage2(doc) {
 
   const rewardRows = [
     rewardSectionHeader('Weekday (Mon–Fri)'),
-    rewardRow('Extra 30 min screen time', '10 XP'),
-    rewardRow('Small treat (candy, snack)', '10 XP'),
-    rewardRow('Stay up 20 min past bedtime', '15 XP'),
+    rewardRow('Extra 30 min screen time', '10 Valor'),
+    rewardRow('Small treat (candy, snack)', '10 Valor'),
+    rewardRow('Stay up 20 min past bedtime', '15 Valor'),
     rewardSectionHeader('Weekend (Sat–Sun)'),
-    rewardRow('Boba or special drink', '20 XP'),
-    rewardRow('Pick the family movie', '20 XP'),
-    rewardRow('Extra 1 hour screen time', '25 XP'),
-    rewardRow('Pick dinner for the family', '30 XP'),
-    rewardRow('Stay up 30 min past bedtime', '15 XP'),
-    rewardRow('Disney trip (3–4 hours)', '40 XP'),
+    rewardRow('Boba or special drink', '20 Valor'),
+    rewardRow('Pick the family movie', '20 Valor'),
+    rewardRow('Extra 1 hour screen time', '25 Valor'),
+    rewardRow('Pick dinner for the family', '30 Valor'),
+    rewardRow('Stay up 30 min past bedtime', '15 Valor'),
+    rewardRow('Disney trip (3–4 hours)', '40 Valor'),
     rewardSectionHeader('Save-Up (anytime)'),
-    rewardRow('Small toy or book', '50 XP'),
-    rewardRow('Special outing (1:1 with parent)', '60 XP'),
-    rewardRow('Big reward (new game, experience)', '100 XP'),
-    rewardRow('Nintendo Switch 2', '250 XP', { bold: true, fill: GOLD_BG }),
+    rewardRow('Small toy or book', '50 Valor'),
+    rewardRow('Special outing (1:1 with parent)', '60 Valor'),
+    rewardRow('Big reward (new game, experience)', '100 Valor'),
+    rewardRow('Nintendo Switch 2', '250 Valor', { bold: true, fill: GOLD_BG }),
   ];
 
   for (const row of rewardRows) {

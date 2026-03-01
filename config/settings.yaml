@@ -1,6 +1,6 @@
 bank:
-  # Percentage of daily gross earned points deposited into the reward bank.
-  # Applied as: daily_bank_deposit = ceil(daily_gross_earned * deposit_percent / 100)
+  # Percentage of daily gross earned valor deposited into the Vault.
+  # Applied as: daily_vault_deposit = ceil(daily_gross_earned * deposit_percent / 100)
   deposit_percent: 50
   # Default player name used when --player is not specified.
   # Player data lives in data/<player>/
@@ -14,6 +14,14 @@ weekly_thresholds:
   green: 60
   yellow: 40
   # Below yellow threshold = red
+
+tier_names:
+  default:
+    gold: Legend
+    green: Champion
+    yellow: Knight
+    red: Recruit
+  players: {}
 
 midweek_checkpoint:
   enabled: true

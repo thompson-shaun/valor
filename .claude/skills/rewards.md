@@ -1,22 +1,22 @@
 ---
-name: shop
-description: View and manage the Quest Mode reward shop
+name: rewards
+description: View and manage the Valor reward list
 user_invocable: true
 ---
 
-# /shop — Reward Shop Management
+# /rewards — Reward List Management
 
-Manage the Quest Mode reward shop. The source of truth is `config/rewards.yaml`.
+Manage the Valor reward list. The source of truth is `config/rewards.yaml`.
 
 ## Parse the command
 
-The user invokes `/shop [subcommand] [args...]`:
+The user invokes `/rewards [subcommand] [args...]`:
 
-- `/shop` or `/shop list` — Display all rewards as a formatted table
-- `/shop claim "<name>"` — Claim a reward (withdraw cost from bank)
-- `/shop add <category> "<name>" <cost> ["description"]` — Add a new reward
-- `/shop remove <category> "<name>"` — Remove a reward
-- `/shop update <category> "<name>" <cost>` — Change a reward's cost
+- `/rewards` or `/rewards list` — Display all rewards as a formatted table
+- `/rewards redeem "<name>"` — Redeem a reward (withdraw cost from the Vault)
+- `/rewards add <category> "<name>" <cost> ["description"]` — Add a new reward
+- `/rewards remove <category> "<name>"` — Remove a reward
+- `/rewards update <category> "<name>" <cost>` — Change a reward's cost
 
 Categories: `weekday`, `weekend`, `long_term`
 
@@ -25,21 +25,21 @@ Categories: `weekday`, `weekend`, `long_term`
 1. Read `config/rewards.yaml`.
 2. Display all rewards grouped by category as a nicely formatted table with name, cost, and whether approval is required.
 
-## Claim operation
+## Redeem operation
 
 1. Read `config/rewards.yaml`.
 2. Find the reward by name (case-insensitive, partial match is fine if unambiguous).
 3. If the reward has `requires_approval: true`, warn the user and ask for confirmation before proceeding.
-4. Check the current bank balance by running `scripts/bank.sh status`. If insufficient funds, tell the user and stop.
+4. Check the current Vault balance by running `scripts/bank.sh status`. If insufficient funds, tell the user and stop.
 5. Run the withdrawal: `scripts/bank.sh withdraw <cost> "Claimed: <reward name>"`.
-6. Display the result: reward claimed, amount spent, new balance.
+6. Display the result: reward redeemed, amount spent, new balance.
 
 ## Add / Remove / Update operations
 
 1. Read `config/rewards.yaml`.
 2. Make the requested change using the Edit tool, preserving the existing YAML structure and style exactly.
 3. Read the file again to confirm the edit looks correct.
-4. Then update `docs/src/content/docs/rewards/shop.md` to match — read the current shop page, edit the appropriate table to reflect the change, keeping the existing markdown format.
+4. Then update `docs/src/content/docs/rewards/shop.md` to match — read the current rewards page, edit the appropriate table to reflect the change, keeping the existing markdown format.
 5. Display what changed.
 
 ## Rules

@@ -1,6 +1,6 @@
 ---
 title: Quick Reference
-description: One-page cheat sheet for the Quest Mode point system.
+description: One-page cheat sheet for the Valor system.
 ---
 
 ## Daily Earning
@@ -12,32 +12,32 @@ description: One-page cheat sheet for the Quest Mode point system.
 | Evening | 5 | Dinner, follow instructions, positive attitude, bedtime, reading |
 | Bonus | uncapped | Helps (+2), calming tools (+2), accepts no (+2), owns mistakes (+2), exceptional (+3) |
 
-**Typical day: 10–12 pts. Perfect day: 15–20 pts.**
+**Typical day: 10–12 valor. Perfect day: 15–20 valor.**
 
-## Deductions
+## Dips
 
-| Behavior | Damage |
+| Behavior | Dip |
 |---|:---:|
 | Clip yellow / orange / red | −2 / −4 / −6 |
 | Not listening after 2 asks | −1 |
 | Disrespectful language | −2 |
 
-**Max deductions per day: 8. Earned points are never removed.**
+**Max dip per day: 8. Earned valor is never removed.**
 
-## Weekly Levels
+## Weekly Ranks
 
-| Points | Level | Result |
+| Valor | Rank | Result |
 |---|---|---|
-| 80+ | Gold | Full privileges + bonus reward |
-| 60–79 | Green | Full privileges |
-| 40–59 | Yellow | Activities stay, weekend screens halved |
-| Below 40 | Red | Activities stay, no weekend rec screens |
+| 80+ | Legend | Full privileges + bonus reward |
+| 60–79 | Champion | Full privileges |
+| 40–59 | Knight | Activities stay, weekend screens halved |
+| Below 40 | Recruit | Activities stay, no weekend rec screens |
 
-## Reward Bank
+## The Vault
 
-- **Deposit:** half of daily gross earned, rounded up
+- **Vault deposit:** half of daily gross earned, rounded up
 - **Never resets** — carries over week to week
-- **Spend anytime** by asking Mom or Dad
+- **Redeem anytime** by asking Mom or Dad
 
 ## Protected (always safe)
 

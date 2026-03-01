@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const dataDir = path.resolve(process.cwd(), '..', 'data', 'default');
 
-// Read bank balance
+// Read Vault balance
 let balance = 0;
 let lastUpdated = '';
 try {
@@ -28,7 +28,7 @@ try {
 }
 
 // Read weekly summaries
-let weeks: { week_of: string; weekly_total: number; tier: string; bank_deposit: number; notes?: string }[] = [];
+let weeks: { week_of: string; weekly_total: number; tier: string; tier_name?: string; bank_deposit: number; notes?: string }[] = [];
 try {
   const weeksDir = path.join(dataDir, 'weeks');
   if (fs.existsSync(weeksDir)) {
@@ -39,7 +39,7 @@ try {
   // No weeks data yet
 }
 
-// Compute streaks (consecutive gold or green weeks)
+// Compute streaks (consecutive legend or champion weeks)
 let currentStreak = 0;
 let bestStreak = 0;
 let tempStreak = 0;
@@ -52,6 +52,17 @@ for (const week of weeks) {
   }
 }
 currentStreak = tempStreak;
+
+function tierLabel(tierKey: string, tierName?: string): string {
+  if (tierName) return tierName;
+  const map: Record<string, string> = {
+    gold: 'Legend',
+    green: 'Champion',
+    yellow: 'Knight',
+    red: 'Recruit',
+  };
+  return map[tierKey] || tierKey;
+}
 
 // Compute trend
 let trend = '—';
@@ -82,6 +93,11 @@ function amountDisplay(type: string, amount: number): string {
   if (type === 'set') return `=${amount}`;
   return `+${amount}`;
 }
+
+function typeLabel(type: string): string {
+  if (type === 'withdrawal') return 'redeem';
+  return type;
+}
 ---
 
 <section class="dashboard">
@@ -89,8 +105,8 @@ function amountDisplay(type: string, amount: number): string {
 
   <div class="stat-grid">
     <div class="stat-card accent">
-      <div class="stat-label">Reward Bank</div>
-      <div class="stat-value big">{balance} <span class="stat-unit">XP</span></div>
+      <div class="stat-label">The Vault</div>
+      <div class="stat-value big">{balance} <span class="stat-unit">Valor</span></div>
       {lastUpdated && <div class="stat-sub">Updated {formatDate(lastUpdated)}</div>}
     </div>
 
@@ -102,7 +118,7 @@ function amountDisplay(type: string, amount: number): string {
     <div class="stat-card">
       <div class="stat-label">Current Streak</div>
       <div class="stat-value">{currentStreak}</div>
-      <div class="stat-sub">gold/green weeks</div>
+      <div class="stat-sub">legend/champion weeks</div>
     </div>
 
     <div class="stat-card">
@@ -136,11 +152,11 @@ function amountDisplay(type: string, amount: number): string {
             {transactions.map(tx => (
               <tr>
                 <td>{formatDate(tx.timestamp)}</td>
-                <td><code>{tx.type}</code></td>
+                <td><code>{typeLabel(tx.type)}</code></td>
                 <td class={tx.type === 'withdrawal' ? 'amt-neg' : 'amt-pos'}>
-                  {amountDisplay(tx.type, tx.amount)} XP
+                  {amountDisplay(tx.type, tx.amount)} Valor
                 </td>
-                <td>{tx.balance_after} XP</td>
+                <td>{tx.balance_after} Valor</td>
                 <td>{tx.description}</td>
               </tr>
             ))}
@@ -158,8 +174,8 @@ function amountDisplay(type: string, amount: number): string {
           <thead>
             <tr>
               <th>Week Of</th>
-              <th>Total</th>
-              <th>Tier</th>
+              <th>Standing</th>
+              <th>Rank</th>
               <th>Deposit</th>
             </tr>
           </thead>
@@ -168,8 +184,8 @@ function amountDisplay(type: string, amount: number): string {
               <tr>
                 <td>{w.week_of}</td>
                 <td>{w.weekly_total}</td>
-                <td><span class={`tier tier-${w.tier}`}>{w.tier}</span></td>
-                <td>+{w.bank_deposit} XP</td>
+                <td><span class={`tier tier-${w.tier}`}>{tierLabel(w.tier, w.tier_name)}</span></td>
+                <td>+{w.bank_deposit} Valor</td>
               </tr>
             ))}
           </tbody>

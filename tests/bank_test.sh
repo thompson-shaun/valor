@@ -67,14 +67,14 @@ log_lines() {
 
 # ---- Tests ----
 
-echo "=== Bank Script Tests (player: $TEST_PLAYER) ==="
+echo "=== Vault Script Tests (player: $TEST_PLAYER) ==="
 echo ""
 
 # --- Fresh state ---
 echo "[fresh state]"
 output=$("$BANK" --player "$TEST_PLAYER" status)
 assert_contains "status shows player name" "$TEST_PLAYER" "$output"
-assert_contains "status shows zero balance" "Bank Balance: 0 XP" "$output"
+assert_contains "status shows zero balance" "Vault Balance: 0 Valor" "$output"
 assert_contains "status shows no transactions" "No transactions yet" "$output"
 
 output=$("$BANK" --player "$TEST_PLAYER" verify)
@@ -84,8 +84,8 @@ assert_contains "verify passes on empty" "PASS" "$output"
 echo ""
 echo "[deposit]"
 output=$("$BANK" --player "$TEST_PLAYER" deposit 10 "First deposit")
-assert_contains "deposit output" "deposit: 10 XP" "$output"
-assert_contains "deposit new balance" "New balance: 10 XP" "$output"
+assert_contains "deposit output" "deposit: 10 Valor" "$output"
+assert_contains "deposit new balance" "New balance: 10 Valor" "$output"
 assert_contains "deposit integrity" "PASS" "$output"
 assert_eq "balance after deposit" "10" "$(get_balance)"
 assert_eq "ledger has 1 entry" "1" "$(log_lines)"
@@ -101,8 +101,8 @@ assert_eq "ledger has 2 entries" "2" "$(log_lines)"
 echo ""
 echo "[withdraw]"
 output=$("$BANK" --player "$TEST_PLAYER" withdraw 7 "Bought a treat")
-assert_contains "withdraw output" "withdrawal: 7 XP" "$output"
-assert_contains "withdraw new balance" "New balance: 8 XP" "$output"
+assert_contains "withdraw output" "withdrawal: 7 Valor" "$output"
+assert_contains "withdraw new balance" "New balance: 8 Valor" "$output"
 assert_contains "withdraw integrity" "PASS" "$output"
 assert_eq "balance after withdraw" "8" "$(get_balance)"
 assert_eq "ledger has 3 entries" "3" "$(log_lines)"
@@ -122,7 +122,7 @@ assert_eq "ledger unchanged after overdraft" "3" "$(log_lines)"
 echo ""
 echo "[set]"
 output=$("$BANK" --player "$TEST_PLAYER" set 50 "Manual correction")
-assert_contains "set output" "New balance: 50 XP" "$output"
+assert_contains "set output" "New balance: 50 Valor" "$output"
 assert_contains "set integrity" "PASS" "$output"
 assert_eq "balance after set" "50" "$(get_balance)"
 assert_eq "ledger has 4 entries" "4" "$(log_lines)"
@@ -131,7 +131,7 @@ assert_eq "ledger has 4 entries" "4" "$(log_lines)"
 echo ""
 echo "[set to zero]"
 output=$("$BANK" --player "$TEST_PLAYER" set 0 "Reset bank")
-assert_contains "set zero output" "New balance: 0 XP" "$output"
+assert_contains "set zero output" "New balance: 0 Valor" "$output"
 assert_contains "set zero integrity" "PASS" "$output"
 assert_eq "balance after set zero" "0" "$(get_balance)"
 
@@ -201,17 +201,17 @@ done
 echo ""
 echo "[calc-deposit]"
 output=$("$BANK" calc-deposit 15)
-assert_contains "calc 15 gross" "Bank deposit: 8 XP" "$output"
+assert_contains "calc 15 gross" "Vault deposit: 8 Valor" "$output"
 assert_contains "calc shows rate" "50%" "$output"
 
 output=$("$BANK" calc-deposit 7)
-assert_contains "calc 7 gross rounds up" "Bank deposit: 4 XP" "$output"
+assert_contains "calc 7 gross rounds up" "Vault deposit: 4 Valor" "$output"
 
 output=$("$BANK" calc-deposit 0)
-assert_contains "calc 0 gross" "Bank deposit: 0 XP" "$output"
+assert_contains "calc 0 gross" "Vault deposit: 0 Valor" "$output"
 
 output=$("$BANK" calc-deposit 1)
-assert_contains "calc 1 gross rounds up" "Bank deposit: 1 XP" "$output"
+assert_contains "calc 1 gross rounds up" "Vault deposit: 1 Valor" "$output"
 
 ec=0
 "$BANK" calc-deposit abc 2>/dev/null || ec=$?

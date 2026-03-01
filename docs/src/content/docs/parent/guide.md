@@ -1,29 +1,43 @@
 ---
-title: Parent Guide
-description: Full rules, point values, and implementation guide for the Quest Mode behavior system.
+title: The Warden's Guide
+description: Full rules, values, and implementation guide for Valor.
 ---
 
 ## How It Works
 
-Every day is a chance to earn points by making good choices. Points add up over the week, and at the end of each week they determine your reward level. You can also spend points from your bank on special rewards anytime.
+Valor is a point system built on one idea: good choices compound. Kids earn valor throughout the day, bank it in the Vault, and redeem it for real rewards. The system is designed so that even on rough days, the good choices still count.
 
 ## Core Principles
 
 1. **Earning is the focus.** Most of the system is about recognizing good choices, not punishing bad ones.
-2. **Fresh start every Monday.** Weekly totals reset so every week is a new opportunity. Banked reward points carry over.
+2. **Fresh start every Monday.** Valor standings reset so every week is a new opportunity. Vault balance carries over.
 3. **Activities stay.** Swimming and rock climbing are never on the line — physical activity is non-negotiable and good for the brain.
-4. **Two point tracks.** Weekly points determine privilege level (Gold/Green/Yellow/Red week). Reward Bank points can be spent on treats anytime.
-5. **Be consistent.** The system only works if points are tracked daily and rules are applied the same way every time.
+4. **Two tracks.** Valor standing determines rank (Legend/Champion/Knight/Recruit). Vault valor can be redeemed anytime.
+5. **Be consistent.** The system only works if valor is tracked daily and rules are applied the same way every time.
 
 ---
 
-## Earning Points
+## Theory and Research (Short Version)
 
-Points are awarded throughout the day. A great day can earn 15–20 points. A typical solid day is around 10–12.
+Valor is grounded in a few well‑established ideas from child development and behavior change:
+
+1. **Attachment and emotional safety.** Kids learn best when they feel safe, seen, and soothed. Guidance works better than fear or shame.
+2. **Positive reinforcement.** Noticing and rewarding the behaviors you want increases the chances they happen again.
+3. **Skill building over punishment.** Many “bad behaviors” are missing skills (regulation, communication, repair). Teach the skill and reward it.
+4. **Predictable structure.** Clear routines and consistent rules reduce stress and improve follow‑through.
+5. **Autonomy within boundaries.** Offering choices inside non‑negotiable goals increases cooperation without giving up authority.
+
+This system doesn’t replace professional support. It’s a practical framework to reinforce values, teach skills, and keep family routines steady.
+
+---
+
+## Earning Valor
+
+Valor is awarded throughout the day. A great day can earn 15–20 valor. A typical solid day is around 10–12.
 
 ### Morning Routine (up to 5 pts/day)
 
-| Behavior | Points | Notes |
+| Behavior | Valor | Notes |
 |---|:---:|---|
 | Wake up without drama | +1 | Gets up when called, no meltdown |
 | Make bed | +1 | Doesn't need to be perfect |
@@ -33,7 +47,7 @@ Points are awarded throughout the day. A great day can earn 15–20 points. A ty
 
 ### School (up to 5 pts/day)
 
-| Behavior | Points | Notes |
+| Behavior | Valor | Notes |
 |---|:---:|---|
 | Behavior clip stays green | +3 | Baseline good day at school |
 | Behavior clip moves UP from green | +5 | Replaces the +3 above (not stacked) |
@@ -41,7 +55,7 @@ Points are awarded throughout the day. A great day can earn 15–20 points. A ty
 
 ### Evening Routine (up to 5 pts/day)
 
-| Behavior | Points | Notes |
+| Behavior | Valor | Notes |
 |---|:---:|---|
 | Eat dinner on time | +1 | Stays at table, finishes in reasonable time |
 | Follow instructions on first ask | +1 | Responds to a request without needing repeats |
@@ -51,7 +65,7 @@ Points are awarded throughout the day. A great day can earn 15–20 points. A ty
 
 ### Bonus Points (anytime)
 
-| Behavior | Points | Notes |
+| Behavior | Valor | Notes |
 |---|:---:|---|
 | Helps without being asked | +2 | Spontaneous helpfulness |
 | Uses calming tools when upset | +2 | Breathes, takes space, uses words, asks for help |
@@ -59,15 +73,15 @@ Points are awarded throughout the day. A great day can earn 15–20 points. A ty
 | Owns a mistake (oops card) | +2 | Tells the truth and helps repair it |
 | Exceptional kindness or effort | +3 | Goes above and beyond — parent discretion |
 
-*Daily max earning potential: approximately 15–20 points. Weekly potential: 105–140 on a great week.*
+*Daily max earning potential: approximately 15–20 valor. Weekly potential: 105–140 on a great week.*
 
 ---
 
-## Losing Points
+## Valor Dips
 
-Deductions exist but are used sparingly. The goal is a roughly 4:1 ratio of earning to losing opportunities each day. Deductions should feel like natural consequences, not punishments.
+Dips exist but are used sparingly. The goal is a roughly 4:1 ratio of earning to dips each day. Dips should feel like natural consequences, not punishments.
 
-| Behavior | Points | Notes |
+| Behavior | Dip | Notes |
 |---|:---:|---|
 | Behavior clip drops to yellow | −2 | Below green at school |
 | Behavior clip drops to orange | −4 | Significant behavior issue |
@@ -76,43 +90,43 @@ Deductions exist but are used sparingly. The goal is a roughly 4:1 ratio of earn
 | Disrespectful language | −2 | Name-calling, rude talk |
 
 :::note
-Only deduct for skills you know he already has. If he doesn’t have the skill yet, treat it as a coaching moment and reward the skill when it shows up.
+Only dip for skills you know he already has. If he doesn’t have the skill yet, treat it as a coaching moment and reward the skill when it shows up.
 :::
 
 :::caution
-Never deduct more than 8 points in a single day. If things go that badly, the day is already a learning moment — piling on more deductions will feel hopeless and he'll disengage from the system entirely. Cap the damage and move on.
+Never dip more than 8 valor in a single day. If things go that badly, the day is already a learning moment — piling on more dips will feel hopeless and he'll disengage from the system entirely. Cap the dip and move on.
 :::
 
 :::note
-If he earns points in the morning and loses points later, he keeps the morning points. Never retroactively remove earned points. This teaches him that good choices still count even when he has a rough patch later.
+If he earns valor in the morning and dips later, he keeps the morning valor. Never retroactively remove earned valor. This teaches him that good choices still count even when he has a rough patch later.
 :::
 
 ---
 
-## Reward Shop
+## Reward List
 
-Points earned each day are split into two tracks. The weekly total determines his privilege tier (see next section). Separately, he accumulates Reward Bank points that he can spend on items from the shop below. Each day, half his earned points (rounded up) go to his Reward Bank. This gives him something tangible to save toward.
+Valor earned each day is split into two tracks. The valor standing determines his weekly rank (see next section). Separately, he accumulates Vault valor that he can redeem on items from the list below. Each day, half his earned valor (rounded up) goes into the Vault. This gives him something tangible to save toward.
 
 **When can he spend?** He earns all week. Weekday rewards can be redeemed the same day (Mon–Fri). Weekend rewards are redeemable on Sat–Sun only. Long-term rewards can be redeemed anytime once he has enough saved up.
 
-See the full [Reward Shop](/rewards/shop/) for all available rewards.
+See the full [Reward List](/rewards/shop/) for all available rewards.
 
 ---
 
-## Weekly Thresholds
+## Weekly Ranks
 
-At the end of each week (Sunday night), add up the full weekly points (earned minus deductions). This total determines the privilege level for the following week.
+At the end of each week (Sunday night), add up the full weekly valor (earned minus dips). This total determines the rank for the following week.
 
-| Points | Level | What It Means |
+| Valor | Rank | What It Means |
 |---|---|---|
-| **80+** | **GOLD WEEK** | Full privileges + bonus reward from the shop |
-| **60–79** | **GREEN WEEK** | Full privileges — screens, activities, all good |
-| **40–59** | **YELLOW WEEK** | Keep activities, but screen time cut in half on weekend |
-| **Below 40** | **RED WEEK** | No recreational screens for the weekend (activities stay) |
+| **80+** | **LEGEND** | Full privileges + bonus reward from the list |
+| **60–79** | **CHAMPION** | Full privileges — screens, activities, all good |
+| **40–59** | **KNIGHT** | Keep activities, but screen time cut in half on weekend |
+| **Below 40** | **RECRUIT** | No recreational screens for the weekend (activities stay) |
 
 **Why activities always stay:** Swimming and rock climbing are exercise, and exercise is one of the single best things for an ADHD brain. Removing physical outlets as punishment actually makes behavior worse. These are protected no matter what.
 
-**Mid-week checkpoint (optional):** On Wednesday evening, check the running total. If he's already on pace for a Gold Week (40+ points by Wednesday), give him a small bonus — maybe +3 bonus points or a small treat. This keeps momentum going and rewards consistency.
+**Mid-week checkpoint (optional):** On Wednesday evening, check the running total. If he's already on pace for Legend (40+ valor by Wednesday), give him a small bonus — maybe +3 bonus valor or a small treat. This keeps momentum going and rewards consistency.
 
 ---
 
@@ -120,24 +134,24 @@ At the end of each week (Sunday night), add up the full weekly points (earned mi
 
 ### Week 1: Soft Launch
 
-Start by tracking only the earning side for the first week. No deductions yet. This lets him get excited about the system and understand how it works before the accountability side kicks in. Announce the deductions at the start of Week 2.
+Start by tracking only the earning side for the first week. No dips yet. This lets him get excited about the system and understand how it works before the accountability side kicks in. Announce the dips at the start of Week 2.
 
 ### Communicating with School
 
-Ask his teacher to continue the clip chart and send a quick daily report (even a one-word text: green/yellow/orange/red). You assign points when he gets home based on the report.
+Ask his teacher to continue the clip chart and send a quick daily report (even a one-word text: green/yellow/orange/red). You assign valor when he gets home based on the report.
 
 ### Rules for Parents
 
 1. Both parents must be consistent. If Mom gives a point, Dad honors it (and vice versa). Discuss disagreements privately.
-2. Award points in the moment, not at the end of the day. Immediacy matters for ADHD brains.
-3. Never threaten points you won't actually take. Follow through every time or the system loses credibility.
-4. Narrate what he did right when giving points: "That's 2 points for handling that so calmly" — not just "good job."
-5. When deducting, stay calm and factual: "That's −2 for disrespectful language. You still have X points today." No lectures.
+2. Award valor in the moment, not at the end of the day. Immediacy matters for ADHD brains.
+3. Never threaten valor you won't actually dip. Follow through every time or the system loses credibility.
+4. Narrate what he did right when giving valor: "That's 2 valor for handling that so calmly" — not just "good job."
+5. When dipping, stay calm and factual: "That's −2 for disrespectful language. You still have X valor today." No lectures.
 6. Review the week together on Sunday. Celebrate wins. Problem-solve rough spots. Ask him what was hard.
 
 ### Adjusting Over Time
 
-This system is a starting point. After 2–3 weeks, review what's working and what isn't. If he's consistently hitting Gold Week, raise the bar slightly. If he's never getting above Yellow, the targets may be too hard. The system should be challenging but achievable, with Gold Week happening maybe 1 in 3–4 weeks.
+This system is a starting point. After 2–3 weeks, review what's working and what isn't. If he's consistently hitting Legend, raise the bar slightly. If he's never getting above Knight, the targets may be too hard. The system should be challenging but achievable, with Legend happening maybe 1 in 3–4 weeks.
 
 ---
 
@@ -194,5 +208,5 @@ Timers are fine if used to teach structure, not to punish.
 If it doesn’t happen today, it’s okay — try again tomorrow.
 
 :::tip[The Bigger Picture]
-This point system is a tool, not a silver bullet. It works best alongside other supports: making sure school is appropriately challenging for a gifted learner, consistent physical activity, enough sleep, and potentially working with a behavioral therapist who specializes in ADHD. The system gives him a framework for understanding that choices have outcomes — but the real win is when he starts making good choices because they feel right, not just because of the points.
+This system is a tool, not a silver bullet. It works best alongside other supports: making sure school is appropriately challenging for a gifted learner, consistent physical activity, enough sleep, and potentially working with a behavioral therapist who specializes in ADHD. The system gives him a framework for understanding that choices have outcomes — but the real win is when he starts making good choices because they feel right, not just because of the valor.
 :::

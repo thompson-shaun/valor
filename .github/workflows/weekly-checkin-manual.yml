@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       weekly_total:
-        description: Weekly total (points)
+        description: Valor standing (number)
         required: true
         type: string
       week_of:
@@ -87,7 +87,7 @@ jobs:
 
           deposit_output=$(scripts/bank.sh calc-deposit "$weekly_total")
           echo "$deposit_output"
-          deposit=$(echo "$deposit_output" | grep "Bank deposit:" | grep -o '[0-9]\+')
+          deposit=$(echo "$deposit_output" | grep "Vault deposit:" | grep -o '[0-9]\+')
           echo "Deposit amount: $deposit"
 
           if [[ "$deposit" -gt 0 ]]; then
@@ -99,15 +99,39 @@ jobs:
           notes_json=$(node -e "console.log(JSON.stringify(process.argv[1] || ''))" -- "$notes")
 
           node -e "
+            const fs = require('fs');
+            const text = fs.readFileSync('config/settings.yaml', 'utf8');
+            const player = '${player}';
+            function pickTierName(key) {
+              const match = (block, name) => {
+                const re = new RegExp('^\\\\s*' + name + ':\\\\s*([^\\\\n]+)\\\\s*$', 'm');
+                const m = block.match(re);
+                return m ? m[1].trim() : null;
+              };
+              const playersBlock = text.match(/tier_names:\\s*[\\s\\S]*?players:\\s*([\\s\\S]*)/m);
+              const playerBlock = playersBlock && new RegExp(player + ':\\\\s*([\\s\\S]*?)(\\\\n\\\\S|$)', 'm').exec(playersBlock[1]);
+              if (playerBlock) {
+                const name = match(playerBlock[1], key);
+                if (name) return name;
+              }
+              const defaultBlock = text.match(/tier_names:\\s*[\\s\\S]*?default:\\s*([\\s\\S]*?)\\n\\s*players:/m);
+              if (defaultBlock) {
+                const name = match(defaultBlock[1], key);
+                if (name) return name;
+              }
+              return key;
+            }
+            const tierName = pickTierName('${tier}');
             const summary = {
               week_of: '${monday}',
               recorded_at: '${ts}',
               weekly_total: ${weekly_total},
               tier: '${tier}',
+              tier_name: tierName,
               bank_deposit: ${deposit},
               notes: ${notes_json}
             };
-            require('fs').writeFileSync(
+            fs.writeFileSync(
               'data/${player}/weeks/${monday}.json',
               JSON.stringify(summary, null, 2) + '\n'
             );
