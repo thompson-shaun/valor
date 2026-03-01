@@ -12,18 +12,18 @@
   --sl-color-gray-4: #d9c9b1;
   --sl-color-gray-3: #9aa3ad;
   --sl-color-gray-2: #6b7280;
-  --sl-color-gray-1: #1f2937;
+  --sl-color-gray-1: #1a2a3e;
 
   --sl-color-accent-low: #f6e4b8;
-  --sl-color-accent: #f0c040;
-  --sl-color-accent-high: #a07820;
+  --sl-color-accent: #b8880a;
+  --sl-color-accent-high: #7a5a12;
 
-  --valor-gold: #f0c040;
-  --valor-gold-muted: #a07820;
+  --valor-gold: #b8880a;
+  --valor-gold-muted: #7a5a12;
   --valor-dip: #fb923c;
   --valor-success: #34d399;
 
-  --tier-legend: #f0c040;
+  --tier-legend: #b8880a;
   --tier-champion: #cbd5e1;
   --tier-knight: #cd853f;
   --tier-recruit: #64748b;
