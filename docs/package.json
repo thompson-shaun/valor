@@ -7,11 +7,15 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "linkcheck": "linkinator ./dist --recurse --skip \"^https?://\"",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",
     "astro": "^5.6.1",
     "sharp": "^0.34.2"
+  },
+  "devDependencies": {
+    "linkinator": "^6.1.2"
   }
 }

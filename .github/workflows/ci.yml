@@ -45,3 +45,11 @@ jobs:
 
       - name: Run bank tests
         run: bash tests/bank_test.sh
+
+      - name: Build docs
+        working-directory: ./docs
+        run: npm ci && npm run build
+
+      - name: Link check (internal)
+        working-directory: ./docs
+        run: npm run linkcheck

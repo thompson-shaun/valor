@@ -5,11 +5,11 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://thompson-shaun.github.io',
-	base: '/quest-mode',
+	base: '/valor',
 	integrations: [
 		starlight({
 			title: 'Valor',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/thompson-shaun/quest-mode' }],
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/thompson-shaun/valor' }],
 			sidebar: [
 				{ label: 'Home', slug: '' },
 				{
