@@ -3,34 +3,47 @@
 :root {
   --sl-font: 'Work Sans', system-ui, -apple-system, sans-serif;
   --sl-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 
-  /* Light mode (secondary). */
-  --sl-color-black: #0f1623;
-  --sl-color-white: #ffffff;
-  --sl-color-gray-6: #f3ead8;
-  --sl-color-gray-5: #efe3cf;
-  --sl-color-gray-4: #d9c9b1;
-  --sl-color-gray-3: #9aa3ad;
-  --sl-color-gray-2: #6b7280;
+/* Light mode — default + explicit light selector */
+:root,
+:root[data-theme='light'] {
+  --sl-color-white:  #f5efe0;
+  --sl-color-gray-6: #ede5d4;
+  --sl-color-gray-5: #ddd5c4;
+  --sl-color-gray-4: #8fa8c8;
+  --sl-color-gray-3: #4e6a8a;
+  --sl-color-gray-2: #2e4468;
   --sl-color-gray-1: #1a2a3e;
+  --sl-color-black:  #0f1623;
 
-  --sl-color-accent-low: #f6e4b8;
-  --sl-color-accent: #b8880a;
-  --sl-color-accent-high: #7a5a12;
+  --sl-color-accent-low:  #fdf3d0;
+  --sl-color-accent:      #f0c040;
+  --sl-color-accent-high: #1a2a3e;
 
-  --valor-gold: #b8880a;
-  --valor-gold-muted: #7a5a12;
-  --valor-dip: #fb923c;
-  --valor-success: #34d399;
+  --sl-color-green:        #059669;
+  --sl-color-green-low:    #d1fae5;
+  --sl-color-orange:       #c2410c;
+  --sl-color-orange-low:   #ffedd5;
+  --sl-color-blue:         #1d4ed8;
+  --sl-color-blue-low:     #dbeafe;
+  --sl-color-red:          #c2410c;
+  --sl-color-red-low:      #ffedd5;
 
-  --tier-legend: #b8880a;
+  --valor-gold:       #f0c040;
+  --valor-gold-text:  #8a6408;
+  --valor-gold-muted: #a07820;
+  --valor-dip:        #c2410c;
+  --valor-success:    #059669;
+
+  --tier-legend:   #f0c040;
   --tier-champion: #cbd5e1;
-  --tier-knight: #cd853f;
-  --tier-recruit: #64748b;
-  --tier-queen: #e8a0bf;
-  --tier-duchess: #c4a0d0;
-  --tier-lady: #a0b4d0;
-  --tier-page: #64748b;
+  --tier-knight:   #cd853f;
+  --tier-recruit:  #64748b;
+  --tier-queen:    #e8a0bf;
+  --tier-duchess:  #c4a0d0;
+  --tier-lady:     #a0b4d0;
+  --tier-page:     #64748b;
 }
 
 :root[data-theme='dark'] {
