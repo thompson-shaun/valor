@@ -60,7 +60,7 @@
   --sl-color-accent-high: #1A2A3E;
 
   --sl-color-text: var(--sl-color-gray-1);
-  --sl-color-text-accent: var(--sl-color-accent);
+  --sl-color-text-accent: var(--sl-color-accent-high);
 
   --sl-color-green:        #059669;
   --sl-color-green-low:    #D1FAE5;
@@ -132,12 +132,13 @@ h1, h2, h3, h4 {
   color: var(--sl-color-gray-2);
 }
 
-:root:not([data-theme='dark']) [data-page-type='splash'] .hero h1 {
+:root:not([data-theme='dark']) [data-page-type='splash'] .hero h1,
+:root:not([data-theme='dark']) [data-page-type='splash'] .hero h1[data-page-title] {
   color: var(--sl-color-gray-1) !important;
 }
 
 :root:not([data-theme='dark']) [data-page-type='splash'] .hero .tagline {
-  color: var(--sl-color-gray-2);
+  color: var(--sl-color-gray-2) !important;
 }
 
 :root,
