@@ -244,36 +244,35 @@ h1, h2, h3, h4 {
 /* ---- Light mode header ---- */
 :root:not([data-theme='dark']) header.header,
 :root[data-theme='light'] header.header {
-  background-color: #0F1623;
-  color: #F5EFE0;
-  border-bottom: 0;
+  background-color: var(--sl-color-white);
+  color: var(--sl-color-gray-1);
+  border-bottom: 1px solid var(--sl-color-gray-5);
   box-shadow: none;
-}
-
-:root:not([data-theme='dark']) header.header::after,
-:root[data-theme='light'] header.header::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: rgba(240, 192, 64, 0.18);
 }
 
 :root:not([data-theme='dark']) header.header .site-title,
 :root[data-theme='light'] header.header .site-title {
-  color: #F5EFE0 !important;
+  color: var(--sl-color-gray-1) !important;
 }
 
 :root:not([data-theme='dark']) header.header .site-title:hover,
 :root[data-theme='light'] header.header .site-title:hover {
-  color: #FDF3D0 !important;
+  color: var(--valor-gold-text) !important;
 }
 
 :root:not([data-theme='dark']) header.header :is(input, button, svg),
 :root[data-theme='light'] header.header :is(input, button, svg) {
-  color: #F5EFE0;
+  color: var(--sl-color-gray-2);
+}
+
+:root:not([data-theme='dark']) header.header .sl-link-button,
+:root[data-theme='light'] header.header .sl-link-button {
+  color: var(--sl-color-gray-2);
+}
+
+:root:not([data-theme='dark']) header.header .sl-link-button:hover,
+:root[data-theme='light'] header.header .sl-link-button:hover {
+  color: var(--valor-gold-text);
 }
 
 :root:not([data-theme='dark']) .right-sidebar-panel a,
