@@ -246,6 +246,19 @@ h1, h2, h3, h4 {
 :root[data-theme='light'] header.header {
   background-color: #0F1623;
   color: #F5EFE0;
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+:root:not([data-theme='dark']) header.header::after,
+:root[data-theme='light'] header.header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(240, 192, 64, 0.18);
 }
 
 :root:not([data-theme='dark']) header.header .site-title,
@@ -271,6 +284,12 @@ h1, h2, h3, h4 {
 :root:not([data-theme='dark']) .right-sidebar-panel a:hover,
 :root[data-theme='light'] .right-sidebar-panel a:hover {
   color: var(--sl-color-gray-1);
+}
+
+/* ---- Light mode content headings ---- */
+:root:not([data-theme='dark']) main .content-panel :is(h1, h2, h3, h4, h5, h6),
+:root[data-theme='light'] main .content-panel :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--sl-color-gray-1) !important;
 }
 
 /* ---- Card grid ---- */
