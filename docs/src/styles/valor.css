@@ -244,47 +244,47 @@ h1, h2, h3, h4 {
 /* ---- Light mode header ---- */
 :root:not([data-theme='dark']) header.header,
 :root[data-theme='light'] header.header {
-  background-color: var(--sl-color-white);
-  color: var(--sl-color-gray-1);
-  border-bottom: 1px solid var(--sl-color-gray-5);
+  background-color: #0F1623;
+  color: #F5EFE0;
+  border-bottom: 0;
   box-shadow: none;
 }
 
 :root:not([data-theme='dark']) header.header .site-title,
 :root[data-theme='light'] header.header .site-title {
-  color: var(--sl-color-gray-1) !important;
+  color: #F5EFE0 !important;
 }
 
 :root:not([data-theme='dark']) header.header .site-title:hover,
 :root[data-theme='light'] header.header .site-title:hover {
-  color: var(--valor-gold-text) !important;
+  color: #F0C040 !important;
 }
 
 :root:not([data-theme='dark']) header.header :is(input, button, svg),
 :root[data-theme='light'] header.header :is(input, button, svg) {
-  color: var(--sl-color-gray-2);
+  color: #F0C040;
 }
 
 :root:not([data-theme='dark']) header.header .sl-link-button,
 :root[data-theme='light'] header.header .sl-link-button {
-  color: var(--sl-color-gray-2);
+  color: #F0C040;
 }
 
 :root:not([data-theme='dark']) header.header .sl-link-button:hover,
 :root[data-theme='light'] header.header .sl-link-button:hover {
-  color: var(--valor-gold-text);
+  color: #F5D980;
 }
 
 :root:not([data-theme='dark']) header.header input[type='search'],
 :root[data-theme='light'] header.header input[type='search'] {
-  background-color: #FDF3D0;
-  border-color: #F0C040;
-  color: #1A2A3E;
+  background-color: #162032;
+  border-color: rgba(240, 192, 64, 0.5);
+  color: #F5EFE0;
 }
 
 :root:not([data-theme='dark']) header.header input[type='search']::placeholder,
 :root[data-theme='light'] header.header input[type='search']::placeholder {
-  color: #4E6A8A;
+  color: #8FA8C8;
 }
 
 :root:not([data-theme='dark']) header.header :is(button, svg, .site-title),
