@@ -241,6 +241,28 @@ h1, h2, h3, h4 {
   background-color: var(--sl-color-accent);
 }
 
+/* ---- Light mode header ---- */
+:root:not([data-theme='dark']) header.header,
+:root[data-theme='light'] header.header {
+  background-color: #0F1623;
+  color: #F5EFE0;
+}
+
+:root:not([data-theme='dark']) header.header .site-title,
+:root[data-theme='light'] header.header .site-title {
+  color: #F5EFE0 !important;
+}
+
+:root:not([data-theme='dark']) header.header .site-title:hover,
+:root[data-theme='light'] header.header .site-title:hover {
+  color: #FDF3D0 !important;
+}
+
+:root:not([data-theme='dark']) header.header :is(input, button, svg),
+:root[data-theme='light'] header.header :is(input, button, svg) {
+  color: #F5EFE0;
+}
+
 :root:not([data-theme='dark']) .right-sidebar-panel a,
 :root[data-theme='light'] .right-sidebar-panel a {
   color: var(--sl-color-gray-2);
