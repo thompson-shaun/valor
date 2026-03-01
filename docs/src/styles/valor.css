@@ -60,7 +60,7 @@
   --sl-color-accent-high: #1A2A3E;
 
   --sl-color-text: var(--sl-color-gray-1);
-  --sl-color-text-accent: var(--sl-color-gray-2);
+  --sl-color-text-accent: var(--sl-color-accent);
 
   --sl-color-green:        #059669;
   --sl-color-green-low:    #D1FAE5;
@@ -133,7 +133,7 @@ h1, h2, h3, h4 {
 }
 
 :root:not([data-theme='dark']) [data-page-type='splash'] .hero h1 {
-  color: var(--sl-color-gray-1);
+  color: var(--sl-color-gray-1) !important;
 }
 
 :root:not([data-theme='dark']) [data-page-type='splash'] .hero .tagline {
@@ -168,10 +168,10 @@ h1, h2, h3, h4 {
   box-shadow: 0 12px 24px rgba(240, 192, 64, 0.2);
 }
 
-:root:not([data-theme='dark']) [data-page-type='splash'] .hero .actions .sl-link-button {
+:root:not([data-theme='dark']) [data-page-type='splash'] .hero .actions .sl-link-button.primary {
   border: 1px solid color-mix(in srgb, var(--sl-color-accent) 65%, #ffffff);
-  background: var(--sl-color-accent);
-  color: var(--sl-color-accent-high);
+  background: var(--sl-color-accent) !important;
+  color: var(--sl-color-accent-high) !important;
   box-shadow: 0 8px 18px rgba(240, 192, 64, 0.25);
 }
 
