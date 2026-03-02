@@ -51,7 +51,7 @@ All changes go through pull requests. Issue-driven workflows create a branch, co
 | `workflow_dispatch` | Verify Ledger (Manual) | Replays ledgers + runs tests | N/A |
 
 The **Verify Ledger** CI workflow runs on every PR to `main`:
-1. Replays each player's `bank-log.jsonl` and confirms the running total matches `bank.json`
+1. Replays each player's `vault-log.jsonl` and confirms the running total matches `vault.json`
 2. Runs the full `tests/vault_test.sh` suite
 3. Verifies workflow inputs match `config/`
 

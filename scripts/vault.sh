@@ -57,20 +57,20 @@ if [[ -z "$PLAYER" ]]; then
 fi
 
 DATA_DIR="$REPO_ROOT/data/$PLAYER"
-BANK_FILE="$DATA_DIR/bank.json"
-LOG_FILE="$DATA_DIR/bank-log.jsonl"
+VAULT_FILE="$DATA_DIR/vault.json"
+LOG_FILE="$DATA_DIR/vault-log.jsonl"
 
 # Ensure data files exist
 mkdir -p "$DATA_DIR"
-if [[ ! -f "$BANK_FILE" ]]; then
-  echo '{"balance":0,"last_updated":null,"last_entry_id":null}' > "$BANK_FILE"
+if [[ ! -f "$VAULT_FILE" ]]; then
+  echo '{"balance":0,"last_updated":null,"last_entry_id":null}' > "$VAULT_FILE"
 fi
 if [[ ! -f "$LOG_FILE" ]]; then
   touch "$LOG_FILE"
 fi
 
 get_balance() {
-  node -e "console.log(JSON.parse(require('fs').readFileSync('$BANK_FILE','utf8')).balance)"
+  node -e "console.log(JSON.parse(require('fs').readFileSync('$VAULT_FILE','utf8')).balance)"
 }
 
 generate_uuid() {
@@ -138,11 +138,11 @@ cmd_verify() {
       else if (e.type === 'withdrawal') running -= e.amount;
       else if (e.type === 'set') running = e.balance_after;
     }
-    const bank = JSON.parse(fs.readFileSync('$BANK_FILE','utf8'));
+    const bank = JSON.parse(fs.readFileSync('$VAULT_FILE','utf8'));
     if (running === bank.balance) {
       console.log('PASS|' + running);
     } else {
-      console.log('FAIL|ledger=' + running + ',bank.json=' + bank.balance);
+      console.log('FAIL|ledger=' + running + ',vault.json=' + bank.balance);
     }
   ")
 
@@ -215,14 +215,14 @@ cmd_transact() {
     require('fs').appendFileSync('$LOG_FILE', JSON.stringify(entry) + '\n');
   "
 
-  # Update bank.json
+  # Update vault.json
   node -e "
     const bank = {
       balance: $new_balance,
       last_updated: '$ts',
       last_entry_id: '$uuid'
     };
-    require('fs').writeFileSync('$BANK_FILE', JSON.stringify(bank, null, 2) + '\n');
+    require('fs').writeFileSync('$VAULT_FILE', JSON.stringify(bank, null, 2) + '\n');
   "
 
   local action_label="$type"

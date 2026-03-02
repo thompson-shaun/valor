@@ -8,7 +8,7 @@ const dataDir = path.resolve(process.cwd(), '..', 'data', 'default');
 let balance = 0;
 let lastUpdated = '';
 try {
-  const bankData = JSON.parse(fs.readFileSync(path.join(dataDir, 'bank.json'), 'utf8'));
+  const bankData = JSON.parse(fs.readFileSync(path.join(dataDir, 'vault.json'), 'utf8'));
   balance = bankData.balance;
   lastUpdated = bankData.last_updated || '';
 } catch {
@@ -18,7 +18,7 @@ try {
 // Read recent transactions (last 5)
 let transactions: { id: string; timestamp: string; type: string; amount: number; balance_after: number; description: string }[] = [];
 try {
-  const logContent = fs.readFileSync(path.join(dataDir, 'bank-log.jsonl'), 'utf8').trim();
+  const logContent = fs.readFileSync(path.join(dataDir, 'vault-log.jsonl'), 'utf8').trim();
   if (logContent) {
     const logLines = logContent.split('\n').filter(Boolean);
     transactions = logLines.slice(-5).reverse().map(line => JSON.parse(line));

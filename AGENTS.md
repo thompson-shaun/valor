@@ -27,8 +27,8 @@ game-plan/
 │   └── settings.yaml      # Vault deposit %, thresholds, rules
 ├── data/
 │   └── <player>/           # One directory per player
-│       ├── bank.json       # Current balance (materialized view)
-│       └── bank-log.jsonl  # Append-only transaction ledger
+│       ├── vault.json       # Current balance (materialized view)
+│       └── vault-log.jsonl  # Append-only transaction ledger
 ├── scripts/
 │   └── bank.sh             # Bank transaction script
 └── .github/
@@ -49,7 +49,7 @@ These are non-negotiable rules grounded in behavioral science:
 7. **Vault deposits use gross earned (before dips).** Good choices always count toward the Vault even on rough days.
 8. **Vault deposit percentage is configurable.** See `config/settings.yaml` for the `deposit_percent` parameter (default 50%). Formula: `daily_vault_deposit = ceil(daily_gross_earned * deposit_percent / 100)`. Always round up.
 9. **Config-driven.** All Valor Point values, rewards, and thresholds live in YAML. Never hardcode.
-10. **Append-only ledger.** Never delete entries from `bank-log.jsonl`. All Vault changes are auditable.
+10. **Append-only ledger.** Never delete entries from `vault-log.jsonl`. All Vault changes are auditable.
 
 ## Vault Skill (`/vault`)
 
@@ -65,8 +65,8 @@ All commands accept an optional `--player <name>` flag. If omitted, uses `defaul
 
 ### Important
 - The skill/script records amounts as-given. The deposit calculation (applying `deposit_percent` from settings.yaml, rounding up) is the caller's responsibility.
-- Every operation appends to `data/<player>/bank-log.jsonl` and updates `data/<player>/bank.json`.
-- After every write, the script replays the full JSONL to verify the balance matches `bank.json`.
+- Every operation appends to `data/<player>/vault-log.jsonl` and updates `data/<player>/vault.json`.
+- After every write, the script replays the full JSONL to verify the balance matches `vault.json`.
 
 ## Reward Table Changes
 

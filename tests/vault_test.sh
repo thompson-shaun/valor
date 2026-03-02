@@ -58,11 +58,11 @@ assert_exit_code() {
 }
 
 get_balance() {
-  node -e "console.log(JSON.parse(require('fs').readFileSync('$REPO_ROOT/data/$TEST_PLAYER/bank.json','utf8')).balance)"
+  node -e "console.log(JSON.parse(require('fs').readFileSync('$REPO_ROOT/data/$TEST_PLAYER/vault.json','utf8')).balance)"
 }
 
 log_lines() {
-  wc -l < "$REPO_ROOT/data/$TEST_PLAYER/bank-log.jsonl" | tr -d ' '
+  wc -l < "$REPO_ROOT/data/$TEST_PLAYER/vault-log.jsonl" | tr -d ' '
 }
 
 # ---- Tests ----
@@ -186,13 +186,13 @@ OTHER_PLAYER="__test_other_$$"
 trap 'rm -rf "$REPO_ROOT/data/$TEST_PLAYER" "$REPO_ROOT/data/$OTHER_PLAYER"' EXIT
 "$BANK" --player "$OTHER_PLAYER" deposit 100 "Other player" >/dev/null
 assert_eq "original player balance unchanged" "0" "$(get_balance)"
-other_balance=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$REPO_ROOT/data/$OTHER_PLAYER/bank.json','utf8')).balance)")
+other_balance=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$REPO_ROOT/data/$OTHER_PLAYER/vault.json','utf8')).balance)")
 assert_eq "other player has own balance" "100" "$other_balance"
 
 # --- JSONL entry format ---
 echo ""
 echo "[JSONL format]"
-entry=$(head -1 "$REPO_ROOT/data/$TEST_PLAYER/bank-log.jsonl")
+entry=$(head -1 "$REPO_ROOT/data/$TEST_PLAYER/vault-log.jsonl")
 for field in id timestamp type amount balance_after description metadata; do
   assert_contains "entry has $field" "\"$field\"" "$entry"
 done
