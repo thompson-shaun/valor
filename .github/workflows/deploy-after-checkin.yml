@@ -8,7 +8,8 @@ jobs:
   deploy:
     if: >-
       github.event.pull_request.merged == true &&
-      startsWith(github.event.pull_request.head.ref, 'weekly-checkin/manual-')
+      startsWith(github.event.pull_request.head.ref, 'weekly-checkin/manual-') &&
+      contains(toJson(github.event.pull_request.labels.*.name), 'weekly-checkin')
     runs-on: ubuntu-latest
     permissions:
       actions: write
