@@ -262,12 +262,12 @@ h1, h2, h3, h4 {
 
 :root:not([data-theme='dark']) header.header :is(input, button, svg),
 :root[data-theme='light'] header.header :is(input, button, svg) {
-  color: #FDF3D0;
+  color: #FDF3D0 !important;
 }
 
 :root:not([data-theme='dark']) header.header .sl-link-button,
 :root[data-theme='light'] header.header .sl-link-button {
-  color: #FDF3D0;
+  color: #FDF3D0 !important;
 }
 
 :root:not([data-theme='dark']) header.header .sl-link-button:hover,
@@ -285,6 +285,18 @@ h1, h2, h3, h4 {
 :root:not([data-theme='dark']) header.header input[type='search']::placeholder,
 :root[data-theme='light'] header.header input[type='search']::placeholder {
   color: #FDF3D0;
+}
+
+/* Force header icon + toggle colors in light mode (Starlight specificity) */
+:root:not([data-theme='dark']) header.header :where(a, button) svg,
+:root[data-theme='light'] header.header :where(a, button) svg {
+  color: #FDF3D0 !important;
+  stroke: currentColor;
+}
+
+:root:not([data-theme='dark']) header.header :where(a, button),
+:root[data-theme='light'] header.header :where(a, button) {
+  color: #FDF3D0 !important;
 }
 
 :root:not([data-theme='dark']) header.header :is(button, svg, .site-title),
