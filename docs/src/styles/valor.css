@@ -262,12 +262,12 @@ h1, h2, h3, h4 {
 
 :root:not([data-theme='dark']) header.header :is(input, button, svg),
 :root[data-theme='light'] header.header :is(input, button, svg) {
-  color: #F0C040;
+  color: #F5D980;
 }
 
 :root:not([data-theme='dark']) header.header .sl-link-button,
 :root[data-theme='light'] header.header .sl-link-button {
-  color: #F0C040;
+  color: #F5D980;
 }
 
 :root:not([data-theme='dark']) header.header .sl-link-button:hover,
@@ -278,13 +278,13 @@ h1, h2, h3, h4 {
 :root:not([data-theme='dark']) header.header input[type='search'],
 :root[data-theme='light'] header.header input[type='search'] {
   background-color: #162032;
-  border-color: rgba(240, 192, 64, 0.5);
+  border-color: rgba(245, 217, 128, 0.6);
   color: #F5EFE0;
 }
 
 :root:not([data-theme='dark']) header.header input[type='search']::placeholder,
 :root[data-theme='light'] header.header input[type='search']::placeholder {
-  color: #8FA8C8;
+  color: #F5D980;
 }
 
 :root:not([data-theme='dark']) header.header :is(button, svg, .site-title),
