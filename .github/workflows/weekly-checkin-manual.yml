@@ -174,7 +174,7 @@ jobs:
             --base main) || { echo "Failed to create PR"; exit 1; }
 
           if [[ "${{ inputs.auto_merge }}" == "true" ]]; then
-            gh pr merge "$branch" --squash --delete-branch
+            gh pr merge "$branch" --auto --squash --delete-branch
             gh workflow run deploy-pages.yml --ref main
           fi
 
