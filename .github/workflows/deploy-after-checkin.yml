@@ -1,0 +1,21 @@
+name: Deploy Pages After Check-In Merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  deploy:
+    if: >-
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.head.ref, 'weekly-checkin/manual-')
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Trigger Pages deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run deploy-pages.yml --ref main --repo "$GITHUB_REPOSITORY"
