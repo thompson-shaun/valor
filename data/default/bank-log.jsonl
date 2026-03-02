@@ -2,3 +2,4 @@
 {"id":"e8e78069-ba0b-4bdc-9ba9-d369bbd3d196","timestamp":"2026-02-17T14:06:23.224Z","type":"set","amount":0,"balance_after":0,"description":"Reset bank — prior balance was test data","metadata":{}}
 {"id":"1409ffd7-b04a-4560-90af-668278e4abf5","timestamp":"2026-02-17T14:07:25.262Z","type":"deposit","amount":20,"balance_after":20,"description":"Week of 2026-02-10","metadata":{}}
 {"id":"e3420935-e3a3-40b0-a098-fa7ee13d7425","timestamp":"2026-02-25T03:10:41.013Z","type":"deposit","amount":24,"balance_after":44,"description":"Week of 2026-02-23","metadata":{}}
+{"id":"31677578-25f3-4b07-99ca-f8472df52d6d","timestamp":"2026-03-02T01:45:27.405Z","type":"deposit","amount":24,"balance_after":68,"description":"Week of 2026-02-23","metadata":{}}
