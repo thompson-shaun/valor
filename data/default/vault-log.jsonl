@@ -1,3 +1,4 @@
 {"id":"1e1ac9f2-9c5c-4f5f-9f78-0e2bba5340e7","timestamp":"2026-02-17T14:07:25.262Z","type":"deposit","amount":20,"balance_after":20,"description":"Week of 2026-02-09","metadata":{}}
 {"id":"8f4c6c35-8bb1-4d8f-8b1b-3f7de1c9c50a","timestamp":"2026-02-25T03:10:41.013Z","type":"deposit","amount":24,"balance_after":44,"description":"Week of 2026-02-16","metadata":{}}
 {"id":"31677578-25f3-4b07-99ca-f8472df52d6d","timestamp":"2026-03-02T01:45:27.405Z","type":"deposit","amount":24,"balance_after":68,"description":"Week of 2026-02-23","metadata":{}}
+{"id":"560bb7bf-2cb3-4d26-85b0-ac0792e55bbc","timestamp":"2026-03-13T14:07:08.508Z","type":"deposit","amount":29,"balance_after":97,"description":"Week of 2026-03-02","metadata":{}}
